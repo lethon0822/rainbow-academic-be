@@ -2,9 +2,9 @@ spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://192.168.0.39/rainbow-academic-management
-    username: green3
-    password: figma502
+    url: jdbc:mariadb://127.0.0.1:3306/musiuniver
+    username: root
+    password: green502
 
 mybatis:
   configuration:

@@ -8,7 +8,7 @@
         WHERE course_id = #{courseId}
     </select>
 
-    <insert id="student">
+    <insert id="insertCourse">
         INSERT INTO course (course_id, title, credit)
         VALUES (#{courseId},#{title},#{credit})
     </insert>

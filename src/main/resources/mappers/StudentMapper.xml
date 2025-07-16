@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.rainbowuniv.demoproject.student.StudentMapper">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.student.StudentMapper">
 
-    <select id="studentFindById">
-        SELECT * FROM student
-        WHERE user_id = #{userId}
+    <!-- 이수구분, 수업코드, 과목명, 학기, 학점, 등급, (절대,상대 보류),성적등록날짜 -->
+    <select id="studentFindById" parameterType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO">
+
+    SELECT
+        c.type,
+        c.course_id,
+        c.title,
+        c.semester,
+        c.credit,
+        e.grade,
+        e.created_at
+        FROM enrollment e
+        JOIN course c ON e.course_id = c.course_id
+        <where>
+            <if test="userId != null">
+                AND e.user_id = #{userId}
+            </if>
+            <if test="semester != null">
+                AND c.semester = #{semester}
+            </if>
+        </where>
     </select>
-
-    <insert id="student">
-        INSERT INTO student (user_id, dept_id)
-        VALUES (#{userId}, #{deptId})
-    </insert>
-
 </mapper>

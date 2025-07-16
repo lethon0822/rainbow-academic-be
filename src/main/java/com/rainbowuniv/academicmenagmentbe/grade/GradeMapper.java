@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.student;
+package com.rainbowuniv.academicmenagmentbe.grade;
 
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq;
@@ -7,10 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface StudentMapper {
-    // 성적조회(간소)
-    List<GradeDTO> studentFindById(GradeSearchReq p);
+public interface GradeMapper {
 
-    // 성적조회(전체)
 }
-
