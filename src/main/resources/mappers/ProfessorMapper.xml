@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.professor.ProfessorMapper">
 
-    <!-- 강의 등록   -->
+    <!-- 강의 등록  -->
     <insert id="saveCourse">
         INSERT INTO course
         SET user_id= #{userId}
@@ -19,11 +19,10 @@
         ,max_std = #{maxStd}
     </insert>
 
+    <!-- 내가 등록한 강의 조회  -->
     <select id="findByUserId">
-        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, u.name
+        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name
         FROM course c
-        join user u
-          on c.user_id = u.user_id
         join professor p
           on c.user_id = p.user_id
         join department d
@@ -35,9 +34,23 @@
         <if test="semester != null and semester !=''">
             ,semester = #{semester}
         </if>
-        ORDER BY title ASC, year DESC
+        ORDER BY year DESC, title ASC
     </select>
-    
+
+    <select id="findStudentsByUserId">
+        SELECT u.user_id, u.user_name, d.dept_name, u.email, u.phone, s.grade
+        FROM enrollment e
+        join student s
+          on e.user_id = s.user_id
+        join user u
+          on s.user_id = u.user_id
+        join department d
+          on d.dept_id = s.dept_id
+        WHERE course_id = #{id}
+        ORDER BY u.user_id, u.user_name
+    </select>
+
+    <!-- 강의계획서 수정 -->
     <update id="modify">
         UPDATE course
         SET classroom = #{classroom}

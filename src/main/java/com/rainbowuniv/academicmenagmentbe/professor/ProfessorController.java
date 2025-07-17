@@ -2,10 +2,7 @@ package com.rainbowuniv.academicmenagmentbe.professor;
 
 
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetReq;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetRes;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPostReq;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPutReq;
+import com.rainbowuniv.academicmenagmentbe.professor.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +36,21 @@ public class ProfessorController {
         return ResponseEntity.ok(result);
     }
 
+    //강의별 학생 리스트 조회
+    @GetMapping("/student")
+    public ResponseEntity<?> courseStudentList(@RequestParam int id){
+        List<CourseStudentGetReq> result = professorService.courseStudentList(id);
+        return ResponseEntity.ok(result);
+
+    }
+
     //강의 계획서 수정
     @PutMapping("/course")
     public ResponseEntity<?> modify(@RequestBody ProfessorPutReq req){
         int result = professorService.modify(req);
         return ResponseEntity.ok(result);
     }
+
+
+
 }

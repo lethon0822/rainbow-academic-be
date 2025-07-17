@@ -1,10 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.professor;
 
 
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetReq;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetRes;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPostReq;
-import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPutReq;
+import com.rainbowuniv.academicmenagmentbe.professor.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +14,6 @@ public interface ProfessorMapper {
     List<ProfessorGetRes> findByUserId(ProfessorGetReq req);
 
     int modify(ProfessorPutReq req);
+
+    List<CourseStudentGetReq> findStudentsByUserId(int id);
 }
