@@ -15,7 +15,7 @@ public class GradeController {
     private GradeService gradeService;
 
     // 성적조회(간소)
-    @GetMapping("/grades")
+    @GetMapping("/rank")
     public List<GradeDTO> getSimpleGrades(@ModelAttribute GradeSearchReq p) {
         return gradeService.findBySimpleGrade(p);
 
