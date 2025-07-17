@@ -2,11 +2,12 @@ spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://192.168.0.39/rainbow-academic-management
-    username: green3
-    password: figma502
+    url: jdbc:mariadb://localhost/rainbow-academic-management
+    username: root
+    password: green502
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: classpath:/mappers/**/*.xml
+  type-aliases-package: com.rainbowuniv.academicmenagmentbe.dto
