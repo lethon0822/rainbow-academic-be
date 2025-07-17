@@ -1,13 +1,17 @@
+constants:
+  file:
+    directory: D:\student\jyj\backend\upload
+
 spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://localhost/rainbow-academic-management
+    url: jdbc:log4jdbc:mariadb://localhost/rainbow-academic-management
     username: root
     password: green502
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: classpath:/mappers/**/*.xml
-  type-aliases-package: com.rainbowuniv.academicmenagmentbe.dto
+  mapper-locations: mappers/**/*.xml
