@@ -1,10 +1,12 @@
-package com.rainbowuniv.academicmenagmentbe.course.model;
+package com.rainbowuniv.academicmenagmentbe.professor.model;
 
 import lombok.Getter;
 
 @Getter
-public class CourseGetRes {
+public class ProfessorGetRes {
     private int courseId;
+    private String name;
+    private String deptName;
     private String classroom;
     private String type;
     private int semester;

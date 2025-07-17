@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.course.model;
+package com.rainbowuniv.academicmenagmentbe.professor.model;
 
-public class CourseStudentsGetRes {
+public class ProfessorStudentsGetRes {
 }

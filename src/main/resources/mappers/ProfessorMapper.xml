@@ -20,9 +20,15 @@
     </insert>
 
     <select id="findByUserId">
-        SELECT course_id, classroom, type, semester, time, title, credit, max_std
-        FROM course
-        WHERE user_id = #{userId}
+        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, u.name
+        FROM course c
+        join user u
+          on c.user_id = u.user_id
+        join professor p
+          on c.user_id = p.user_id
+        join department d
+          on p.dept_id = d.dept_id
+        WHERE c.user_id = #{userId}
         <if test="year != null and year !=''">
             ,year = #{year}
         </if>
@@ -31,6 +37,22 @@
         </if>
         ORDER BY title ASC, year DESC
     </select>
+    
+    <update id="modify">
+        UPDATE course
+        SET classroom = #{classroom}
+        ,type = #{type}
+        ,semester = #{semester}
+        ,time = #{time}
+        ,title = #{title}
+        ,credit = #{credit}
+        ,week_plan = #{weekPlan}
+        ,evaluation = #{evaluation}
+        ,text_book = #{textBook}
+        ,goal = #{goal}
+        ,max_std = #{maxStd}
+        WHERE course_id = #{courseId}
+    </update>
 
 
 </mapper>

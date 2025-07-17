@@ -1,7 +1,7 @@
-package com.rainbowuniv.academicmenagmentbe.course;
+package com.rainbowuniv.academicmenagmentbe.professor;
 
 
-import com.rainbowuniv.academicmenagmentbe.course.model.*;
+import com.rainbowuniv.academicmenagmentbe.professor.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,15 +11,19 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class CourseService {
-    private final CourseMapper courseMapper;
+public class ProfessorService {
+    private final ProfessorMapper professorMapper;
 
-    public int saveCourse(CoursePostReq req){
-     return courseMapper.saveCourse(req);
+    public int saveCourse(ProfessorPostReq req){
+     return professorMapper.saveCourse(req);
     }
 
-    public List<CourseGetRes> findMyCourse(CourseGetReq req){
-        return courseMapper.findByUserId(req);
+    public List<ProfessorGetRes> findMyCourse(ProfessorGetReq req){
+        return professorMapper.findByUserId(req);
+    }
+
+    public int modify(ProfessorPutReq req){
+        return professorMapper.modify(req);
     }
 
 }

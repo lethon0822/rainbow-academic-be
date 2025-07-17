@@ -1,13 +1,15 @@
-package com.rainbowuniv.academicmenagmentbe.course;
+package com.rainbowuniv.academicmenagmentbe.professor;
 
 
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseGetReq;
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseGetRes;
-import com.rainbowuniv.academicmenagmentbe.course.model.CoursePostReq;
+import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetReq;
+import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorGetRes;
+import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPostReq;
+import com.rainbowuniv.academicmenagmentbe.professor.model.ProfessorPutReq;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,24 +18,31 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/professor")
-public class CourseController {
-    private final CourseService courseService;
+public class ProfessorController {
+    private final ProfessorService professorService;
 
     //강의 등록
     @PostMapping("/course")
-    public int saveCourse(HttpServletRequest httpReq, @RequestBody CoursePostReq req){
+    public ResponseEntity <?> saveCourse(HttpServletRequest httpReq, @RequestBody ProfessorPostReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(userId);
-        int result = courseService.saveCourse(req);
-        return result;
+        int result = professorService.saveCourse(req);
+        return ResponseEntity.ok(result);
     }
 
-    //신청 현황보기
-    @GetMapping("")
-    public List<CourseGetRes> findMyCourse(HttpServletRequest httpReq,CourseGetReq req){
+    //등록한 강의 보기
+    @GetMapping("/course")
+    public ResponseEntity <?> findMyCourse(HttpServletRequest httpReq, @ModelAttribute ProfessorGetReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(userId);
-        List<CourseGetRes> result = courseService.findMyCourse(req);
-        return result;
+        List<ProfessorGetRes> result = professorService.findMyCourse(req);
+        return ResponseEntity.ok(result);
+    }
+
+    //강의 계획서 수정
+    @PutMapping("/course")
+    public ResponseEntity<?> modify(@RequestBody ProfessorPutReq req){
+        int result = professorService.modify(req);
+        return ResponseEntity.ok(result);
     }
 }

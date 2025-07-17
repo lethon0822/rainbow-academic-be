@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.course.model;
+package com.rainbowuniv.academicmenagmentbe.professor.model;
 
 
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CoursePostReq {
+public class ProfessorPostReq {
     private int userId;
     private String classroom;
     private String type;
