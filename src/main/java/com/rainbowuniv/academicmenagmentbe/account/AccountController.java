@@ -1,7 +1,8 @@
 package com.rainbowuniv.academicmenagmentbe.account;
 
 import com.rainbowuniv.academicmenagmentbe.account.etc.AccountConstants;
-import com.rainbowuniv.academicmenagmentbe.account.model.AccountIDReq;
+import com.rainbowuniv.academicmenagmentbe.account.model.AccountFindIdReq;
+import com.rainbowuniv.academicmenagmentbe.account.model.AccountFindIdRes;
 import com.rainbowuniv.academicmenagmentbe.account.model.AccountLoginReq;
 import com.rainbowuniv.academicmenagmentbe.account.model.AccountLoginRes;
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
@@ -10,8 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,9 +29,21 @@ public class AccountController {
         HttpUtils.setSession(httpReq, AccountConstants.USER_ID_NAME, result.getUserId());
         return ResponseEntity.ok(result);
     }
-    @GetMapping("/id")
-    public ResponseEntity<?> getDeptList() {
-        List<AccountIDReq> result = accountService.findByDeptId();
+
+
+
+
+//    @GetMapping("/id")
+//    public ResponseEntity<?> findId (@RequestParam String email, @RequestParam String phone) {
+//        AccountFindIdReq req = new AccountFindIdReq(email, phone);
+//        AccountFindIdRes result = accountService.findIdByEmailAndPhone(req);
+//        return ResponseEntity.ok(result);
+//    }
+
+        @GetMapping("/id")
+        public ResponseEntity<?> findId (@ModelAttribute AccountFindIdReq req){
+        AccountFindIdRes result = accountService.findIdByEmailAndPhone(req);
+        log.info("req:{}",req);
         return ResponseEntity.ok(result);
     }
 }

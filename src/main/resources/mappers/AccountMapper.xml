@@ -3,15 +3,17 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.account.AccountMapper">
 <!--    로그인 하기     -->
 <select id="findByLoginId">
-    SELECT login_id, password, user_role
+    SELECT login_id, password
     FROM user
     WHERE login_id = #{loginId}
 </select>
-<!--    학과 찾기    -->
-<select id="findByDeptId">
-    SELECT name
-    FROM  department
-</select>
 
+<!--   아이디 찾기    -->
+<select id="findIdByEmailAndPhone">
+    SELECT user_name, login_id
+    FROM user
+    WHERE email = #{email}
+    AND phone = #{phone}
+</select>
 
 </mapper>
