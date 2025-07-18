@@ -1,14 +1,12 @@
-package com.rainbowuniv.academicmenagmentbe.model;
+package com.rainbowuniv.academicmenagmentbe.Attendance.model;
 
 import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
-public class AttendanceDto {
+public class AttendanceReq {
+    private int enrollmentId;
     private LocalDate attendDate;
-    private Date attendanceDate;
     private String status;
     private String note;
 }
