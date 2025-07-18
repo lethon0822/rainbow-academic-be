@@ -32,6 +32,7 @@
         FROM course c
         JOIN user u ON u.user_id = c.user_id
         JOIN department d ON d.dept_id = c.dept_id
+        WHERE year = #{year}
         <where>
             <if test="year != null">
                  c.year = #{year}

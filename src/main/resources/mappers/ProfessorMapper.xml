@@ -29,10 +29,10 @@
           on p.dept_id = d.dept_id
         WHERE c.user_id = #{userId}
         <if test="year != null and year !=''">
-            ,year = #{year}
+            AND year = #{year}
         </if>
         <if test="semester != null and semester !=''">
-            ,semester = #{semester}
+            AND semester = #{semester}
         </if>
         ORDER BY year DESC, title ASC
     </select>
