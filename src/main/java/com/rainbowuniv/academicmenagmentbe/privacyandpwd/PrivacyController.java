@@ -16,7 +16,8 @@ public class PrivacyController {
     private final PrivacyService privacyService;
 
     @PutMapping("/privacy")
-    public int update (@RequestBody PrivacyPutReq req) {
-        return privacyService.updateMyPrivacy(req);
+    public String update (@RequestBody PrivacyPutReq req) {
+        privacyService.updateMyPrivacy(req);
+        return "success";
     }
 }
