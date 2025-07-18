@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.student.SugangMapper">
+
+    <!--수강 신청을 할 수 있다. -->
+    <insert id="courseEnrollment">
+         INSERT INTO enrollment
+        SET course_id = #{courseId}
+        , user_id = #{userId};
+    </insert>
+
+    <!-- 수강 신청한 강의를 화면에 바로 띄우기 위한 처리 -->
+    <select id="sugangCourseInfo">
+        SELECT '수강 신청이 완료되었습니다.' AS message,
+        c.course_id,
+        c.title,
+        c.classroom,
+        u.name AS professor,
+        c.time,
+        c.credit
+        FROM course c
+        JOIN user u
+        ON u.user_id = c.user_id
+        WHERE c.course_id = #{courseId}
+    </select>
+
+    <!-- 수강 신청시 rem_std를 1 줄여야 함 -->
+    <update id ="decreaseRemainingSeats">
+        UPDATE course
+        SET rem_std = rem_std - 1
+        WHERE course_id = #{courseId}
+    </update>
+
+    <!-- 정원 초과시 수강신청을 막기 위해 잔여 인원 체크   -->
+    <select id="getRemainingSeats">
+        SELECT rem_std AS remStd
+        FROM course
+        WHERE course_id = #{courseId}
+    </select>
+
+    <!-- 이번 학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
+    <select id="findAppliedCoursesByUserId">
+        SELECT
+        c.course_id,
+        c.title,
+        c.classroom,
+        u.name AS professor,
+        c.time,
+        c.credit
+
+        FROM enrollment e
+
+        JOIN course c
+        ON e.course_id = c.course_id
+        JOIN user u
+        ON u.user_id = c.user_id
+
+        WHERE e.user_id = #{userId}
+        AND c.year = #{year}
+        AND c.semester = #{semester}
+    </select>
+
+
+</mapper>
