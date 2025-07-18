@@ -1,12 +1,12 @@
 constants:
   file:
-    directory: /home/download
+    directory: D:\student\jyj\backend\upload
 
 spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:log4jdbc:mariadb://localhost/campus_mgmt
+    url: jdbc:log4jdbc:mariadb://localhost/rainbow-academic-management
     username: root
     password: green502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
