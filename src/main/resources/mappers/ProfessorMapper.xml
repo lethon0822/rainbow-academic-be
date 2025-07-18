@@ -19,7 +19,7 @@
         ,max_std = #{maxStd}
     </insert>
 
-    <!-- 내가 등록한 강의 조회  -->
+    <!-- 내가 등록한 강의목록 조회  -->
     <select id="findByUserId">
         SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name
         FROM course c
@@ -37,6 +37,8 @@
         ORDER BY year DESC, title ASC
     </select>
 
+
+    <!-- 내 강의별 학생 리스트 조회   -->
     <select id="findStudentsByUserId">
         SELECT u.user_id, u.user_name, d.dept_name, u.email, u.phone, s.grade
         FROM enrollment e
