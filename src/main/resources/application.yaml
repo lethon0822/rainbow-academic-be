@@ -6,7 +6,7 @@ spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://192.168.0.39/rainbow-academic-management
+    url: jdbc:log4jdbc:mariadb://192.168.0.39/rainbow-academic-management
     username: green3
     password: figma502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
@@ -15,4 +15,4 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:mappers/**/*.xml
-type-aliases-package: com.rainbowuniv.academicmenagmentbe.Attendance.model
+type-aliases-package: com.rainbowuniv.academicmenagmentbe.Grade.model
