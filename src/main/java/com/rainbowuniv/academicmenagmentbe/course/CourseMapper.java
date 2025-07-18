@@ -1,9 +1,6 @@
 package com.rainbowuniv.academicmenagmentbe.course;
 
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseFilterReq;
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseFilterRes;
-import com.rainbowuniv.academicmenagmentbe.course.model.GetDepartmentRes;
-import com.rainbowuniv.academicmenagmentbe.course.model.GetYearsRes;
+import com.rainbowuniv.academicmenagmentbe.course.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -19,4 +16,7 @@ public interface CourseMapper {
 
     // 올해 개설된 강의 조회
     List<CourseFilterRes> findCoursesByFilter(CourseFilterReq req);
+
+    // 강의 계획서 조회
+    CourseGetDetailRes findByCourseId(int courseId);
 }
