@@ -23,7 +23,7 @@
         c.title,
         c.classroom,
         c.type,
-        u.name AS professorName,
+        u.user_name AS professorName,
         c.year,
         c.semester,
         c.time,
@@ -32,6 +32,7 @@
         FROM course c
         JOIN user u ON u.user_id = c.user_id
         JOIN department d ON d.dept_id = c.dept_id
+        WHERE year = #{year}
         <where>
             <if test="year != null">
                  c.year = #{year}
@@ -50,6 +51,21 @@
             </if>
         </where>
 
+    </select>
+
+    <!-- 강의 계획서 조회(강의 detail) -->
+    <select id="findByCourseId">
+        SELECT course_id, classroom, type, year, semester, time,
+               title, credit, week_plan, text_book, goal,
+               max_std, u.user_name, d.dept_name
+          FROM course c
+          JOIN professor p
+            ON c.user_id = p.user_id
+          JOIN user u
+            ON p.user_id = u.user_id
+          JOIN department d
+            ON p.dept_id = d.dept_id
+        WHERE course_id = #{courseId}
     </select>
 
 
