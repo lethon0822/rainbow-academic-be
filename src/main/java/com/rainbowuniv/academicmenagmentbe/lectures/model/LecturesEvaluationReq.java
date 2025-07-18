@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.course.model;
+package com.rainbowuniv.academicmenagmentbe.lectures.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CourseEvaluationReq {
+public class LecturesEvaluationReq {
     //강의 평가 요청 모델
     //유저Id,courseId,year,semester
     private int userId;

@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.course.model;
+package com.rainbowuniv.academicmenagmentbe.lectures.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class CourseReq {
+public class LecturesReq {
     private int courseId;
     private String title;
     private int credit;
