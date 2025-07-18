@@ -46,7 +46,7 @@
           on s.user_id = u.user_id
         join department d
           on d.dept_id = s.dept_id
-        WHERE course_id = #{id}
+        WHERE course_id = #{courseId}
         ORDER BY u.user_id, u.user_name
     </select>
 

@@ -38,8 +38,8 @@ public class ProfessorController {
 
     //강의별 학생 리스트 조회
     @GetMapping("/student")
-    public ResponseEntity<?> courseStudentList(@RequestParam int id){
-        List<CourseStudentGetReq> result = professorService.courseStudentList(id);
+    public ResponseEntity<?> courseStudentList(@RequestParam("course_id") int courseId){
+        List<CourseStudentGetReq> result = professorService.courseStudentList(courseId);
         return ResponseEntity.ok(result);
 
     }

@@ -15,5 +15,5 @@ public interface ProfessorMapper {
 
     int modify(ProfessorPutReq req);
 
-    List<CourseStudentGetReq> findStudentsByUserId(int id);
+    List<CourseStudentGetReq> findStudentsByUserId(int courseId);
 }
