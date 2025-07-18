@@ -1,7 +1,7 @@
 constants:
   file:
     directory: /home/download
-    
+
 spring:
   application:
     name: rainbow-academic-management

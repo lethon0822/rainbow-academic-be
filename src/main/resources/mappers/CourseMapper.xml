@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.course.CourseMapper">
+
+   <!-- 현재 DB에 있는 모든 연도 가져옴 -->
+    <select id="findAllYear">
+        SELECT DISTINCT year
+        FROM course
+    </select>
+
+    <!-- 현재 DB에 있는 모든 학과 가져옴 -->
+    <select id="findAllDepartment">
+        SELECT name AS departmentName
+        FROM department
+    </select>
+
+<!-- 개설된 강의들을 연도, 학기, 학과( 교양이면 학과를 교양학부로 함. ),
+    타입(교양,전공)별로 조회. 필요시 강의명으로 검색할 수도 있음-->
+
+    <select id="findCoursesByFilter">
+        SELECT
+        c.course_id,
+        c.title,
+        c.classroom,
+        c.type,
+        u.name AS professorName,
+        c.year,
+        c.semester,
+        c.time,
+        c.credit,
+        c.max_std
+        FROM course c
+        JOIN user u ON u.user_id = c.user_id
+        JOIN department d ON d.dept_id = c.dept_id
+        <where>
+            <if test="year != null">
+                 c.year = #{year}
+            </if>
+            <if test="semester != null">
+                AND c.semester = #{semester}
+            </if>
+            <if test="departmentName != null">
+                AND d.name = #{departmentName}
+            </if>
+            <if test="type != null">
+                AND c.type = #{type}
+            </if>
+            <if test="title != null and title != ''">
+                AND c.title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+
+    </select>
+
+
+</mapper>
