@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.user.UserMapper">
+
+
+
+    <!-- user_id로 학생 조회 -->
+    <select id="selectStudentByUserIdsave" parameterType="int" resultType="com.rainbowuniv.academicmanagementbe.User.model.UserGetRes">
+        SELECT user_id, dept_id, grade, semester, ent_date, gradu_date, account, status
+        FROM student
+        WHERE user_id = #{userId}
+    </select>
+
+
+    <!-- user_id로 교수 조회 -->
+    <select id="selectProfessorByUserId" parameterType="int" resultType="com.rainbowuniv.academicmanagementbe.User.model.UserGetRes">
+        SELECT user_id, dept_id, hire_date
+        FROM professor
+        WHERE user_id = #{userId}
+    </select>
+
+
+
+</mapper>
