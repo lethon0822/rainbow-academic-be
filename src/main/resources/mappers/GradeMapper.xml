@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.grade.GradeMapper">
 
-<update id="updateGrade">
+<!-- 성적기입  -->
+<update id="updateGrade" parameterType="GradeReq">
     UPDATE enrollment
     SET score = #{score},
         grade = #{grade}
