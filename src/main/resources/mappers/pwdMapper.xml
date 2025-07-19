@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rainbowuniv.academicmenagmentbe.privacyandpwd.PwdMapper">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.privacyandpwd.PwdChangeMapper">
     <update id="changePwdById">
         UPDATE user
-
+        SET password = #{password}
+        WHERE user_id = #{userId}
 
     </update>
 
