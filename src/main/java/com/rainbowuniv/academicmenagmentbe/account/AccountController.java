@@ -30,9 +30,6 @@ public class AccountController {
         return ResponseEntity.ok(result);
     }
 
-
-
-
 //    @GetMapping("/id")
 //    public ResponseEntity<?> findId (@RequestParam String email, @RequestParam String phone) {
 //        AccountFindIdReq req = new AccountFindIdReq(email, phone);
@@ -46,4 +43,16 @@ public class AccountController {
         log.info("req:{}",req);
         return ResponseEntity.ok(result);
     }
+        @GetMapping("/check")
+        public ResponseEntity<?> check(HttpServletRequest httpReq) {
+         Integer id = (Integer)HttpUtils.getSessionValue(httpReq,AccountConstants.USER_ID_NAME);
+            log.info("id: {}",id);
+            return ResponseEntity.ok(id);
+    }
+        @PostMapping("/logout")
+        public ResponseEntity<?> logout(HttpServletRequest httpReq) {
+          HttpUtils.removeSessionValue(httpReq,AccountConstants.USER_ID_NAME);
+            return ResponseEntity.ok(1);
+    }
+
 }
