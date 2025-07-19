@@ -9,9 +9,8 @@ spring:
     url: jdbc:log4jdbc:mariadb://192.168.0.39/first_project
     username: green3
     password: figma502
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: classpath:mappers/**/*.xml
+type-aliases-package: com.rainbowuniv.academicmenagmentbe.Attendance.model
