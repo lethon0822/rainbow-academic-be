@@ -1,16 +1,10 @@
 package com.rainbowuniv.academicmenagmentbe.course;
 
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseFilterReq;
-import com.rainbowuniv.academicmenagmentbe.course.model.CourseFilterRes;
-import com.rainbowuniv.academicmenagmentbe.course.model.GetDepartmentRes;
-import com.rainbowuniv.academicmenagmentbe.course.model.GetYearsRes;
+import com.rainbowuniv.academicmenagmentbe.course.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +33,13 @@ public class CourseController {
     @GetMapping
     public ResponseEntity<?> findAllCourses(@ModelAttribute CourseFilterReq req){
         List<CourseFilterRes> result = courseService.findCoursesByFilter(req);
+        return ResponseEntity.ok(result);
+    }
+
+    // 강의 계획서 조회
+    @GetMapping("/{course_id}")
+    public ResponseEntity<?> findByCourseId(@PathVariable("course_id") int courseId){
+        CourseGetDetailRes result = courseService.findByCourseId(courseId);
         return ResponseEntity.ok(result);
     }
 

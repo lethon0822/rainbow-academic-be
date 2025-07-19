@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CourseEnrollReq {
+public class SugangReq {
     private int userId;
     private int courseId;
 }
