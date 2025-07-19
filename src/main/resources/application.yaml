@@ -9,7 +9,7 @@ spring:
     url: jdbc:log4jdbc:mariadb://192.168.0.39/first_project
     username: green3
     password: figma502
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
 mybatis:
   configuration:
