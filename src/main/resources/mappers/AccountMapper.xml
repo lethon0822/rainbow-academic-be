@@ -3,7 +3,7 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.account.AccountMapper">
 <!--    로그인 하기     -->
 <select id="findByLoginId">
-    SELECT login_id, password
+    SELECT login_id, password, user_id, user_roll
     FROM user
     WHERE login_id = #{loginId}
 </select>
