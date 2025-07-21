@@ -43,6 +43,8 @@ public class AccountController {
         log.info("req:{}",req);
         return ResponseEntity.ok(result);
     }
+
+
         @GetMapping("/check")
         public ResponseEntity<?> check(HttpServletRequest httpReq) {
          Integer id = (Integer)HttpUtils.getSessionValue(httpReq,AccountConstants.USER_ID_NAME);
