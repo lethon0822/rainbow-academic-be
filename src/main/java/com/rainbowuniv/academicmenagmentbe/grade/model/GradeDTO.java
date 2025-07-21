@@ -9,12 +9,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GradeDTO {
-    private String type;
+    private int grade ;
+    private int semester;
     private int courseId;
     private String title;
-    private int semester;
     private int credit;
-    private String grade;
-    private Date createdAt;
+    private String rank;
+    private String type;
 }
 
