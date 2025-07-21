@@ -1,6 +1,6 @@
 package com.rainbowuniv.academicmenagmentbe.grade;
 
-import com.rainbowuniv.academicmenagmentbe.grade.model.GradeReq;
+import com.rainbowuniv.academicmenagmentbe.grade.model.GradeUpdateReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/professor/course/grade")
+@RequestMapping("/api/professor/course")
 @RequiredArgsConstructor
 public class GradeController {
 
     private final GradeService gradeService;
 
-    @PutMapping("/input")
-    public ResponseEntity<String> updateGrade(@RequestBody GradeReq req) {
+    @PutMapping("/grade")
+    public ResponseEntity<String> updateGrade(@RequestBody GradeUpdateReq req) {
        gradeService.updateGrade(req);
-       return ResponseEntity.ok("성적 입력 완료");
+       return ResponseEntity.ok("성적 저장 완료");
     }
 }

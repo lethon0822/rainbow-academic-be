@@ -1,6 +1,6 @@
-package com.rainbowuniv.academicmenagmentbe.Attendance;
+package com.rainbowuniv.academicmenagmentbe.attendance;
 
-import com.rainbowuniv.academicmenagmentbe.Attendance.model.AttendanceReq;
+import com.rainbowuniv.academicmenagmentbe.attendance.model.AttendanceReq;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

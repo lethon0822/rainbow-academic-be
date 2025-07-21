@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.Attendance.model;
+package com.rainbowuniv.academicmenagmentbe.attendance.model;
 
 import lombok.Data;
 import java.time.LocalDate;
