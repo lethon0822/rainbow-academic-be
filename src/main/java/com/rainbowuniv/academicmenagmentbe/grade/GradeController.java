@@ -59,8 +59,6 @@ public class GradeController {
         }
     }
 
-
-
     // 성적 등록 및 수정 - 교수용
     @PutMapping("/professor/course/grade")
     public ResponseEntity<String> updateGrade(@RequestBody GradeReq req) {
@@ -68,7 +66,7 @@ public class GradeController {
         return ResponseEntity.ok("성적 등록 완료");
     }
 
-    //강의 평가 학생용
+    // 강의 평가 학생용
     @PostMapping("/student/course/survey")
     public ResponseEntity<String> studentSurvey(@RequestBody LecturesEvaluationDto dto) {
         int result = professorService.studentSurvey(dto);
