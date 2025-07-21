@@ -1,4 +1,4 @@
-package com.rainbowuniv.academicmenagmentbe.student.model;
+package com.rainbowuniv.academicmenagmentbe.sugang.model;
 
 import lombok.Getter;
 import lombok.Setter;

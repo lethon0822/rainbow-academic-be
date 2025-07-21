@@ -10,7 +10,7 @@
 
     <!-- 현재 DB에 있는 모든 학과 가져옴 -->
     <select id="findAllDepartment">
-        SELECT name AS departmentName
+        SELECT dept_name AS departmentName
         FROM department
     </select>
 
