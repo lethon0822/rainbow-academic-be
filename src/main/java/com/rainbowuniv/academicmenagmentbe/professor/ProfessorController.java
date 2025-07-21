@@ -31,7 +31,7 @@ public class ProfessorController {
     @GetMapping("/course")
     public ResponseEntity <?> findMyCourse(HttpServletRequest httpReq, @ModelAttribute ProfessorGetReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
-        req.setUserId(10001);
+        req.setUserId(userId);
         log.info("야아아악:{}",req);
         List<ProfessorGetRes> result = professorService.findMyCourse(req);
         return ResponseEntity.ok(result);
