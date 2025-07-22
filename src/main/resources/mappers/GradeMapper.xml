@@ -2,79 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.grade.GradeMapper">
 
-    <update id="updateGrade" parameterType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeReq">
-        UPDATE enrollment
-        SET score = #{score},
+<update id="updateGrade" parameterType="GradeReq">
+    UPDATE enrollment
+    SET score = #{score},
         grade = #{grade}
-        WHERE enrollment_id = #{enrollmentId}
-    </update>
-
-    <select id="gradesbyCourse" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeBySubjectDTO">
-        SELECT
-        s.grade ,
-        c.semester ,
-        c.course_id ,
-        c.title ,
-        c.credit ,
-        e.rank ,
-        c.type
-        FROM enrollment e
-        JOIN course c ON e.course_id = c.course_id
-        JOIN student s ON e.user_id = s.user_id
-        WHERE e.user_id = #{userId}
-        <if test="courseId != -1">
-            AND c.course_id = #{courseId}
-        </if>
-        <if test="semester != -1">
-            AND c.semester = #{semester}
-        </if>
-    </select>
-
-    <select id="selectCreditByCategory" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.CreditByCategoryDTO">
-        SELECT
-        s.grade AS grade,
-        c.semester AS semester,
-        SUM(CASE WHEN c.type = '전공필수' THEN c.credit ELSE 0 END) AS majorRequired,
-        SUM(CASE WHEN c.type = '전공선택' THEN c.credit ELSE 0 END) AS majorElective,
-        SUM(CASE WHEN c.type = '교양' THEN c.credit ELSE 0 END) AS generalEducation
-        FROM enrollment e
-        JOIN course c ON e.course_id = c.course_id
-        JOIN student s ON e.user_id = s.user_id
-        WHERE e.user_id = #{userId}
-        <if test="courseId != -1">
-            AND c.course_id = #{courseId}
-        </if>
-        <if test="semester != -1">
-            AND c.semester = #{semester}
-        </if>
-        GROUP BY s.grade, c.semester
-        ORDER BY s.grade, c.semester
-    </select>
-
-    <select id="selectSemesterGradesByUser" parameterType="map" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.SemesterGradeDTO">
-        SELECT
-        s.grade AS grade,
-        c.semester AS semester,
-        SUM(c.credit) AS requestedCredits,
-        SUM(CASE WHEN e.score >= 60 THEN c.credit ELSE 0 END) AS acquiredCredits,
-        AVG(e.score) AS avgScore,
-        AVG(e.score / 20.0) AS avgGradePoint,
-        MIN(e.rank) AS grading,
-        COUNT(*) AS totalStudents
-        FROM enrollment e
-        JOIN course c ON e.course_id = c.course_id
-        JOIN student s ON e.user_id = s.user_id
-        WHERE e.user_id = #{userId}
-        <if test="courseId != -1">
-            AND c.course_id = #{courseId}
-        </if>
-        <if test="semester != -1">
-            AND c.semester = #{semester}
-        </if>
-        GROUP BY s.grade, c.semester
-        ORDER BY s.grade, c.semester
-    </select>
-
-
-
+    WHERE enrollment_id = #{enrollmentId}
+</update>
 </mapper>
