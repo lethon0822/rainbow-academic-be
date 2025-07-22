@@ -1,9 +1,9 @@
-package com.rainbowuniv.academicmenagmentbe.student;
+package com.rainbowuniv.academicmenagmentbe.sugang;
 
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangErrorRes;
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangListRes;
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangReq;
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangErrorRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +46,7 @@ public class SugangController {
         }
 
         // 수강 신청 성공. 해당 강의의 잔여 인원을 -1 함
-        int minus = sugangService.remMinus1(req);
+        sugangService.remMinus1(req);
 
         // 수강 신청 강의 차곡차곡 화면에 뿌리기 위함
         SugangRes res = sugangService.sugangCourseInfo(req);
