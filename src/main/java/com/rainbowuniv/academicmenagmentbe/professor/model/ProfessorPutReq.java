@@ -13,8 +13,8 @@ public class ProfessorPutReq {
     private String title;
     private int credit;
     private String weekPlan;
-    private String evaluation;
     private String textBook;
     private String goal;
     private int maxStd;
+    private int grade;
 }

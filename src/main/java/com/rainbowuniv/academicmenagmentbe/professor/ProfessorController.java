@@ -45,6 +45,7 @@ public class ProfessorController {
 
     }
 
+
     //강의 계획서 수정
     @PutMapping("/course")
     public ResponseEntity<?> modify(@RequestBody ProfessorPutReq req){
