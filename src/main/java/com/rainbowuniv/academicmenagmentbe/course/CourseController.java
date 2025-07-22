@@ -29,7 +29,7 @@ public class CourseController {
         return ResponseEntity.ok(result);
     }
 
-
+    // 필터에 따른 강의 조회
     @GetMapping
     public ResponseEntity<?> findAllCourses(@ModelAttribute CourseFilterReq req){
         List<CourseFilterRes> result = courseService.findCoursesByFilter(req);
