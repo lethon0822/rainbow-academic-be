@@ -63,7 +63,7 @@
     <select id="findByCourseId">
         SELECT course_id, classroom, type, year, semester, time,
                title, credit, week_plan, text_book, goal,
-               max_std, u.user_name, d.dept_name
+               max_std, u.user_name, d.dept_name, grade
           FROM course c
           JOIN professor p
             ON c.user_id = p.user_id

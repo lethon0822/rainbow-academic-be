@@ -15,7 +15,7 @@
         c.course_id,
         c.title,
         c.classroom,
-        u.name AS professor,
+        u.user_name AS professor,
         c.time,
         c.credit
         FROM course c
