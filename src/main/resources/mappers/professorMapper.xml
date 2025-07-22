@@ -67,10 +67,5 @@
         WHERE course_id = #{courseId}
     </update>
 
-    <!-- 강의평가 학생용 -->
-    <insert id="createStudentSurvey">
-        INSERT INTO survey (course_id, user_id, review, score)
-        VALUES (#{courseId}, #{userId}, #{review}, #{score})
-    </insert>
 
 </mapper>
