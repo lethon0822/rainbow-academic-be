@@ -1,7 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.grade;
 
 import com.rainbowuniv.academicmenagmentbe.grade.model.*;
-import com.rainbowuniv.academicmenagmentbe.student.StudentMapper;
+import com.rainbowuniv.academicmenagmentbe.sugang.StudentMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

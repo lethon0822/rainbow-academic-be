@@ -1,9 +1,9 @@
-package com.rainbowuniv.academicmenagmentbe.student;
+package com.rainbowuniv.academicmenagmentbe.sugang;
 
 
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangListRes;
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangReq;
-import com.rainbowuniv.academicmenagmentbe.student.model.SugangRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
