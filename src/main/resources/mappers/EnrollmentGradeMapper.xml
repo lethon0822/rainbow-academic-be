@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.enrollmentgrade.EnrollmentGradeMapper">
+
+<!-- 성적 기입   -->
+    <update id="insertGrade">
+        UPDATE enrollment
+        SET mid_score = #{midScore},
+            fin_score = #{finScore},
+        rank = #{grade}
+        WHERE enrollment_id = #{enrollmentId}
+    </update>
+</mapper>
+
