@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class PwdChangeService {
     private final PwdChangeMapper pwdChangeMapper;
 
-    public int changePwdById (PwdPutReq req) {
-        String hashedPw = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt());
-        PwdPutReq changeReq = new PwdPutReq(req.getUserId(), hashedPw);
-        return pwdChangeMapper.changePwdById(changeReq);
-    }
+//    public int changePwdById (PwdPutReq req) {
+//        String hashedPw = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt());
+//        PwdPutReq changeReq = new PwdPutReq(req.getUserId(), hashedPw);
+//        return pwdChangeMapper.changePwdById(changeReq);
+//    }
 }

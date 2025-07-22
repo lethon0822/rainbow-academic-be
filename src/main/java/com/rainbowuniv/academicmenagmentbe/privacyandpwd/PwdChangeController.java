@@ -17,12 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PwdChangeController {
     private final PwdChangeService pwdChangeService;
 
-    @PutMapping("/renewal")
-    public ResponseEntity<?> changePwd (@RequestBody PwdPutReq req) {
-
-
-
-        int result = pwdChangeService.changePwdById(req);
-        return ResponseEntity.ok(result);
-    }
+//    @PutMapping("/renewal")
+//    public ResponseEntity<?> changePwd (@RequestBody PwdPutReq req) {
+//        int result = pwdChangeService.changePwdById(req);
+//        return ResponseEntity.ok(result);
+//    }
 }
