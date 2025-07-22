@@ -16,11 +16,12 @@
         ,text_book = #{textBook}
         ,goal = #{goal}
         ,max_std = #{maxStd}
+        ,grade = #{grade}
     </insert>
 
     <!-- 내가 등록한 강의 조회  -->
     <select id="findByUserId">
-        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, c.status
+        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, c.status, grade
         FROM course c
         join professor p
           on c.user_id = p.user_id
@@ -60,7 +61,6 @@
         ,title = #{title}
         ,credit = #{credit}
         ,week_plan = #{weekPlan}
-        ,evaluation = #{evaluation}
         ,text_book = #{textBook}
         ,goal = #{goal}
         ,max_std = #{maxStd}
