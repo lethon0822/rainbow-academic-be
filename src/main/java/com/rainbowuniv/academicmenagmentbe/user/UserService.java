@@ -14,28 +14,25 @@ public class UserService {
 
     private final UserMapper userMapper;
 
-    public int save(UserDto p){
-        return userMapper.save(p);
-    }
 
     // 개인정보 조회 (모든 사용자 공통)
     public UserGetRes getUserInfo(int userId) {
-        UserDto dto = userMapper.selectAcademicInfo(userId); // 일반 정보만 조회
+        UserGetRes dto = userMapper.selectAcademicInfo(userId); // 일반 정보만 조회
         if (dto == null) {
             throw new RuntimeException("사용자를 찾을 수 없습니다.");
         }
 
-        return toUserGetRes(dto);
+        return dto;
     }
 
     // 학적사항 포함 조회 (학생 전용)
     public UserGetRes getStudentAcademicInfo(int userId) {
-        UserDto dto = userMapper.selectStudentAcademicInfo(userId); // 학적 포함 조회
-        if (dto == null || !"student".equals(dto.getStudentInfo())) {
+        UserGetRes dto = userMapper.selectStudentAcademicInfo(userId); // 학적 포함 조회
+        if (dto == null || !"student".equals(dto)) {
             throw new RuntimeException("학생 정보가 아닙니다.");
         }
 
-        return toUserGetRes(dto);
+        return dto;
     }
 
     // 공통 + 학적 변환
