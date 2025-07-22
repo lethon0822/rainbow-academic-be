@@ -6,7 +6,7 @@ spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://localhost/musiuniver
+    url: jdbc:mariadb://127.0.0.1/musiuniver
     username: root
     password: green502
     driver-class-name: org.mariadb.jdbc.Driver
@@ -14,4 +14,4 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: classpath:/mappers/**/*.xml
+  mapper-locations: classpath:mappers/**/*.xml
