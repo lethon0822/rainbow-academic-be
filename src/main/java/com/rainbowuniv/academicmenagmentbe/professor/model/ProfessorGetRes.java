@@ -13,4 +13,5 @@ public class ProfessorGetRes {
     private String title;
     private int credit;
     private int maxStd;
+    private String status;
 }
