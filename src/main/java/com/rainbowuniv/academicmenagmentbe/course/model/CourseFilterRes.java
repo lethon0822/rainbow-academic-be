@@ -11,9 +11,11 @@ public class CourseFilterRes {
     private String classroom; //강의실
     private String type; //이수 구분
     private String professorName; //담당 교수
+    private int grade; //수강 학년
     private int year; //연도
     private int semester; // 학기
     private String time; // 강의시간
     private int credit; // 학점
     private int maxStd; // 정원
+    private int remStd; //잔여 인원
 }
