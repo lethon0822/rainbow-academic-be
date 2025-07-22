@@ -72,10 +72,4 @@ public class SugangController {
         List<SugangListRes> sugangListRes = sugangService.findAppliedCoursesByUserId(userId, currentYear, currentSemester);
         return ResponseEntity.ok().body(sugangListRes);
     }
-
-
-
-
-
-
 }
