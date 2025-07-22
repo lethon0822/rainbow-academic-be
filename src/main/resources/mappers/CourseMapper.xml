@@ -10,7 +10,7 @@
 
     <!-- 현재 DB에 있는 모든 학과 가져옴 -->
     <select id="findAllDepartment">
-        SELECT name AS departmentName
+        SELECT dept_name AS departmentName
         FROM department
     </select>
 
@@ -33,15 +33,12 @@
         JOIN user u ON u.user_id = c.user_id
         JOIN department d ON d.dept_id = c.dept_id
         WHERE year = #{year}
-        <where>
-            <if test="year != null">
-                 c.year = #{year}
-            </if>
+
             <if test="semester != null">
                 AND c.semester = #{semester}
             </if>
             <if test="departmentName != null">
-                AND d.name = #{departmentName}
+                AND d.dept_name = #{departmentName}
             </if>
             <if test="type != null">
                 AND c.type = #{type}
@@ -49,7 +46,7 @@
             <if test="title != null and title != ''">
                 AND c.title LIKE CONCAT('%', #{title}, '%')
             </if>
-        </where>
+
 
     </select>
 
