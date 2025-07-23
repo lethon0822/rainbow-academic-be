@@ -51,6 +51,7 @@
         ORDER BY u.user_id, u.user_name
     </select>
 
+
     <!-- 강의계획서 수정 -->
     <update id="modify">
         UPDATE course
