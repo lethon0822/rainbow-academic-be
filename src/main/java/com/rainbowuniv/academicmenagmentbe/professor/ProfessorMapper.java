@@ -16,7 +16,7 @@ public interface ProfessorMapper {
 
     int modify(ProfessorPutReq req);
 
-    List<CourseStudentGetReq> findStudentsByUserId(int courseId);
+    List<CourseStudentGetRes> findStudentsByUserId(int courseId);
 
     //강의평가 학생용
     int createStudentSurvey(LecturesEvaluationDto dto);
