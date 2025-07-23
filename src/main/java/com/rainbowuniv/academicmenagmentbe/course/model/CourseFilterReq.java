@@ -10,5 +10,6 @@ public class CourseFilterReq {
     private Integer semester;
     private String departmentName;
     private String type;
-    private String title;
+    private String keyword;
+    private Integer grade;
 }
