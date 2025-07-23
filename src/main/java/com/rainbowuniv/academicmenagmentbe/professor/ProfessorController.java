@@ -2,10 +2,12 @@ package com.rainbowuniv.academicmenagmentbe.professor;
 
 
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
+import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,8 +44,8 @@ public class ProfessorController {
     public ResponseEntity<?> courseStudentList(@RequestParam("course_id") int courseId){
         List<CourseStudentGetReq> result = professorService.courseStudentList(courseId);
         return ResponseEntity.ok(result);
-
     }
+
 
     //강의 계획서 수정
     @PutMapping("/course")
@@ -51,7 +53,4 @@ public class ProfessorController {
         int result = professorService.modify(req);
         return ResponseEntity.ok(result);
     }
-
-
-
 }
