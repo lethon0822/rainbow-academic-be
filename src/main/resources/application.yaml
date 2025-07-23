@@ -11,6 +11,7 @@ spring:
     password: green502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
