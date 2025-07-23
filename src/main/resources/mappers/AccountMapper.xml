@@ -16,6 +16,7 @@
         WHERE email = #{email}
         AND phone = #{phone}
     </select>
+
     <!--    이름가져오기    -->
     <select id="findNameByUserId">
         SELECT user_name
