@@ -3,7 +3,7 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.account.AccountMapper">
 <!--    로그인 하기     -->
 <select id="findByLoginId">
-    SELECT user_id, password
+    SELECT user_id, password, user_role, user_name
     FROM user
     WHERE login_id = #{loginId}
     AND password = #{password}
@@ -17,9 +17,9 @@
     AND phone = #{phone}
 </select>
 <!--    이름가져오기    -->
-  <select id="findNameByUserId">
+  <select id="findNameByLoginId">
     SELECT user_name
     FROM user
-    WHERE user_id = #{userId}
+    WHERE login_id = #{loginId}
   </select>
 </mapper>
