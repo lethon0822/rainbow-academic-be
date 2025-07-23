@@ -3,11 +3,15 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.enrollmentgrade.EnrollmentGradeMapper">
 
 <!-- 성적 기입   -->
-    <update id="insertGrade">
+    <update id="updateGrade">
         UPDATE enrollment
-        SET mid_score = #{midScore},
-            fin_score = #{finScore},
-        rank = #{grade}
+        SET
+        grade = #{grade},
+        rank = #{rank},
+        mid_score = #{midScore},
+        fin_score = #{finScore},
+        attendance_score = #{attendanceScore},
+        assignment_score = #{assignmentScore}
         WHERE enrollment_id = #{enrollmentId}
     </update>
 </mapper>
