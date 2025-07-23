@@ -13,11 +13,11 @@
         ,title = #{title}
         ,credit = #{credit}
         ,week_plan = #{weekPlan}
-        ,evaluation = #{evaluation}
         ,text_book = #{textBook}
         ,goal = #{goal}
         ,max_std = #{maxStd}
         ,grade = #{grade}
+        ,rem_std =#{maxStd}
     </insert>
 
     <!-- 내가 등록한 강의목록 조회  -->
@@ -35,7 +35,7 @@
         <if test="semester != null and semester !=''">
             AND semester = #{semester}
         </if>
-        ORDER BY year DESC, title ASC
+        ORDER BY course_id DESC, year DESC, title ASC
     </select>
 
 
