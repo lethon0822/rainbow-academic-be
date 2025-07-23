@@ -6,22 +6,10 @@ spring:
   application:
     name: rainbow-academic-management
   datasource:
-    url: jdbc:mariadb://192.168.0.39/rainbow-academic-management
+    url: jdbc:mariadb://192.168.0.39/first_project
     username: green3
     password: figma502
     driver-class-name: org.mariadb.jdbc.Driver
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: rainbowacmng@gmail.com
-    password: anwlro1234
-    properties:
-      mail:
-        smtp:
-          auth: true
-          timeout: 3000
-          starttls:
-            enable: true
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.rainbowuniv.demoproject.course.CourseMapper">
+
+    <!-- 강의 조회를 ID로 할 것인가?-->
+    <select id="lecturesFindById">
+        SELECT * FROM course
+        WHERE course_id = #{courseId}
+    </select>
+
+    <insert id="insertLectures">
+        INSERT INTO course (course_id, title, credit)
+        VALUES (#{courseId},#{title},#{credit})
+    </insert>
+
+</mapper>
