@@ -30,7 +30,8 @@
           c.time,
           c.credit,
           c.max_std,
-          c.rem_std
+          c.rem_std,
+          d.dept_name
         FROM course c
         JOIN user u
         ON u.user_id = c.user_id
