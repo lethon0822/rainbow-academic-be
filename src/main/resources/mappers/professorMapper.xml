@@ -13,7 +13,6 @@
         ,title = #{title}
         ,credit = #{credit}
         ,week_plan = #{weekPlan}
-        ,evaluation = #{evaluation}
         ,text_book = #{textBook}
         ,goal = #{goal}
         ,max_std = #{maxStd}
