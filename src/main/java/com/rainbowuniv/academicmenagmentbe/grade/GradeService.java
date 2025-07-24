@@ -32,5 +32,4 @@ public class GradeService {
         return gradeMapper.selectSemesterGradesByUser(userId, courseId, semester);
     }
 
-
 }
