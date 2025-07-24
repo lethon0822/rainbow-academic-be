@@ -20,4 +20,5 @@ public class ProfessorPostReq {
     private String textBook;
     private String goal;
     private int maxStd;
+    private int grade;
 }

@@ -6,6 +6,5 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class SugangErrorRes {
-    private String message;
     private int code;
 }
