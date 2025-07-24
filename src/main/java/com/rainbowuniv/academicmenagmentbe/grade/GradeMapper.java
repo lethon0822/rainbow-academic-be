@@ -17,5 +17,5 @@ public interface GradeMapper {
     List< SemesterGradeDTO > selectSemesterGradesByUser(int userId, int courseId, int semester);
 
     // 성적 등록/수정
-    void updateGrade(GradeReq req);
+
 }
