@@ -16,5 +16,4 @@ public interface GradeMapper {
     List< CreditByCategoryDTO > selectCreditByCategory(int userId, int courseId, int semester);
     List< SemesterGradeDTO > selectSemesterGradesByUser(int userId, int courseId, int semester);
 
-
 }
