@@ -5,7 +5,7 @@
     <!--수강 신청을 할 수 있다. -->
     <insert id="courseEnrollment">
          INSERT INTO enrollment
-        SET course_id = #{courseId}
+         SET course_id = #{courseId}
         , user_id = #{userId};
     </insert>
 
@@ -57,21 +57,23 @@
         c.course_id,
         c.title,
         c.classroom,
-        u.name AS professor,
+        c.type,
+        c.grade,
+        u.user_name AS professorName,
+        c.year,
+        c.semester,
         c.time,
-        c.credit
-
-        FROM enrollment e
-
-        JOIN course c
-        ON e.course_id = c.course_id
-        JOIN user u
-        ON u.user_id = c.user_id
-
+        c.credit,
+        c.max_std,
+        c.rem_std
+        FROM course c
+        JOIN user u ON u.user_id = c.user_id
+        JOIN professor p ON p.user_id = c.user_id
+        JOIN department d ON d.dept_id = p.dept_id
+        JOIN enrollment e ON e.course_id = c.course_id
         WHERE e.user_id = #{userId}
-        AND c.year = #{year}
-        AND c.semester = #{semester}
     </select>
+
 
 
 </mapper>
