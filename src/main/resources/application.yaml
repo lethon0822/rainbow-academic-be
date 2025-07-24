@@ -14,6 +14,4 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: classpath:mappers/**/*.xml
-  type-aliases-package: com.rainbowuniv.academicmenagmentbe.Grade.model
-type-aliases-package: com.rainbowuniv.academicmenagmentbe.Attendance.model
+  mapper-locations: mappers/**/*.xml
