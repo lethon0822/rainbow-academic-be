@@ -8,10 +8,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class ProfessorGetReq {
     private int userId;
-    private int year;
-    private int semester;
+    private Integer year;
+    private Integer semester;
 
 
 }
