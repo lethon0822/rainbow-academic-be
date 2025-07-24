@@ -4,16 +4,8 @@
 
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.grade.GradeMapper">
 
-    <!-- [1] Update Grade -->
-    <update id="updateGrade" parameterType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeReq">
-        UPDATE enrollment
-        SET score = #{score},
-        grade = #{grade}
-        WHERE enrollment_id = #{enrollmentId}
-    </update>
-
     <!-- [2] Select Grades by Course -->
-    <select id="gradesbyCourse" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeBySubjectDTO">
+    <select id="gradesbyCourse">
         SELECT
         s.grade,
         c.semester,
@@ -35,7 +27,7 @@
     </select>
 
     <!-- [3] Select Credit by Category -->
-    <select id="selectCreditByCategory" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.CreditByCategoryDTO">
+    <select id="selectCreditByCategory">
         SELECT
         s.grade AS grade,
         c.semester AS semester,
