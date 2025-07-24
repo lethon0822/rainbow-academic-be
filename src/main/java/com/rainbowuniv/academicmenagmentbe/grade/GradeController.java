@@ -29,8 +29,4 @@ public class GradeController {
         gradeService.updateGrade(req);
         return ResponseEntity.ok("성적 등록 완료");
     }
-
-
-
-
 }

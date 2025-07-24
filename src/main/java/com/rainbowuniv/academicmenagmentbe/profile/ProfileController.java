@@ -6,12 +6,10 @@ import com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.ProfessorService;
 import com.rainbowuniv.academicmenagmentbe.profile.model.ProfileDTO;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 

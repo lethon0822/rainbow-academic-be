@@ -2,25 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.profile.ProfileMapper">
     <!-- 학생프로필 -->
-    <select id = "selectStudentProfile">
-    SELECT
-    u.login_id AS loginId,
-    u.user_name AS userName,
-    u.email AS email,
-    u.user_role AS userRole,
-    p.user_name AS professorName,
-    s.status AS status,
-    s.grade AS grade,
-    s.semester AS semester,
-    d.dept_name AS deptName
-    FROM student s
-    JOIN user u ON s.user_id = u.user_id
-    LEFT JOIN professor pf ON s.dept_id = pf.dept_id
-    LEFT JOIN user p ON pf.user_id = p.user_id
-    LEFT JOIN department d ON s.dept_id = d.dept_id
-    WHERE u.login_id = #{userId}
-    ORDER BY pf.user_id
-    LIMIT 1
+    <select id="selectStudentProfile">
+        SELECT
+        u.login_id AS loginId,
+        u.user_name AS userName,
+        u.email AS email,
+        u.user_role AS userRole,
+        p.user_name AS professorName,
+        s.status AS status,
+        s.grade AS grade,
+        latest_course.semester AS semester,
+        latest_course.year AS year,
+        d.dept_name AS deptName
+        FROM student s
+        JOIN user u ON s.user_id = u.user_id
+        LEFT JOIN professor pf ON s.dept_id = pf.dept_id
+        LEFT JOIN user p ON pf.user_id = p.user_id
+        LEFT JOIN department d ON s.dept_id = d.dept_id
+        LEFT JOIN (
+        SELECT c1.user_id, c1.semester, c1.year
+        FROM course c1
+        JOIN (
+        SELECT user_id, MAX(year) AS max_year
+        FROM course
+        GROUP BY user_id
+        ) c2 ON c1.user_id = c2.user_id AND c1.year = c2.max_year
+        JOIN (
+        SELECT user_id, year, MAX(semester) AS max_semester
+        FROM course
+        GROUP BY user_id, year
+        ) c3 ON c1.user_id = c3.user_id AND c1.year = c3.year AND c1.semester = c3.max_semester
+        ) latest_course ON latest_course.user_id = s.user_id
+        WHERE u.login_id = #{userId}
+        ORDER BY pf.user_id
+        LIMIT 1
     </select>
 </mapper>
 
