@@ -4,8 +4,8 @@ package com.rainbowuniv.academicmenagmentbe.professor.model;
 import lombok.Getter;
 
 @Getter
-public class CourseStudentGetReq {
-    private int userId;
+public class CourseStudentGetRes {
+    private int loginId;
     private String userName;
     private String deptName;
     private String email;
