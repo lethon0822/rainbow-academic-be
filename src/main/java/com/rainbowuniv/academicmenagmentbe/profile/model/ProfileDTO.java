@@ -14,4 +14,5 @@ public class ProfileDTO {
     private Integer semester;
     private String deptName;
     private int year;
+    private Integer totalCredits;
 }

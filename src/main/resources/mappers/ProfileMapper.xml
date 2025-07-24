@@ -13,7 +13,17 @@
         s.grade AS grade,
         latest_course.semester AS semester,
         latest_course.year AS year,
-        d.dept_name AS deptName
+        d.dept_name AS deptName,
+
+       <!--총 이수 학점-->
+        (
+        SELECT COALESCE(SUM(c.credit), 0)
+        FROM enrollment e
+        JOIN course c ON e.course_id = c.course_id
+        WHERE e.user_id = s.user_id
+        AND e.rank != 'F'
+        ) AS totalCredits
+
         FROM student s
         JOIN user u ON s.user_id = u.user_id
         LEFT JOIN professor pf ON s.dept_id = pf.dept_id
@@ -38,4 +48,3 @@
         LIMIT 1
     </select>
 </mapper>
-
