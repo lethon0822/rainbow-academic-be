@@ -1,6 +1,6 @@
 constants:
   file:
-    directory: /home/download/
+    directory: /home/download
 
 spring:
   application:
@@ -11,8 +11,7 @@ spring:
     password: figma502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
-
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
-  mapper-locations: classpath:mappers/**/*.xml
+  mapper-locations: mappers/**/*.xml
