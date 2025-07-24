@@ -8,18 +8,18 @@
     WHERE login_id = #{loginId}
     AND password = #{password}
 </select>
-    <!--   아이디 찾기    -->
-    <select id="findIdByEmailAndPhone">
-        SELECT user_name, login_id
-        FROM user
-        WHERE email = #{email}
-        AND phone = #{phone}
-    </select>
 
-    <!--    이름가져오기    -->
-    <select id="findNameByUserId">
-        SELECT user_name
-        FROM user
-        WHERE user_id = #{userId}
-    </select>
+<!--   아이디 찾기    -->
+<select id="findIdByEmailAndPhone">
+    SELECT user_name, login_id
+    FROM user
+    WHERE email = #{email}
+    AND phone = #{phone}
+</select>
+<!--    이름가져오기    -->
+  <select id="findNameByLoginId">
+    SELECT user_name
+    FROM user
+    WHERE login_id = #{loginId}
+  </select>
 </mapper>

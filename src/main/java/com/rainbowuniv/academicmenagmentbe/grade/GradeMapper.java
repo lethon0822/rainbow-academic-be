@@ -16,6 +16,4 @@ public interface GradeMapper {
     List< CreditByCategoryDTO > selectCreditByCategory(int userId, int courseId, int semester);
     List< SemesterGradeDTO > selectSemesterGradesByUser(int userId, int courseId, int semester);
 
-    // 성적 등록/수정
-    void updateGrade(GradeReq req);
 }
