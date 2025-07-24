@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rainbowuniv.academicmenagmentbe.Attendance.AttendanceMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.attendance.AttendanceMapper">
 
     <!-- 출결 INSERT -->
-    <insert id="insertAttendance" parameterType="com.rainbowuniv.academicmenagmentbe.Attendance.model.AttendanceReq">
+    <insert id="insertAttendance" >
         INSERT INTO attendance (enrollment_id, attend_date, status, note)
         VALUES (#{enrollmentId}, #{attendDate}, #{status}, #{note})
     </insert>
 
     <!-- 출결 UPDATE -->
-    <update id="updateAttendance" parameterType="com.rainbowuniv.academicmenagmentbe.Attendance.model.AttendanceReq">
+    <update id="updateAttendance">
         UPDATE attendance
         SET status = #{status},
         note = #{note}
@@ -19,9 +18,16 @@
     </update>
 
     <!-- 출결 조회 -->
-    <select id="getAttendanceByEnrollmentAndDate" parameterType="map"
-            resultType="com.rainbowuniv.academicmenagmentbe.Attendance.model.AttendanceReq">
+    <select id="getAttendanceByEnrollmentAndDate">
         SELECT enrollment_id, attend_date, status, note
+        FROM attendance
+        WHERE enrollment_id = #{enrollmentId}
+        AND attend_date = #{attendDate}
+    </select>
+
+    <!-- 출결 존재 여부 확인 -->
+    <select id="checkExist">
+        SELECT COUNT(*)
         FROM attendance
         WHERE enrollment_id = #{enrollmentId}
         AND attend_date = #{attendDate}
