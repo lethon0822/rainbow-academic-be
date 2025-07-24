@@ -6,4 +6,5 @@ import lombok.Getter;
 public class AccountFindIdRes {
     private String userName;
     private String loginId;
+
 }
