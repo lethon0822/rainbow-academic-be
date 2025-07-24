@@ -10,7 +10,7 @@
 
     <!-- 현재 DB에 있는 모든 학과 가져옴 -->
     <select id="findAllDepartment">
-        SELECT name AS departmentName
+        SELECT dept_name AS departmentName
         FROM department
     </select>
 
@@ -19,37 +19,44 @@
 
     <select id="findCoursesByFilter">
         SELECT
-        c.course_id,
-        c.title,
-        c.classroom,
-        c.type,
-        u.user_name AS professorName,
-        c.year,
-        c.semester,
-        c.time,
-        c.credit,
-        c.max_std
+          c.course_id,
+          c.title,
+          c.classroom,
+          c.type,
+          c.grade,
+          u.user_name AS professorName,
+          c.year,
+          c.semester,
+          c.time,
+          c.credit,
+          c.max_std,
+          c.rem_std,
+          d.dept_name
         FROM course c
-        JOIN user u ON u.user_id = c.user_id
-        JOIN department d ON d.dept_id = c.dept_id
-        WHERE year = #{year}
-        <where>
-            <if test="year != null">
-                 c.year = #{year}
-            </if>
-            <if test="semester != null">
+        JOIN user u
+        ON u.user_id = c.user_id
+        JOIN professor p
+        ON p.user_id = c.user_id
+        JOIN department d
+        ON d.dept_id = p.dept_id
+        WHERE c.year = #{year}
+
+            <if test="semester != null and semester != ''">
                 AND c.semester = #{semester}
             </if>
-            <if test="departmentName != null">
-                AND d.name = #{departmentName}
+            <if test="departmentName != null and departmentName != ''">
+                AND d.dept_name = #{departmentName}
             </if>
-            <if test="type != null">
+            <if test="type != null and type != ''">
                 AND c.type = #{type}
             </if>
-            <if test="title != null and title != ''">
-                AND c.title LIKE CONCAT('%', #{title}, '%')
+            <if test="grade != null and grade != ''">
+                AND c.grade = #{grade}
             </if>
-        </where>
+            <if test="keyword != null and keyword != ''">
+                AND c.title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+
 
     </select>
 
@@ -57,7 +64,7 @@
     <select id="findByCourseId">
         SELECT course_id, classroom, type, year, semester, time,
                title, credit, week_plan, text_book, goal,
-               max_std, u.user_name, d.dept_name
+               max_std, u.user_name, d.dept_name, grade
           FROM course c
           JOIN professor p
             ON c.user_id = p.user_id
