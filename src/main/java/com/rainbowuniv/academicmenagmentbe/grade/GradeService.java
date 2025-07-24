@@ -32,4 +32,8 @@ public class GradeService {
         return gradeMapper.selectSemesterGradesByUser(userId, courseId, semester);
     }
 
+    // 성적 등록/수정
+    public void updateGrade(GradeReq req) {
+        gradeMapper.updateGrade(req);
+    }
 }

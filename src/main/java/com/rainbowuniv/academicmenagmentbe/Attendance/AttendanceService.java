@@ -1,6 +1,6 @@
-package com.rainbowuniv.academicmenagmentbe.attendance;
+package com.rainbowuniv.academicmenagmentbe.Attendance;
 
-import com.rainbowuniv.academicmenagmentbe.attendance.model.AttendancePutReq;
+import com.rainbowuniv.academicmenagmentbe.Attendance.model.AttendanceReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ public class AttendanceService {
 
     private final AttendanceMapper attendanceMapper;
 
-    public int checkExist(AttendancePutReq req) {
+    public int checkExist(AttendanceReq req) {
         return attendanceMapper.checkExist(req);
     }
-    public void insertAttendance(AttendancePutReq req) {
+    public void insertAttendance(AttendanceReq req) {
         attendanceMapper.insertAttendance(req);
     }
-    public void updateAttendance(AttendancePutReq req) {
+    public void updateAttendance(AttendanceReq req) {
         attendanceMapper.updateAttendance(req);
     }
 }

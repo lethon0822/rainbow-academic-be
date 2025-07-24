@@ -27,7 +27,7 @@ public class ProfessorService {
         return professorMapper.modify(req);
     }
 
-    public List<CourseStudentGetRes> courseStudentList(int courseId) {
+    public List<CourseStudentGetReq> courseStudentList(int courseId) {
         return professorMapper.findStudentsByUserId(courseId);
     }
 
