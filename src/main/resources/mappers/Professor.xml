@@ -21,7 +21,7 @@
 
     <!-- 내가 등록한 강의목록 조회  -->
     <select id="findByUserId">
-        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, status, rem_std
+        SELECT course_id, classroom, type, semester, time, title, credit, max_std, d.dept_name, status, grade
         FROM course c
         join professor p
           on c.user_id = p.user_id
