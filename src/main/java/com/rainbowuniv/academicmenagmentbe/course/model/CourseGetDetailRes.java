@@ -19,4 +19,5 @@ public class CourseGetDetailRes {
     private int maxStd;
     private String userName;
     private String deptName;
+    private int grade;
 }
