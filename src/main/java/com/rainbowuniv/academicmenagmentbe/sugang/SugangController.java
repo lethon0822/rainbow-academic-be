@@ -30,8 +30,6 @@ public class SugangController {
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(userId);
 
-
-
         // 정원 초과 체크
         int remainingSeats = sugangService.checkRemainingSeats(req);
         if (remainingSeats <= 0) {
@@ -71,5 +69,20 @@ public class SugangController {
 
         List<SugangListRes> sugangListRes = sugangService.findAppliedCoursesByUserId(userId, currentYear, currentSemester);
         return ResponseEntity.ok().body(sugangListRes);
+    }
+
+    // 수강 취소
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<?> deleteMySugangCourses(@PathVariable int courseId, HttpServletRequest httpReq) {
+        int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
+
+        int sugangCancel = sugangService.sugangCancel(courseId, userId);
+
+        // 수강 취소 성공. 해당 강의의 잔여 인원을 +1 함
+        sugangService.remPlus1(courseId);
+
+        return ResponseEntity.ok().body(sugangCancel);
+
+
     }
 }
