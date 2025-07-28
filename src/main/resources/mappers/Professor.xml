@@ -35,7 +35,7 @@
         <if test="semester != null and semester !=''">
             AND semester = #{semester}
         </if>
-        ORDER BY year DESC, title ASC
+        ORDER BY year DESC
     </select>
 
 
