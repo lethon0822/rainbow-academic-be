@@ -78,6 +78,20 @@
         WHERE e.user_id = #{userId}
     </select>
 
+    <!-- 수강 취소를 할 수 있다. -->
+    <delete id="sugangCancel">
+        DELETE FROM enrollment
+        WHERE user_id = #{userId}
+        AND course_id = #{courseId}
+    </delete>
+
+    <!-- 수강 취소시 rem_std를 1 늘려야 함 -->
+    <update id ="increaseRemainingSeats">
+        UPDATE course
+        SET rem_std = rem_std + 1
+        WHERE course_id = #{courseId}
+    </update>
+
 
 
 </mapper>
