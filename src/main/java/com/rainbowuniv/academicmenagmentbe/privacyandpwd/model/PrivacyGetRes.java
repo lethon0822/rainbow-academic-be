@@ -3,10 +3,10 @@ package com.rainbowuniv.academicmenagmentbe.privacyandpwd.model;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class PrivacyPutReq {
-    private int loginId;
+@Setter
+public class PrivacyGetRes {
+    private String name;
     private String address;
     private String phone;
     private String email;
