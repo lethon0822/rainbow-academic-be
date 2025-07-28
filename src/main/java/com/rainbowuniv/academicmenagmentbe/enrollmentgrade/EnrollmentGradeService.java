@@ -11,6 +11,7 @@ public class EnrollmentGradeService {
     private final EnrollmentGradeMapper enrollmentGradeMapper;
 
     public void EnrollmentGrade(GradePutReq req) {
+
         enrollmentGradeMapper.enrollmentGrade(req);
     }
 }
