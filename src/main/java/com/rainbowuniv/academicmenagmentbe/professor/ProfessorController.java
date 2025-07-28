@@ -19,6 +19,7 @@ import java.util.List;
 @RequestMapping("/api/professor")
 public class ProfessorController {
     private final ProfessorService professorService;
+    private final ProfessorMapper professorMapper;
 
     //강의 등록
     @PostMapping("/course")
@@ -46,6 +47,20 @@ public class ProfessorController {
         return ResponseEntity.ok(result);
     }
 
+    //학과 조회
+    @GetMapping("/dept")
+    public ResponseEntity<?> deptName(HttpServletRequest httpReq) {
+        int loginId = (int) HttpUtils.getSessionValue(httpReq, "userId");
+        String result = professorService.deptName(loginId);
+        return ResponseEntity.ok(result);
+    }
+
+    //강의 평가 조회
+    @GetMapping("/course/survey")
+    public ResponseEntity<?> checkSurvey(@RequestParam("id") int courseId){
+        List<ProfessorSurveyCheckRes> result = professorService.checkSurvey(courseId);
+        return ResponseEntity.ok(result);
+    }
 
     //강의 계획서 수정
     @PutMapping("/course")

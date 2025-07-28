@@ -36,6 +36,12 @@ public class SugangService {
         return sugangMapper.getRemainingSeats(req);
     }
 
+    public int sugangCancel(int courseId, int userId){
+        return  sugangMapper.sugangCancel(courseId, userId);
+    }
+
+    public int remPlus1(int courseId){return sugangMapper.increaseRemainingSeats(courseId);}
+
 
 
 }

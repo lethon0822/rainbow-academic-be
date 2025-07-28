@@ -31,6 +31,16 @@ public class ProfessorService {
         return professorMapper.findStudentsByUserId(courseId);
     }
 
+    //학과 조회
+    public String deptName(int loginId){
+        return professorMapper.findDeptNameByUserId(loginId);
+    }
+
+    //강의평가 조회
+    public List<ProfessorSurveyCheckRes> checkSurvey(int courseId){
+        return professorMapper.findSurveyByCourseId(courseId);
+    }
+
     //강의 평가 학생용
     public int studentSurvey(LecturesEvaluationDto dto) {
         return professorMapper.createStudentSurvey(dto);
