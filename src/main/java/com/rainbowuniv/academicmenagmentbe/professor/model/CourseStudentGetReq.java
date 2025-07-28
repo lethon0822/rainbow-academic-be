@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class CourseStudentGetReq {
-    private int userId;
+    private int loginId;
     private String userName;
     private String deptName;
     private String email;
