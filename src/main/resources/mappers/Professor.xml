@@ -53,6 +53,25 @@
         ORDER BY u.user_id, u.user_name
     </select>
 
+    <!-- 학과조회  -->
+    <select id="findDeptNameByUserId">
+        SELECT dept_name
+        FROM department d
+        join professor p
+          on p.dept_id = d.dept_id
+        WHERE user_id = (SELECT user_id
+                         FROM user
+                         WHERE login_id = #{loginId})
+    </select>
+
+    <!-- 강의 평가조회    -->
+    <select id="findSurveyByCourseId">
+        SELECT review, average
+        FROM survey
+        WHERE course_id = #{courseId}
+    </select>
+
+
     <!-- 강의계획서 수정 -->
     <update id="modify">
         UPDATE course
