@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @Slf4j
 @RestController
@@ -26,6 +27,17 @@ public class ProfessorController {
     public ResponseEntity <?> saveCourse(HttpServletRequest httpReq, @RequestBody ProfessorPostReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(userId);
+
+        Random random = new Random();
+        String courseCode="";
+        for(int i = 0; i<3; i++){
+            courseCode += (char)(random.nextInt(26)+65);
+        }
+        for(int i = 0; i <4; i++){
+            courseCode += (int)(Math.random()*10);
+        }
+        req.setCourseCode(courseCode);
+
         int result = professorService.saveCourse(req);
         return ResponseEntity.ok(result);
     }
