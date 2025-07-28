@@ -6,6 +6,7 @@
     <select id="findAllYear">
         SELECT DISTINCT year
         FROM course
+        ORDER BY year DESC
     </select>
 
     <!-- 현재 DB에 있는 모든 학과 가져옴 -->

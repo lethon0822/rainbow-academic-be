@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ProfessorGetRes {
+    private String courseCode;
     private int courseId;
     private String deptName;
     private String classroom;
