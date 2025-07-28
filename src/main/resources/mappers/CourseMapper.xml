@@ -21,6 +21,7 @@
     <select id="findCoursesByFilter">
         SELECT
           c.course_id,
+          c.course_code,
           c.title,
           c.classroom,
           c.type,
