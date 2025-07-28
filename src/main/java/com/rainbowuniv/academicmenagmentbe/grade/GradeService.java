@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -20,20 +21,17 @@ public class GradeService {
     }
 
     // 성적 전체 조회
-    public List<GradeBySubjectDTO>  getGradesBySubject(int userId, int courseId, int semester) {
-        return gradeMapper.gradesbyCourse(userId, courseId, semester );
+
+    public List<GradeBySubjectDTO> getGradesBySubject(Map<String, Object> params) {
+        return gradeMapper.gradesbyCourse(params);
     }
 
-    public List<CreditByCategoryDTO> getCreditByCategory(int userId, int courseId, int semester) {
-        return gradeMapper.selectCreditByCategory(userId, courseId, semester);
+    public List<CreditByCategoryDTO> getCreditByCategory(Map<String, Object> params) {
+        return gradeMapper.selectCreditByCategory(params);
     }
 
-    public List<SemesterGradeDTO> getSemesterGrades(int userId, int courseId, int semester) {
-        return gradeMapper.selectSemesterGradesByUser(userId, courseId, semester);
+    public List<SemesterGradeDTO> getSemesterGrades(Map<String, Object> params) {
+        return gradeMapper.selectSemesterGradesByUser(params);
     }
 
-    // 성적 등록/수정
-    public void updateGrade(GradeReq req) {
-        gradeMapper.updateGrade(req);
-    }
 }

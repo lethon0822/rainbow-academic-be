@@ -15,7 +15,7 @@
         latest_course.year AS year,
         d.dept_name AS deptName,
 
-       <!--총 이수 학점-->
+        <!--총 이수 학점-->
         (
         SELECT COALESCE(SUM(c.credit), 0)
         FROM enrollment e

@@ -18,6 +18,12 @@ public interface ProfessorMapper {
 
     List<CourseStudentGetReq> findStudentsByUserId(int courseId);
 
+    //학과조회
+    String findDeptNameByUserId(int loginId);
+
+    //강의평가 조회
+    List<ProfessorSurveyCheckRes> findSurveyByCourseId(int courseId);
+
     //강의평가 학생용
-    int createStudentSurvey(LecturesEvaluationDto dto);
+    int insertSurvey(LecturesEvaluationDto dto);
 }

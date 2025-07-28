@@ -6,6 +6,7 @@
     <select id="findAllYear">
         SELECT DISTINCT year
         FROM course
+        ORDER BY year DESC
     </select>
 
     <!-- 현재 DB에 있는 모든 학과 가져옴 -->
@@ -20,6 +21,7 @@
     <select id="findCoursesByFilter">
         SELECT
           c.course_id,
+          c.course_code,
           c.title,
           c.classroom,
           c.type,
@@ -30,7 +32,8 @@
           c.time,
           c.credit,
           c.max_std,
-          c.rem_std
+          c.rem_std,
+          d.dept_name
         FROM course c
         JOIN user u
         ON u.user_id = c.user_id
@@ -43,7 +46,7 @@
             <if test="semester != null and semester != ''">
                 AND c.semester = #{semester}
             </if>
-            <if test="departmentName != null and departmentName != ''">
+            <if test="type != '교양' and departmentName != null and departmentName != ''">
                 AND d.dept_name = #{departmentName}
             </if>
             <if test="type != null and type != ''">
