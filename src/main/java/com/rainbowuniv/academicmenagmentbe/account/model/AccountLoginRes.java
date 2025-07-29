@@ -8,6 +8,7 @@ public class AccountLoginRes {
     private int userId;
     private String userRole;
     private String userName;
+    private int loginId;
 
     @JsonIgnore
     private String password;

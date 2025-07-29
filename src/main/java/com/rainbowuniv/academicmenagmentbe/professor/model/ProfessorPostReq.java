@@ -10,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class ProfessorPostReq {
     private int userId;
+    private String courseCode;
     private String classroom;
     private String type;
     private int semester;

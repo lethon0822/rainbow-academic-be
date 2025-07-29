@@ -13,6 +13,11 @@
     <select id="findAllDepartment">
         SELECT dept_name AS departmentName
         FROM department
+        <where>
+            <if test="type == '전공'">
+                dept_name != '교양학부'
+            </if>
+        </where>
     </select>
 
 <!-- 개설된 강의들을 연도, 학기, 학과( 교양이면 학과를 교양학부로 함. ),
@@ -20,6 +25,7 @@
 
     <select id="findCoursesByFilter">
         SELECT
+          c.status,
           c.course_id,
           c.course_code,
           c.title,

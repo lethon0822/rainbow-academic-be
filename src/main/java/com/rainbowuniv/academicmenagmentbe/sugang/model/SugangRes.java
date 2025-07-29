@@ -24,4 +24,5 @@ public class SugangRes {
     private int credit; // 학점
     private int maxStd; // 정원
     private int remStd; //잔여 인원
+    private String deptName; //학과명
 }

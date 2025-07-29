@@ -32,8 +32,8 @@ public class ProfessorService {
     }
 
     //학과 조회
-    public String deptName(int loginId){
-        return professorMapper.findDeptNameByUserId(loginId);
+    public String deptName(int userId){
+        return professorMapper.findDeptNameByUserId(userId);
     }
 
     //강의평가 조회
@@ -43,6 +43,6 @@ public class ProfessorService {
 
     //강의 평가 학생용
     public int studentSurvey(LecturesEvaluationDto dto) {
-        return professorMapper.createStudentSurvey(dto);
+        return professorMapper.insertSurvey(dto);
     }
 }
