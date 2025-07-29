@@ -5,7 +5,7 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.grade.GradeMapper">
 
     <!-- [2] Select Grades by Course -->
-    <select id="gradesbyCourse">
+    <select id="gradesbyCourse" parameterType="map" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO">
         SELECT
         s.grade,
         c.semester,
@@ -25,6 +25,7 @@
             AND c.semester = #{semester}
         </if>
     </select>
+
 
     <!-- [3] Select Credit by Category -->
     <select id="selectCreditByCategory">

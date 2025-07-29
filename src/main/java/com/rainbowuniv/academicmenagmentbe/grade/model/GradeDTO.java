@@ -16,5 +16,8 @@ public class GradeDTO {
     private int credit;
     private String rank;
     private String type;
+    private Date createdAt;
+    private int year;
+    private String professorName;
 }
 
