@@ -20,6 +20,7 @@
 
     <select id="findCoursesByFilter">
         SELECT
+          c.status,
           c.course_id,
           c.course_code,
           c.title,
