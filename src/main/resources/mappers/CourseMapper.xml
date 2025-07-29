@@ -48,6 +48,7 @@
         JOIN department d
         ON d.dept_id = p.dept_id
         WHERE c.year = #{year}
+            AND c.status = '승인'
 
             <if test="semester != null and semester != ''">
                 AND c.semester = #{semester}
