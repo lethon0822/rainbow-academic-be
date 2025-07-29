@@ -1,17 +1,20 @@
 package com.rainbowuniv.academicmenagmentbe.profile;
 
+import com.rainbowuniv.academicmenagmentbe.account.etc.AccountConstants;
+import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
 import com.rainbowuniv.academicmenagmentbe.grade.GradeService;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.ProfessorService;
 import com.rainbowuniv.academicmenagmentbe.profile.model.ProfileDTO;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -75,8 +78,19 @@ public class ProfileController {
 
     // 학생 프로필
     @GetMapping("/profile")
-    public ProfileDTO getStudentProfile(@RequestParam String loginId) {
-        return profileService.findStudentProfile(loginId);
+    public ResponseEntity<ProfileDTO> getStudentProfile(HttpServletRequest httpReq) {
+        Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
+        System.out.println("세션에서 가져온 userId: " + userId);
+
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        ProfileDTO profile = profileService.findStudentProfile(userId);
+        if (profile == null) {
+            return ResponseEntity.ok(new ProfileDTO());
+        }
+        return ResponseEntity.ok(profile);
     }
 }
 
