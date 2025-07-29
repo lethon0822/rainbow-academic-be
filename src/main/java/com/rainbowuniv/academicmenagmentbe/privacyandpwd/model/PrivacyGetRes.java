@@ -6,7 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PrivacyGetRes {
-    private String name;
+    private int loginId;
+    private String userName;
     private String address;
     private String phone;
     private String email;
