@@ -60,9 +60,7 @@
         FROM department d
         join professor p
           on p.dept_id = d.dept_id
-        WHERE user_id = (SELECT user_id
-                         FROM user
-                         WHERE login_id = #{loginId})
+        WHERE user_id = #{userId}
     </select>
 
     <!-- 강의 평가조회    -->

@@ -26,6 +26,7 @@ public class ProfessorController {
     @PostMapping("/course")
     public ResponseEntity <?> saveCourse(HttpServletRequest httpReq, @RequestBody ProfessorPostReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
+
         req.setUserId(userId);
 
         Random random = new Random();
@@ -63,7 +64,9 @@ public class ProfessorController {
     @GetMapping("/dept")
     public ResponseEntity<?> deptName(HttpServletRequest httpReq) {
         int loginId = (int) HttpUtils.getSessionValue(httpReq, "userId");
+        log.info("유저아이디{}",loginId);
         String result = professorService.deptName(loginId);
+        log.info("리절트{}",result);
         return ResponseEntity.ok(result);
     }
 
