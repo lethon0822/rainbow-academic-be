@@ -12,7 +12,7 @@ public class ProfileService {
     private final ProfileMapper profileMapper;
 
     // 학생 프로필
-    public ProfileDTO findStudentProfile(String loginId) {
-        return profileMapper.selectStudentProfile(loginId);
+    public ProfileDTO findStudentProfile(Integer userId) {
+        return profileMapper.selectStudentProfile(userId);
     }
 }
