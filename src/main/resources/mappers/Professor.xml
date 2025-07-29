@@ -42,7 +42,7 @@
 
     <!-- 내 강의별 학생 리스트 조회   -->
     <select id="findStudentsByUserId">
-        SELECT u.login_id, u.user_name, d.dept_name, u.email, u.phone, s.grade
+        SELECT u.login_id, u.user_name, d.dept_name, u.email, u.phone, s.grade, enrollment_id
         FROM enrollment e
         join student s
           on e.user_id = s.user_id
