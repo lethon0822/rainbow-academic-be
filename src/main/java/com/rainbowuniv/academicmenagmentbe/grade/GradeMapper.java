@@ -4,6 +4,7 @@ import com.rainbowuniv.academicmenagmentbe.grade.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface GradeMapper {
@@ -12,8 +13,8 @@ public interface GradeMapper {
     List<GradeDTO> findBySimpleGrade(GradeSearchReq searchReq);
 
     // 성적 전체 조회
-    List< GradeBySubjectDTO > gradesbyCourse(int userId, int courseId, int semester);
-    List< CreditByCategoryDTO > selectCreditByCategory(int userId, int courseId, int semester);
-    List< SemesterGradeDTO > selectSemesterGradesByUser(int userId, int courseId, int semester);
+    List<GradeBySubjectDTO> gradesbyCourse(Map<String, Object> params);
+    List<CreditByCategoryDTO> selectCreditByCategory(Map<String, Object> params);
+    List<SemesterGradeDTO> selectSemesterGradesByUser(Map<String, Object> params);
 
 }
