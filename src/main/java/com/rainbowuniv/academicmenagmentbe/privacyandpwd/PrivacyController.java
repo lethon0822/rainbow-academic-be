@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 public class PrivacyController {
     private final PrivacyService privacyService;
 
-    @GetMapping("/privacy")
-    public ResponseEntity<?> select (@RequestParam int loginId) {
-        PrivacyGetRes result = privacyService.selectMyPrivacy(loginId);
+    @GetMapping("/privacy/{userId}")
+    public ResponseEntity<?> select (@RequestParam int userId) {
+        PrivacyGetRes result = privacyService.selectMyPrivacy(userId);
         return ResponseEntity.ok(result);
     }
 

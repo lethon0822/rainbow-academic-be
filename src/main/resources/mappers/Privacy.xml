@@ -4,7 +4,7 @@
     <select id="selectMyPrivacy">
         SELECT login_id, user_name, address, phone, email
         FROM user
-        WHERE login_id = #{loginId}
+        WHERE user_id = #{userId}
     </select>
 
     <update id="updateMyPrivacy">

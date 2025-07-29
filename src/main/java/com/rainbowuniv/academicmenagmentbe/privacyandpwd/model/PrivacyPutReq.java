@@ -6,7 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class PrivacyPutReq {
-    private int loginId;
+    private int userId;
     private String address;
     private String phone;
     private String email;

@@ -6,6 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface PrivacyMapper {
-    PrivacyGetRes selectMyPrivacy(int loginId);
+    PrivacyGetRes selectMyPrivacy(int userId);
     int updateMyPrivacy(PrivacyPutReq req);
 }
