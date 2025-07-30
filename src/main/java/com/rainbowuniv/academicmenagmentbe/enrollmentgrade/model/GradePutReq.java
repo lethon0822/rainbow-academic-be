@@ -15,4 +15,5 @@ public class GradePutReq {
     private int assignmentScore;
     private String rank;
     private int enrollmentId;
+    private String departmentName;
 }

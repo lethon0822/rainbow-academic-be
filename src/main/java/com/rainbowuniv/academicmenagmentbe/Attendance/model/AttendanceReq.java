@@ -9,4 +9,5 @@ public class AttendanceReq {
     private LocalDate attendDate;
     private String status;
     private String note;
+
 }
