@@ -5,10 +5,11 @@
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.grade.GradeMapper">
 
     <!-- [2] Select Grades by Course -->
-    <select id="gradesbyCourse" parameterType="map" resultType="com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO">
+    <select id="gradesbyCourse">
         SELECT
         s.grade,
         c.semester,
+        c.course_code,
         c.course_id,
         c.title,
         c.credit,

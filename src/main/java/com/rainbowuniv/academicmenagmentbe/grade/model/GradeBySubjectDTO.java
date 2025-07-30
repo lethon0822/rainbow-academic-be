@@ -6,7 +6,8 @@ import lombok.Data;
 public class GradeBySubjectDTO {
     private int grade;
     private String semester;
-    private String courseId;
+    private String courseCode;
+    private int courseId;
     private String title;
     private int credit;
     private String rank;
