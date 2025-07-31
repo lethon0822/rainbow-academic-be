@@ -37,7 +37,6 @@
             AND semester = #{semester}
         </if>
         ORDER BY course_id DESC
-"
     </select>
 
 
