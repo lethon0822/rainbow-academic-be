@@ -5,10 +5,9 @@ import com.rainbowuniv.academicmenagmentbe.enrollmentgrade.model.GradePutReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/professor/course")
@@ -22,5 +21,11 @@ public class EnrollmentGradeController {
     public ResponseEntity<?> enrollmentGrade(@RequestBody GradePutReq req) {
         enrollmentGradeMapper.enrollmentGrade(req);
         return ResponseEntity.ok("성적 저장 완료");
+    }
+
+    @GetMapping("/grade/students")
+    public ResponseEntity<List<GradePutReq>> getStudents(@RequestParam Long courseId) {
+        List<GradePutReq> students = enrollmentGradeService.getStudentsByCourseId(courseId);
+        return ResponseEntity.ok(students);
     }
 }

@@ -55,7 +55,7 @@ public class ProfessorController {
 
     //강의별 학생 리스트 조회
     @GetMapping("/student")
-    public ResponseEntity<?> courseStudentList(@RequestParam("course_id") int courseId){
+    public ResponseEntity<?> courseStudentList(@RequestParam("id") int courseId){
         List<CourseStudentGetReq> result = professorService.courseStudentList(courseId);
         return ResponseEntity.ok(result);
     }
