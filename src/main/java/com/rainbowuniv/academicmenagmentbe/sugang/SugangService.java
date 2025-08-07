@@ -2,10 +2,12 @@ package com.rainbowuniv.academicmenagmentbe.sugang;
 
 
 import com.rainbowuniv.academicmenagmentbe.sugang.model.MySugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangErrorRes;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +20,39 @@ import java.util.List;
 public class SugangService {
     private final SugangMapper sugangMapper;
 
-    public int enrollment(SugangReq req) {
-        return sugangMapper.courseEnrollment(req);
+    public ResponseEntity<?> handleEnrollCourse(SugangReq req){
+
+        // 이미 신청한 강의 중복 수강 신청 시
+        if(isAlreadyApplied(req) > 0){
+            return ResponseEntity.badRequest()
+                    .body(new SugangErrorRes(SugangErrorCode.ALREADY_APPLIED));
+        }
+
+        // 잔여 인원 0명인 강의를 수강 신청 시
+        if(checkRemainingSeats(req) <= 0){
+            return ResponseEntity.badRequest()
+                    .body(new SugangErrorRes(SugangErrorCode.NO_REMAINING_SLOT));
+        }
+
+        // 수강 신청 시도
+        int result = enrollment(req);
+
+        // 서버 오류로 수강 신청 실패 시
+        if (result <= 0){
+            return ResponseEntity.internalServerError()
+                    .body(new SugangErrorRes(SugangErrorCode.SERVER_ERROR));
+        }
+        // 수강 신청 성공 시 후처리
+        remMinus1(req);
+        SugangRes res = sugangCourseInfo(req);
+        return ResponseEntity.ok(res);
+
+
     }
 
+    public int isAlreadyApplied(SugangReq req){
+        return sugangMapper.isAlreadyApplied(req);
+    }
     public SugangRes sugangCourseInfo(SugangReq req) {
         return sugangMapper.sugangCourseInfo(req);
     }

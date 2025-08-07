@@ -10,6 +10,9 @@ import java.util.List;
 
 @Mapper
 public interface SugangMapper {
+
+    // 중복 수강 신청 체크
+    int isAlreadyApplied(SugangReq req);
     // 수강 신청을 할 수 있다.
     int courseEnrollment(SugangReq sugangReq);
 

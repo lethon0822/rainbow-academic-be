@@ -12,5 +12,4 @@ public enum SugangErrorCode {
 
     private final int code;
     private final String message;
-
 }

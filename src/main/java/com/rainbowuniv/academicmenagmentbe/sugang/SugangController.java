@@ -31,34 +31,7 @@ public class SugangController {
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(userId);
 
-        // 정원 초과 체크
-        int remainingSeats = sugangService.checkRemainingSeats(req);
-        if (remainingSeats <= 0) {
-            SugangErrorRes error =   new SugangErrorRes(
-                    SugangErrorCode.NO_REMAINING_SLOT.getCode(),
-                    SugangErrorCode.NO_REMAINING_SLOT.getMessage()
-            );
-            return ResponseEntity.badRequest().body(error);
-        }
-
-        // 정원 초과가 아니라면 수강 신청
-        int result = sugangService.enrollment(req);
-
-        // 만약 서버 오류로 수강 신청 실패시 처리
-        if(result <= 0){
-            SugangErrorRes error = new SugangErrorRes(
-                    SugangErrorCode.SERVER_ERROR.getCode(),
-                    SugangErrorCode.SERVER_ERROR.getMessage()
-            );
-            return ResponseEntity.internalServerError().body(error);
-        }
-
-        // 수강 신청 성공. 해당 강의의 잔여 인원을 -1 함
-        sugangService.remMinus1(req);
-
-        // 수강 신청 강의 차곡차곡 화면에 뿌리기 위함
-        SugangRes res = sugangService.sugangCourseInfo(req);
-        return ResponseEntity.ok().body(res);
+        return sugangService.handleEnrollCourse(req);
 
     }
 
