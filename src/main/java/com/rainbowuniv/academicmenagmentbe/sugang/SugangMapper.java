@@ -1,6 +1,6 @@
 package com.rainbowuniv.academicmenagmentbe.sugang;
 
-import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.MySugangListRes;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import org.apache.ibatis.annotations.Mapper;
@@ -17,7 +17,7 @@ public interface SugangMapper {
     SugangRes sugangCourseInfo(SugangReq req);
 
     // 이번 학기 수강 신청한 과목들 목록 전체 조회용
-    List<SugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester);
+    List<MySugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester);
 
     // 수강 신청 성공시 잔여 인원 -1
     int decreaseRemainingSeats(SugangReq sugangReq);

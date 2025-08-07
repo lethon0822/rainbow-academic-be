@@ -2,7 +2,7 @@ package com.rainbowuniv.academicmenagmentbe.sugang;
 
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangErrorRes;
-import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.MySugangListRes;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,6 +23,7 @@ public class SugangController {
 
     @PostMapping
     public ResponseEntity<?> enrollCourse(@RequestBody SugangReq req, HttpServletRequest httpReq) {
+
         // 프론트에서 수강 신청 버튼을 눌렀을 떄
         // ( 중복 수강 신청은 DB에서 유니크로 막아뒀으니 로직 구현 하지 않았음. )
 
@@ -33,7 +34,10 @@ public class SugangController {
         // 정원 초과 체크
         int remainingSeats = sugangService.checkRemainingSeats(req);
         if (remainingSeats <= 0) {
-            SugangErrorRes error = new SugangErrorRes( 4002);
+            SugangErrorRes error =   new SugangErrorRes(
+                    SugangErrorCode.NO_REMAINING_SLOT.getCode(),
+                    SugangErrorCode.NO_REMAINING_SLOT.getMessage()
+            );
             return ResponseEntity.badRequest().body(error);
         }
 
@@ -42,7 +46,10 @@ public class SugangController {
 
         // 만약 서버 오류로 수강 신청 실패시 처리
         if(result <= 0){
-            SugangErrorRes error = new SugangErrorRes( 5001);
+            SugangErrorRes error = new SugangErrorRes(
+                    SugangErrorCode.SERVER_ERROR.getCode(),
+                    SugangErrorCode.SERVER_ERROR.getMessage()
+            );
             return ResponseEntity.internalServerError().body(error);
         }
 
@@ -67,8 +74,8 @@ public class SugangController {
         int currentMonth = LocalDate.now().getMonthValue();
         int currentSemester = (currentMonth <= 6) ? 1 : 2;
 
-        List<SugangListRes> sugangListRes = sugangService.findAppliedCoursesByUserId(userId, currentYear, currentSemester);
-        return ResponseEntity.ok().body(sugangListRes);
+        List<MySugangListRes> mySugangListRes = sugangService.findAppliedCoursesByUserId(userId, currentYear, currentSemester);
+        return ResponseEntity.ok().body(mySugangListRes);
     }
 
     // 수강 취소

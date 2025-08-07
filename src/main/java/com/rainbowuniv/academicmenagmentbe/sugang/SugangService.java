@@ -1,18 +1,20 @@
 package com.rainbowuniv.academicmenagmentbe.sugang;
 
 
-import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangListRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.MySugangListRes;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class SugangService {
     private final SugangMapper sugangMapper;
 
@@ -24,7 +26,7 @@ public class SugangService {
         return sugangMapper.sugangCourseInfo(req);
     }
 
-    public List<SugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester){
+    public List<MySugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester){
         return sugangMapper.findAppliedCoursesByUserId(userId, year, semester);
     }
 
