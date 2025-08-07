@@ -11,9 +11,13 @@ import java.util.List;
 @Mapper
 public interface SugangMapper {
 
-    // 중복 수강 신청 체크
+    // 중복 수강 신청 금지
     int isAlreadyApplied(SugangReq req);
-    // 수강 신청을 할 수 있다.
+
+    // 정원 초과 수강 신청 금지 - 잔여 인원 체크
+    int checkRemainingSeats(SugangReq sugangReq);
+
+    // 수강 신청 시도
     int courseEnrollment(SugangReq sugangReq);
 
     // 수강 신청 정보 뿌리기
@@ -25,8 +29,7 @@ public interface SugangMapper {
     // 수강 신청 성공시 잔여 인원 -1
     int decreaseRemainingSeats(SugangReq sugangReq);
 
-    // 잔여 인원 0이면 수강 신청 불가
-    int getRemainingSeats(SugangReq sugangReq);
+
 
     // 수강 취소를 할 수 있다.
     int sugangCancel(int courseId, int userId);

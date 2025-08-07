@@ -11,14 +11,21 @@
               course_id = #{courseId}
     </select>
 
-    <!--수강 신청을 할 수 있다. -->
+    <!--정원 초과 강의 수강 신청 방지(잔여 인원 체크)-->
+    <select id="checkRemainingSeats">
+        SELECT rem_std
+        FROM course
+        WHERE course_id = #{courseId}
+    </select>
+
+    <!--수강 신청 -->
     <insert id="courseEnrollment">
          INSERT INTO enrollment
          SET course_id = #{courseId}
         , user_id = #{userId};
     </insert>
 
-    <!-- 수강 신청한 강의를 화면에 바로 띄우기 위한 처리, 강의 낱개 -->
+    <!-- 수강 신청 성공시 res. 낱개 강의 정보 -->
     <select id="sugangCourseInfo">
         SELECT
         c.course_id,
@@ -52,15 +59,9 @@
     <update id ="decreaseRemainingSeats">
         UPDATE course
         SET rem_std = rem_std - 1
-        WHERE course_id = #{courseId}
-    </update>
+        WHERE course_id = #{courseId}</update>
 
-    <!-- 정원 초과시 수강신청을 막기 위해 잔여 인원 체크   -->
-    <select id="getRemainingSeats">
-        SELECT rem_std AS remStd
-        FROM course
-        WHERE course_id = #{courseId}
-    </select>
+
 
     <!-- 이번 학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
     <select id="findAppliedCoursesByUserId">
