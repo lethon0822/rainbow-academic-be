@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SugangListRes {
+public class MySugangListRes {
 
     private int courseId; //과목 코드
     private String courseCode; // 과목 코드
