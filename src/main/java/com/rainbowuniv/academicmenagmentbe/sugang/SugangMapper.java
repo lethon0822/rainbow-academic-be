@@ -29,8 +29,6 @@ public interface SugangMapper {
     // 수강 신청 성공시 잔여 인원 -1
     int decreaseRemainingSeats(SugangReq sugangReq);
 
-
-
     // 수강 취소를 할 수 있다.
     int sugangCancel(int courseId, int userId);
 

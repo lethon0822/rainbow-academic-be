@@ -48,6 +48,19 @@ public class SugangService {
         return ResponseEntity.ok(res);
     }
 
+    @Transactional
+    public int cancelCourse(int courseId, int userId){
+        int cancelCount = sugangMapper.sugangCancel(courseId, userId); //수강 취소
+
+        if (cancelCount > 0){ // 수강 취소 성공
+            remPlus1(courseId); // 잔여인원 복구
+        }
+        return cancelCount;
+    }
+
+
+    public int remPlus1(int courseId){return sugangMapper.increaseRemainingSeats(courseId);}
+
     public int isAlreadyApplied(SugangReq req){
         return sugangMapper.isAlreadyApplied(req);
     }
@@ -60,15 +73,6 @@ public class SugangService {
     public List<MySugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester){
         return sugangMapper.findAppliedCoursesByUserId(userId, year, semester);
     }
-
-
-
-
-    public int sugangCancel(int courseId, int userId){
-        return  sugangMapper.sugangCancel(courseId, userId);
-    }
-    public int remPlus1(int courseId){return sugangMapper.increaseRemainingSeats(courseId);}
-
 
 
 }
