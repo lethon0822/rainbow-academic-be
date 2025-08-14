@@ -25,7 +25,6 @@ public class SugangController {
     public ResponseEntity<?> enrollCourse(@RequestBody SugangReq req, HttpServletRequest httpReq) {
 
         // 프론트에서 수강 신청 버튼을 눌렀을 떄
-        // ( 중복 수강 신청은 DB에서 유니크로 막아뒀으니 로직 구현 하지 않았음. )
 
         // 유저 아이디 세션 처리
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
@@ -56,13 +55,13 @@ public class SugangController {
     public ResponseEntity<?> deleteMySugangCourses(@PathVariable int courseId, HttpServletRequest httpReq) {
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
 
-        int sugangCancel = sugangService.sugangCancel(courseId, userId);
+        int result = sugangService.cancelCourse(courseId, userId);
 
-        // 수강 취소 성공. 해당 강의의 잔여 인원을 +1 함
-        sugangService.remPlus1(courseId);
-
-        return ResponseEntity.ok().body(sugangCancel);
-
-
+        if (result > 0) {
+            return ResponseEntity.ok().body(result);
+        }
+        else{
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 }
