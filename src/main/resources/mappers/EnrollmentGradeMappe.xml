@@ -7,8 +7,8 @@
         UPDATE enrollment
         SET mid_score = #{midScore}
         ,fin_score = #{finScore}
-        ,attendance_score = #{attendanceScore}
-        ,assignment_score = #{assignmentScore}
+<!--        ,attendance_score = #{attendanceScore}-->
+<!--        ,assignment_score = #{assignmentScore}-->
         ,rank = #{rank}
         WHERE enrollment_id = #{enrollmentId}
 
