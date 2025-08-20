@@ -1,6 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.professor;
 
 
+import com.rainbowuniv.academicmenagmentbe.account.AccountMapper;
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
@@ -20,7 +21,7 @@ import java.util.Random;
 @RequestMapping("/api/professor")
 public class ProfessorController {
     private final ProfessorService professorService;
-    private final ProfessorMapper professorMapper;
+    private final AccountMapper accountMapper;
 
     //강의 등록
     @PostMapping("/course")
@@ -29,15 +30,6 @@ public class ProfessorController {
 
         req.setUserId(userId);
 
-        Random random = new Random();
-        String courseCode="";
-        for(int i = 0; i<3; i++){
-            courseCode += (char)(random.nextInt(26)+65);
-        }
-        for(int i = 0; i <4; i++){
-            courseCode += (int)(Math.random()*10);
-        }
-        req.setCourseCode(courseCode);
 
         int result = professorService.saveCourse(req);
         return ResponseEntity.ok(result);

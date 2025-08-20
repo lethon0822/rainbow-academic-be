@@ -12,8 +12,8 @@ public class ProfessorPostReq {
     private int userId;
     private String courseCode;
     private String classroom;
+    private int semesterId;
     private String type;
-    private int semester;
     private String time;
     private String title;
     private int credit;
