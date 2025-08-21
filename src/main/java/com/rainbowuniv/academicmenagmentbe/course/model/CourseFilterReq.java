@@ -8,8 +8,8 @@ import lombok.Setter;
 public class CourseFilterReq {
     private Integer year;
     private Integer semester;
-    private String departmentName;
     private String type;
-    private String keyword;
+    private String departmentName;
     private Integer grade;
+    private String keyword;
 }
