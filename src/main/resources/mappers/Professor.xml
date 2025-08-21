@@ -7,9 +7,9 @@
         INSERT INTO course
         SET user_id= #{userId}
         ,classroom = #{classroom}
-        ,course_code =#{courseCode}
+        ,course_code = #{courseCode}
+        ,semester_id = #{semesterId}
         ,type = #{type}
-        ,semester = #{semester}
         ,time = #{time}
         ,title = #{title}
         ,credit = #{credit}
@@ -19,6 +19,7 @@
         ,max_std = #{maxStd}
         ,rem_std = #{maxStd}
         ,grade = #{grade}
+
     </insert>
 
     <!-- 내가 등록한 강의목록 조회  -->
@@ -36,7 +37,7 @@
         <if test="semester != null and semester !=''">
             AND semester = #{semester}
         </if>
-        ORDER BY year DESC, title ASC
+        ORDER BY course_id DESC
     </select>
 
 

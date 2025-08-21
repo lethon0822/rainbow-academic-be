@@ -18,15 +18,15 @@ public class EnrollmentGradeController {
     private final EnrollmentGradeService enrollmentGradeService;
     private final EnrollmentGradeMapper enrollmentGradeMapper;
 
-    @PutMapping("/grade")
-    public ResponseEntity<?> enrollmentGrade(@RequestBody GradePutReq req) {
+    @PostMapping("/grade") // 새로운 성적 입력
+    public ResponseEntity<?> createGrade(@RequestBody GradePutReq req) {
         enrollmentGradeMapper.enrollmentGrade(req);
-        return ResponseEntity.ok("성적 저장 완료");
+        return ResponseEntity.ok("성적 신규 저장 완료");
     }
 
-    @GetMapping("/grade/students")
-    public ResponseEntity<List<GradePutReq>> getStudents(@RequestParam Long courseId) {
-        List<GradePutReq> students = enrollmentGradeService.getStudentsByCourseId(courseId);
-        return ResponseEntity.ok(students);
+    @PutMapping("/grade/students") // 기존 성적 수정
+    public ResponseEntity<?> updateGrade(@RequestBody GradePutReq req) {
+        enrollmentGradeMapper.enrollmentGrade(req);
+        return ResponseEntity.ok("성적 수정 완료");
     }
 }

@@ -13,6 +13,11 @@
     <select id="findAllDepartment">
         SELECT dept_name AS departmentName
         FROM department
+        <where>
+            <if test="type == '전공'">
+                dept_name != '교양학부'
+            </if>
+        </where>
     </select>
 
 <!-- 개설된 강의들을 연도, 학기, 학과( 교양이면 학과를 교양학부로 함. ),
@@ -43,6 +48,7 @@
         JOIN department d
         ON d.dept_id = p.dept_id
         WHERE c.year = #{year}
+            AND c.status = '승인'
 
             <if test="semester != null and semester != ''">
                 AND c.semester = #{semester}

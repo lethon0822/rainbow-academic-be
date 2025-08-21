@@ -1,6 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.professor;
 
 
+import com.rainbowuniv.academicmenagmentbe.account.AccountMapper;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
 import lombok.RequiredArgsConstructor;
@@ -8,14 +9,26 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class ProfessorService {
     private final ProfessorMapper professorMapper;
+    private final AccountMapper accountMapper;
 
     public int saveCourse(ProfessorPostReq req) {
+        //Random random = new Random();
+        String courseCode= accountMapper.findDeptCodeByUserId(req.getUserId());
+//        for(int i = 0; i<3; i++){
+//            courseCode += (char)(random.nextInt(26)+65);
+//        }
+        for(int i = 0; i <4; i++){
+            courseCode += (int)(Math.random()*10);
+        }
+        req.setCourseCode(courseCode);
+
         return professorMapper.saveCourse(req);
     }
 

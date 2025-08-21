@@ -1,13 +1,13 @@
 package com.rainbowuniv.academicmenagmentbe.privacyandpwd;
 
+import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
+import com.rainbowuniv.academicmenagmentbe.privacyandpwd.model.PrivacyGetRes;
 import com.rainbowuniv.academicmenagmentbe.privacyandpwd.model.PrivacyPutReq;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -16,9 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrivacyController {
     private final PrivacyService privacyService;
 
-    @PutMapping("/privacy")
-    public ResponseEntity<?> update (@RequestBody PrivacyPutReq req) {
-        int result = privacyService.updateMyPrivacy(req);
+    @GetMapping("/privacy")
+    public ResponseEntity<?> select (HttpServletRequest req) {
+        int userId= (int) HttpUtils.getSessionValue(req, "userId");
+        PrivacyGetRes result = privacyService.selectMyPrivacy(userId);
         return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/privacy")
+    public ResponseEntity<?> update (HttpServletRequest httpReq, @RequestBody PrivacyPutReq req) {
+        int result = (int) HttpUtils.getSessionValue(httpReq, "userId");
+        req.setUserId(result);
+        log.info("으어어어억{}", result);
+        int result2 = privacyService.updateMyPrivacy(req);
+        return ResponseEntity.ok(result2);
     }
 }
