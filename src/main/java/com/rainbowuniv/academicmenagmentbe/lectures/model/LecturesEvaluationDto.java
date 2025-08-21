@@ -3,11 +3,11 @@ package com.rainbowuniv.academicmenagmentbe.lectures.model;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
 public class LecturesEvaluationDto {
-    private int courseId;
-    private int userId;
+    private int enrollmentId;
+    private Integer userId;
     private String review;
-    private int average;
+    private int evScore;
 }

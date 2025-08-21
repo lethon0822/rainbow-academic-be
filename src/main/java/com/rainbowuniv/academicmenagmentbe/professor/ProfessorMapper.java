@@ -25,5 +25,5 @@ public interface ProfessorMapper {
     List<ProfessorSurveyCheckRes> findSurveyByCourseId(int courseId);
 
     //강의평가 학생용
-    int insertSurvey(LecturesEvaluationDto dto);
+    int updateReview(LecturesEvaluationDto dto);
 }

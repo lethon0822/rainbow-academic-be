@@ -5,6 +5,6 @@ import lombok.Getter;
 
 @Getter
 public class ProfessorSurveyCheckRes {
-    private String review;
-    private int average;
+    private String comment;
+    private int evScore;
 }
