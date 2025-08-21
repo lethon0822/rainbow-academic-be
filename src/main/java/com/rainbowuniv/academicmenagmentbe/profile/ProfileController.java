@@ -68,7 +68,11 @@ public class ProfileController {
 
     // 강의 평가 학생용 등록
     @PostMapping("/course/survey")
-    public ResponseEntity<String> studentSurvey(@RequestBody LecturesEvaluationDto dto) {
+    public ResponseEntity<String> studentSurvey(HttpServletRequest httpReq,
+                                                @RequestBody LecturesEvaluationDto dto) {
+        Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
+        dto.setUserId(userId);
+
         int result = professorService.studentSurvey(dto);
         if (result == 1) {
             return ResponseEntity.ok("강의 평가 등록 성공");
