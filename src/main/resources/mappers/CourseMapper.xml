@@ -86,6 +86,8 @@
             ON p.user_id = u.user_id
           JOIN department d
             ON p.dept_id = d.dept_id
+          JOIN semester s
+            ON s.semester_id = c.semester_id
         WHERE course_id = #{courseId}
     </select>
 
