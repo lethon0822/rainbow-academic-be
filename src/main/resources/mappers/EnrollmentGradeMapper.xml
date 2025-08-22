@@ -2,16 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.enrollmentgrade.EnrollmentGradeMapper">
 
+<!--  성적기입  -->
+    <insert id="save">
+        INSERT INTO score (enrollment_id, mid_score, fin_score, rank)
+        VALUES
+        <foreach collection="req" item="gradeItem" separator=",">
+         (#{gradeItem.enrollmentId}, #{gradeItem.midScore},#{gradeItem.finScore},#{gradeItem.rank})
+        </foreach>
+    </insert>
+
+
+
+
 <!--  성적기입(수정)  -->
     <update id="enrollmentGrade">
         UPDATE score
-        SET mid_score = #{midScore}
-        ,fin_score = #{finScore}
-<!--        ,attendance_score = #{attendanceScore}-->
-<!--        ,assignment_score = #{assignmentScore}-->
-        ,rank = #{rank}
-        WHERE enrollment_id = #{enrollmentId}
-
+        SET
+            mid_score = #{midScore}
+            ,fin_score = #{finScore}
+            ,rank = #{rank}
+            WHERE score_id = #{scoreId}
     </update>
 
     <select id="getStudentsByCourseId">
@@ -26,6 +36,5 @@
         JOIN department d ON u.department_id = d.department_id
         WHERE e.course_id = #{courseId}
     </select>
-
 
 </mapper>

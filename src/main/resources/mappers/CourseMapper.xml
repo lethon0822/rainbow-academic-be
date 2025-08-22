@@ -4,8 +4,8 @@
 
    <!-- 현재 DB에 있는 모든 연도 가져옴 -->
     <select id="findAllYear">
-        SELECT DISTINCT year
-        FROM course
+        SELECT year
+        FROM semester
         ORDER BY year DESC
     </select>
 
@@ -33,8 +33,8 @@
           c.type,
           c.grade,
           u.user_name AS professorName,
-          c.year,
-          c.semester,
+          s.year,
+          s.semester,
           c.time,
           c.credit,
           c.max_std,
@@ -47,26 +47,28 @@
         ON p.user_id = c.user_id
         JOIN department d
         ON d.dept_id = p.dept_id
-        WHERE c.year = #{year}
+        JOIN semester s
+        ON s.semester_id = c.semester_id
+        WHERE s.year = #{year}
             AND c.status = '승인'
 
             <if test="semester != null and semester != ''">
-                AND c.semester = #{semester}
+                AND s.semester = #{semester}
             </if>
-            <if test="type != '교양' and departmentName != null and departmentName != ''">
-                AND d.dept_name = #{departmentName}
-            </if>
-            <if test="type != null and type != ''">
-                AND c.type = #{type}
-            </if>
+
+             <if test="type != null and type != ''">
+                AND c.type LIKE CONCAT('%', #{type}, '%')
+             </if>
+
             <if test="grade != null and grade != ''">
                 AND c.grade = #{grade}
             </if>
+
+            <if test="dept_"
+
             <if test="keyword != null and keyword != ''">
                 AND c.title LIKE CONCAT('%', #{keyword}, '%')
             </if>
-
-
     </select>
 
     <!-- 강의 계획서 조회(강의 detail) -->
