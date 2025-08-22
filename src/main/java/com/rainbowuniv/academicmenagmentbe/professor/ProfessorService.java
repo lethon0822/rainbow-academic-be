@@ -56,6 +56,6 @@ public class ProfessorService {
 
     //강의 평가 학생용
     public int studentSurvey(LecturesEvaluationDto dto) {
-        return professorMapper.insertSurvey(dto);
+        return professorMapper.updateReview(dto);
     }
 }
