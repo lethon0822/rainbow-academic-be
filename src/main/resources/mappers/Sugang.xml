@@ -35,8 +35,8 @@
         c.type,
         c.grade,
         u.user_name AS professorName,
-        c.year,
-        c.semester,
+        s.year,
+        s.semester,
         c.time,
         c.credit,
         c.max_std,
@@ -51,6 +51,8 @@
         ON d.dept_id = p.dept_id
         JOIN enrollment e
         ON e.course_id = c.course_id
+        JOIN semester s
+        ON s.semester_id = c.semester_id
         WHERE e.course_id = #{courseId}
         AND e.user_id = #{userId}
     </select>
@@ -73,8 +75,8 @@
         c.type,
         c.grade,
         u.user_name AS professorName,
-        c.year,
-        c.semester,
+        s.year,
+        s.semester,
         c.time,
         c.credit,
         c.max_std,
@@ -85,6 +87,7 @@
         JOIN professor p ON p.user_id = c.user_id
         JOIN department d ON d.dept_id = p.dept_id
         JOIN enrollment e ON e.course_id = c.course_id
+        JOIN semester s ON c.semester_id = s.semester_id
         WHERE e.user_id = #{userId}
     </select>
 

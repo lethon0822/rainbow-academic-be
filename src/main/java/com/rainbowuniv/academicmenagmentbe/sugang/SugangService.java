@@ -70,8 +70,8 @@ public class SugangService {
     }
 
 
-    public List<MySugangListRes> findAppliedCoursesByUserId(int userId, int year, int semester){
-        return sugangMapper.findAppliedCoursesByUserId(userId, year, semester);
+    public List<MySugangListRes> findAppliedCoursesByUserId(int userId){
+        return sugangMapper.findAppliedCoursesByUserId(userId);
     }
 
 
