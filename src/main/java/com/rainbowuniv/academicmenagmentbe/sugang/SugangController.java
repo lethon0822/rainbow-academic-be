@@ -42,11 +42,7 @@ public class SugangController {
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
 
 
-        int currentYear = LocalDate.now().getYear();
-        int currentMonth = LocalDate.now().getMonthValue();
-        int currentSemester = (currentMonth <= 6) ? 1 : 2;
-
-        List<MySugangListRes> mySugangListRes = sugangService.findAppliedCoursesByUserId(userId, currentYear, currentSemester);
+        List<MySugangListRes> mySugangListRes = sugangService.findAppliedCoursesByUserId(userId);
         return ResponseEntity.ok().body(mySugangListRes);
     }
 

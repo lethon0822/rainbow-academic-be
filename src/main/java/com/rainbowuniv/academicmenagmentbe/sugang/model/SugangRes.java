@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor //기본 생성자 생성
 @AllArgsConstructor //모든 필드 받는 생성자 생성
 public class SugangRes {
+    private String status; //상태
     private int courseId; //과목 아이디
     private String courseCode; //과목 코드
     private String title; //강의 이름
@@ -24,5 +25,5 @@ public class SugangRes {
     private int credit; // 학점
     private int maxStd; // 정원
     private int remStd; //잔여 인원
-    private String deptName; //학과명
+    private String deptName; // 개설학과
 }
