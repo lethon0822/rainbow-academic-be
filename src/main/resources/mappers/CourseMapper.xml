@@ -56,6 +56,7 @@
                 AND s.semester = #{semester}
             </if>
 
+          <!-- 전공 ( 전공 선택, 전공 필수 ), 교양 ( 교양 선택, 교양 필수 )-->
              <if test="type != null and type != ''">
                 AND c.type LIKE CONCAT('%', #{type}, '%')
              </if>
@@ -64,7 +65,9 @@
                 AND c.grade = #{grade}
             </if>
 
-            <if test="dept_"
+            <if test="departmentName != null and departmentName != ''">
+                AND d.dept_name = #{departmentName}
+            </if>
 
             <if test="keyword != null and keyword != ''">
                 AND c.title LIKE CONCAT('%', #{keyword}, '%')
