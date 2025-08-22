@@ -5,6 +5,7 @@ import lombok.*;
 @Data
 @Getter
 @Setter
+@ToString
 public class LecturesEvaluationDto {
     private int enrollmentId;
     private Integer userId;

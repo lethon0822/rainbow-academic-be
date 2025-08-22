@@ -11,6 +11,7 @@ import com.rainbowuniv.academicmenagmentbe.profile.model.ProfileDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ import java.util.Map;
 @RequestMapping("/api/student")
 @CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
+@Slf4j
 public class ProfileController {
     private final GradeService gradeService;
     private final ProfessorService professorService;
@@ -73,6 +75,7 @@ public class ProfileController {
         Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
         dto.setUserId(userId);
 
+        log.info("dto", dto);
         int result = professorService.studentSurvey(dto);
         if (result == 1) {
             return ResponseEntity.ok("강의 평가 등록 성공");
