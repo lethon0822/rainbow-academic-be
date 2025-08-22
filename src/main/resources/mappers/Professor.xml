@@ -68,7 +68,7 @@
 
     <!-- 강의 평가조회    -->
     <select id="findSurveyByCourseId">
-        SELECT comment, ev_score
+        SELECT review, ev_score
         FROM enrollment
         WHERE course_id = #{courseId}
     </select>
