@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.privacyandpwd.PrivacyMapper">
     <select id="selectMyPrivacy">
-        SELECT login_id, user_name, address, phone, email
+        SELECT login_id, user_name, address, phone, email, add_detail
         FROM user
         WHERE user_id = #{userId}
     </select>
@@ -10,9 +10,10 @@
     <update id="updateMyPrivacy">
         UPDATE user
         SET
-        <if test="address != null || address != undefined">address = #{address}</if>
-        <if test="phone != null || phone != undefined">, phone = #{phone}</if>
-        <if test="email != null || email != undefined">, email = #{email}</if>
+        <if test="address != null || address != undefined">address = #{address},</if>
+        <if test="addDetail != null || addDetail != undefined">add_detail = #{addDetail},</if>
+        <if test="phone != null || phone != undefined">phone = #{phone},</if>
+        <if test="email != null || email != undefined">email = #{email}</if>
         WHERE user_id = #{userId}
     </update>
 </mapper>
