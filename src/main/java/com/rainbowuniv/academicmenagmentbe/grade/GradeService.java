@@ -34,4 +34,29 @@ public class GradeService {
         return gradeMapper.selectSemesterGradesByUser(params);
     }
 
+    // 영구 성적 조회
+    public List<GetAllGradesRes> getMyAllGrades(long userId){
+        List<GetAllGradesRes> getAllGradesRes = gradeMapper.getMyAllGrades(userId);
+        for (GetAllGradesRes res : getAllGradesRes){
+            String rank = res.getRank();
+            double point;
+            switch (rank){
+                case "A+" -> point = 4.5;
+                case "A"  -> point = 4.0;
+                case "B+" -> point = 3.5;
+                case "B"  -> point = 3.0;
+                case "C+" -> point = 2.5;
+                case "C"  -> point = 2.0;
+                case "D+" -> point = 1.5;
+                case "D"  -> point = 1.0;
+                case "F"  -> point = 0.0;
+                default   -> point = 0.0;
+            }
+            res.setPoint(point);
+        }
+        return  getAllGradesRes;
+    }
+
+
+
 }

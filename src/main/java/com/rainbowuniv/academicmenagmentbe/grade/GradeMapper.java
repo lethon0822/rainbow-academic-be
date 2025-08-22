@@ -17,4 +17,6 @@ public interface GradeMapper {
     List<CreditByCategoryDTO> selectCreditByCategory(Map<String, Object> params);
     List<SemesterGradeDTO> selectSemesterGradesByUser(Map<String, Object> params);
 
+    List<GetAllGradesRes> getMyAllGrades(long userId);
+
 }

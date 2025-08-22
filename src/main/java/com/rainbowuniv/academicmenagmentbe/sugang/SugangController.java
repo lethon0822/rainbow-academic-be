@@ -60,4 +60,6 @@ public class SugangController {
             return ResponseEntity.badRequest().body(result);
         }
     }
+
+    //연도, 학기별 수강한 강의의 전체 목록 조회
 }
