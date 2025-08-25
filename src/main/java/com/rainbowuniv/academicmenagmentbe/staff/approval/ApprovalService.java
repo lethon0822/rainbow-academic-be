@@ -16,6 +16,13 @@ import java.util.List;
 public class ApprovalService {
     private final ApprovalMapper approvalMapper;
 
+    //신청서 리스트
+    public List<ApprovalGetRes> ApplicationList(ApprovalGetReq req){
+        List<ApprovalGetRes> list = approvalMapper.ApplicationList(req);
+        log.info("list", list);
+        return list;
+    }
+
     public void modifyStatus(ApprovalPatchReq req){
        int result =  approvalMapper.modifyStatus(req);
     //TODO 학생 상태 변경
@@ -25,8 +32,5 @@ public class ApprovalService {
     //TODO 예외처리
     }
 
-    public List<ApprovalGetRes> findApplicationList(ApprovalGetReq req){
-        List<ApprovalGetRes> list = approvalMapper.findApplicationList(req);
-        return list;
-    }
+
 }

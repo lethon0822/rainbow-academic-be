@@ -19,18 +19,18 @@ import java.util.List;
 public class ApprovalController {
     private final ApprovalService approvalService;
 
-//    신청서 승인여부 결정
+    // 신청서 조회
+    @GetMapping
+    public ResponseEntity<?> ApplicationList(@RequestBody ApprovalGetReq req){
+        List<ApprovalGetRes> result = approvalService.ApplicationList(req);
+        return ResponseEntity.ok(result);
+    }
+
+    //    신청서 승인여부 결정
     @PatchMapping
     public ResponseEntity<?> decideApplication(@RequestBody ApprovalPatchReq req){
         approvalService.modifyStatus(req);
         return ResponseEntity.ok("수정완료");
-    }
-
-    // 신청서 조회
-    @GetMapping
-    public ResponseEntity<?> ApplicationList(@RequestBody ApprovalGetReq req){
-        List<ApprovalGetRes> result = approvalService.findApplicationList(req);
-        return ResponseEntity.ok(result);
     }
 
 }

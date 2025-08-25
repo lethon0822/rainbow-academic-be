@@ -11,6 +11,9 @@ import java.util.List;
 @Mapper
 public interface ApprovalMapper {
 
+    // 신청서 목록 조회
+    List<ApprovalGetRes> ApplicationList(ApprovalGetReq req);
+
+    // 신청 승인 처리
     int modifyStatus(ApprovalPatchReq req);
-    List<ApprovalGetRes> findApplicationList(ApprovalGetReq req);
 }

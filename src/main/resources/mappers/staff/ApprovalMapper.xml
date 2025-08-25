@@ -6,7 +6,7 @@
 
 
 <!--  신청서 조회  -->
-    <select id="findApplicationList">
+    <select id="ApplicationList">
         SELECT a.app_id, a.created_at, a.status, a.reason,
         u.user_id, u.user_name, d.dept_name, sc.schedule_type
           FROM application a
