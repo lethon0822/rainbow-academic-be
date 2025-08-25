@@ -1,9 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.staff.approval;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetReq;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetRes;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalPatchReq;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -18,7 +16,11 @@ public interface ApprovalMapper {
     int modifyStatus(ApprovalPatchReq req);
 
     // 학적 상태 휴학으로 변경
-    int changeStatus(int userId);
+    int changeStudentStatus(int userId);
 
+    // 강의 개설 신청 리스트
+    List<ApprovalCourseGetRes> findCoursesByStatus(ApprovalCourseGetReq req);
 
+    // 강의 개설 상태 변경
+    int changeCourseStatus(ApprovalCoursePatchReq req);
 }
