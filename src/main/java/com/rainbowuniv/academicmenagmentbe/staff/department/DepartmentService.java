@@ -16,8 +16,12 @@ import java.util.List;
 public class DepartmentService {
     private final DepartmentMapper departmentMapper;
 
+    //TODO 예외처리
+    // 예외 처리 메소드 따로 만들고 호출 saveDept, updateDept
+
 
     public void saveDept(DepartmentPostReq req){
+
         departmentMapper.save(req);
     }
 
