@@ -34,9 +34,17 @@ public class GradeService {
         return gradeMapper.selectSemesterGradesByUser(params);
     }
 
+    // --------------------------------- 성적 조회 부분 아래 코드로 전면 수정-------------------------------------//
+
     // 영구 성적 조회
-    public List<GetAllGradesRes> getMyAllGrades(long userId){
-        List<GetAllGradesRes> getAllGradesRes = gradeMapper.getMyAllGrades(userId);
+    public List<GetAllGradesRes> getMyAllGrades(long userId, GetAllGradesReq getAllGradesReq) {
+
+        // 이번 학기 찾기 ( 영구 성적 조회에서는 이번 학기 성적을 제외하기 위함 )
+
+
+        List<GetAllGradesRes> getAllGradesRes = gradeMapper.getMyAllGrades(userId, getAllGradesReq);
+
+        // res의 등급으로부터 평점 set 하기 위함
         for (GetAllGradesRes res : getAllGradesRes){
             String rank = res.getRank();
             double point;
@@ -53,7 +61,10 @@ public class GradeService {
                 default   -> point = 0.0;
             }
             res.setPoint(point);
+
         }
+
+
         return  getAllGradesRes;
     }
 
