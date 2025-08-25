@@ -1,8 +1,8 @@
 package com.rainbowuniv.academicmenagmentbe.staff.approval;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalGetReq;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalGetRes;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetReq;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetRes;
 import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalPatchReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,16 +21,19 @@ public class ApprovalController {
 
     // 신청서 조회
     @GetMapping
-    public ResponseEntity<?> ApplicationList(@RequestBody ApprovalGetReq req){
-        List<ApprovalGetRes> result = approvalService.ApplicationList(req);
+    public ResponseEntity<?> ApplicationList(@RequestBody ApprovalAppGetReq req){
+        List<ApprovalAppGetRes> result = approvalService.ApplicationList(req);
         return ResponseEntity.ok(result);
     }
 
-    //    신청서 승인여부 결정
+    // 신청서 승인여부 결정
     @PatchMapping
     public ResponseEntity<?> decideApplication(@RequestBody ApprovalPatchReq req){
-        approvalService.modifyStatus(req);
-        return ResponseEntity.ok("수정완료");
+        String result = approvalService.modifyStatus(req);
+        return ResponseEntity.ok(result);
     }
+
+    // 강의 개설 승인여부 결정
+
 
 }

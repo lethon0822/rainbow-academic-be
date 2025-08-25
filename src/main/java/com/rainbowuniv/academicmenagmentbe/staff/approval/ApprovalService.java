@@ -1,8 +1,8 @@
 package com.rainbowuniv.academicmenagmentbe.staff.approval;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalGetReq;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalGetRes;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetReq;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetRes;
 import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalPatchReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,18 +17,22 @@ public class ApprovalService {
     private final ApprovalMapper approvalMapper;
 
     //신청서 리스트
-    public List<ApprovalGetRes> ApplicationList(ApprovalGetReq req){
-        List<ApprovalGetRes> list = approvalMapper.ApplicationList(req);
+    public List<ApprovalAppGetRes> ApplicationList(ApprovalAppGetReq req){
+        List<ApprovalAppGetRes> list = approvalMapper.ApplicationList(req);
         log.info("list", list);
         return list;
     }
 
-    public void modifyStatus(ApprovalPatchReq req){
+    public String modifyStatus(ApprovalPatchReq req){
        int result =  approvalMapper.modifyStatus(req);
-    //TODO 학생 상태 변경
-//        if(result == 1) {
-//
-//        }
+        
+        if(result == 1 && req.getStatus() == "승인") {
+            approvalMapper.changeStatus(req.getUserId());
+            return "승인 완료";
+        } else if (req.getStatus() == "거부") {
+            return "승인 거부";
+        }
+        return "문제 발생 ";
     //TODO 예외처리
     }
 

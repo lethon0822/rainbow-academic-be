@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ApprovalGetRes {
+public class ApprovalAppGetRes {
     private int appId;
     private String createdAt;
     private String status;

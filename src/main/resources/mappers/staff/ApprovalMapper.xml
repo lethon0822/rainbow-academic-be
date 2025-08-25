@@ -33,12 +33,51 @@
 
     <update id="modifyStatus">
         UPDATE application
-        SET status =#{status}
+        SET status = #{status}
         WHERE app_id = #{appId}
     </update>
 
     <!--  추후 2차 진행시 user-student를 따로 만들어서 관리한다.  -->
 
+    <update id="changeStatus">
+        UPDATE student
+        SET status = "휴학"
+        WHERE user_id = #{userId}
+    </update>
+
+    <select id="findCoursesByStatus">
+    SELECT
+    c.status,
+    c.course_id,
+    c.course_code,
+    c.title,
+    c.classroom,
+    c.type,
+    c.grade,
+    u.user_name AS professorName,
+    s.year,
+    s.semester,
+    c.time,
+    c.credit,
+    c.max_std,
+    c.rem_std,
+    d.dept_name
+    FROM course c
+    JOIN user u
+    ON u.user_id = c.user_id
+    JOIN professor p
+    ON p.user_id = c.user_id
+    JOIN department d
+    ON d.dept_id = p.dept_id
+    JOIN semester s
+    ON s.semester_id = c.semester_id
+    WHERE s.year = #{year}
+    AND c.status = '처리중'
+
+    <if test="semester != null and semester != ''">
+        AND s.semester = #{semester}
+    </if>
+    </select>
 
 
 
