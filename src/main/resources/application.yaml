@@ -23,7 +23,9 @@ mail:
           auth: true
           starttls:
             enable: true
-
+          connectiontimeout: 3000
+          timeout: 3000
+          writetimeout: 3000
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

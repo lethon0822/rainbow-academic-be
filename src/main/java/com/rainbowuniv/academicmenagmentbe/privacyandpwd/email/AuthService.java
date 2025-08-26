@@ -16,7 +16,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserService {
+public class AuthService {
     private final RedisUtil redisUtil;
 
     private final JavaMailSender mailSender;
@@ -68,14 +68,13 @@ public class UserService {
         }
         redisUtil.setDataExpire(Integer.toString(authNumber),toMail,60*5000);
     }
-
-    public boolean checkAuthNum(String email,String authNum){
+    public boolean checkAll(String email,String authNum){
         System.out.println(authNum);
         System.out.println(email);
         if(redisUtil.getData(authNum)==null){
             return false;
         }
-        else if(redisUtil.getData(authNum).equals(email)){
+        else if(redisUtil.getData(email).equals(email) && redisUtil.getData(authNum).equals(authNum)){
             return true;
         }
         else{

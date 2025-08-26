@@ -12,25 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/user")
-public class UserController {
-    private final UserService userService;
+@RequestMapping("/api/account")
+public class AuthController {
+    private final AuthService authService;
 
-    @PostMapping ("/email/send")
+    @PostMapping ("/renewal")
     public String sendMail(@RequestBody EmailRequestDto emailRequestDto){
-        System.out.println("이메일 인증 이메일 :"+emailRequestDto.getEmail());
-        return userService.authMail(emailRequestDto.getEmail());
+        log.info("이메일 인증 이메일, {}", emailRequestDto.getEmail());
+        return authService.authMail(emailRequestDto.getEmail());
     }
 
-    @PostMapping("/email/check")
+    @PostMapping("/auth")
     public String checkAuthNum(@RequestBody EmailCheckDto emailCheckDto){
-        Boolean Checked = userService.checkAuthNum(emailCheckDto.getEmail(),emailCheckDto.getAuthNum());
-        if(Checked){
+        Boolean checked = authService.checkAll(emailCheckDto.getEmail(),emailCheckDto.getAuthNum());
+        if(checked){
             log.info("으에에에에엑");
-            return "ok";
+            return "인증이 완료되었습니다.";
         }
-        else{
-            throw new NullPointerException("잘못된 번호다");
+        else {
+            throw new InvalidAuthException("인증을 실패하였습니다.");
         }
     }
 }
