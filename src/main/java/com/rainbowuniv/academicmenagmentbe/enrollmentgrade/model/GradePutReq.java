@@ -9,11 +9,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class GradePutReq {
+
     private int midScore;
     private int finScore;
-    private int attendanceScore;
-    private int assignmentScore;
     private String rank;
-    private int enrollmentId;
-    private String departmentName;
+    private int scoreId;
+
 }

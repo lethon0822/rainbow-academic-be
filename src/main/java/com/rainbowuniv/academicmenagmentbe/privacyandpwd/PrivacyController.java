@@ -18,7 +18,7 @@ public class PrivacyController {
 
     @GetMapping("/privacy")
     public ResponseEntity<?> select (HttpServletRequest req) {
-        int userId= (int) HttpUtils.getSessionValue(req, "userId");
+        int userId = (int) HttpUtils.getSessionValue(req, "userId");
         PrivacyGetRes result = privacyService.selectMyPrivacy(userId);
         return ResponseEntity.ok(result);
     }

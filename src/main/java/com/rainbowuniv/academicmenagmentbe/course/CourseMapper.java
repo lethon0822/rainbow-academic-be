@@ -19,4 +19,6 @@ public interface CourseMapper {
 
     // 강의 계획서 조회
     CourseGetDetailRes findByCourseId(int courseId);
+
+
 }

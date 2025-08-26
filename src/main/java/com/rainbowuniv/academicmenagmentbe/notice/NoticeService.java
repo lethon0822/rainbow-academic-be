@@ -21,14 +21,17 @@ public class NoticeService {
     }
 
     public List<NoticeGetRes> selectNoticeByTitleORContent (NoticeGetReq req){
+        req.setType("all");
         return noticeMapper.selectNoticeByTitleORContent(req);
     }
 
     public List<NoticeGetRes> selectNoticeByTitle(NoticeGetReq req){
+        req.setType("title");
         return noticeMapper.selectNoticeByTitle(req);
     }
 
     public List<NoticeGetRes> selectNoticeByContent(NoticeGetReq req){
+        req.setType("content");
         return noticeMapper.selectNoticeByContent(req);
     }
 

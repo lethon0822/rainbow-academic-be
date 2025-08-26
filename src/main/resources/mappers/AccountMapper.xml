@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.account.AccountMapper">
-<!--    로그인 하기     -->
-<select id="findByLoginId">
-    SELECT user_id, password, user_role, user_name, login_id
-    FROM user
-    WHERE login_id = #{loginId}
-    AND password = #{password}
-</select>
+    <!--    로그인 하기     -->
+    <select id="findByLoginId">
+        SELECT user_id, password, user_role, user_name, login_id
+        FROM user
+        WHERE login_id = #{loginId}
+        AND password = #{password}
+    </select>
 
-<!--   아이디 찾기    -->
-<select id="findIdByEmailAndPhone">
-    SELECT user_name, login_id
-    FROM user
-    WHERE email = #{email}
-    AND phone = #{phone}
-</select>
-<!--    이름가져오기    -->
-  <select id="findNameByLoginId">
-    SELECT user_name
-    FROM user
-    WHERE login_id = #{loginId}
-  </select>
+    <!--   아이디 찾기    -->
+    <select id="findIdByEmailAndPhone">
+        SELECT user_name, login_id
+        FROM user
+        WHERE email = #{email}
+        AND phone = #{phone}
+    </select>
+    <!--    이름가져오기    -->
+    <select id="findNameByLoginId">
+        SELECT user_name
+        FROM user
+        WHERE login_id = #{loginId}
+    </select>
+
+    <!-- 학과코드 가져오기 -->
+    <select id="findDeptCodeByUserId">
+        SELECT dept_code
+        FROM department d
+        join professor p
+        ON d.dept_id = p.dept_id
+        WHERE p.user_id = #{userId}
+    </select>
+
 </mapper>

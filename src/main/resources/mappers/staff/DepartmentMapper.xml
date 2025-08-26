@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.staff.department.DepartmentMapper">
+
+    <insert id="save">
+        INSERT INTO department
+        SET dept_name = #{deptName},
+            dept_office = #{deptOffice},
+            dept_tel = #{deptTel},
+            dept_max_std = #{deptMaxStd},
+            dept_code = #{deptCode}
+    </insert>
+
+<!-- 학과 조회-->
+    <select id="findAll">
+        SELECT d.* , count(user_id) AS deptPeople
+        FROM department d
+        JOIN student s
+          ON d.dept_id = s.dept_id
+        GROUP BY d.dept_id
+    </select>
+
+    <update id="modifyDepartment">
+        UPDATE department
+        SET
+        dept_name = #{deptName},
+        dept_office = #{deptOffice},
+        dept_tel = #{deptTel},
+        dept_max_std = #{deptMaxStd},
+        dept_code = #{deptCode}
+        <if test="headProfId !=null and headProfId != ''">
+            ,head_prof_id = #{headProfId}
+        </if>
+        WHERE dept_id = #{deptId}
+    </update>
+
+<!-- 학과 상태만 수정-->
+    <update id="modifyStatus">
+        UPDATE department
+        SET status = #{status}
+        WHERE dept_id = #{deptId}
+    </update>
+</mapper>
