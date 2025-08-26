@@ -12,9 +12,9 @@ import java.util.List;
 public interface NoticeMapper {
     int insertNoticeByStaff(NoticePostReq req);
 
-    List<NoticeGetRes> selectNoticeByTitleORContent(NoticeGetReq req);
-    List<NoticeGetRes> selectNoticeByTitle(NoticeGetReq req);
-    List<NoticeGetRes> selectNoticeByContent(NoticeGetReq req);
+    List<NoticeGetRes> selectNoticeByTitleORContent(String searchText);
+    List<NoticeGetRes> selectNoticeByTitle(String searchText);
+    List<NoticeGetRes> selectNoticeByContent(String searchText);
     NoticeGetRes selectNoticeById(int noticeId);
 
     int updateNoticeByNoticeId(NoticePutReq req);

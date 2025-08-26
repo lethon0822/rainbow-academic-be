@@ -24,17 +24,42 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
+    // google email certification
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    
+    // redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // --- JDBC 로깅 (log4jdbc) ---
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // --- Spring ---
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'   // ← 추가 (DTO @Valid 등)
+
+    // --- MyBatis ---
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+
+    // --- DB Driver (MariaDB 사용) ---
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    // 만약 MySQL로 바꿀 경우:
+    // runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // --- Lombok ---
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // --- DevTools (선택) ---
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // --- Test ---
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

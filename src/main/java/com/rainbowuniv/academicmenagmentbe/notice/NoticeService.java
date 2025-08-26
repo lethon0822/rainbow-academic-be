@@ -20,19 +20,16 @@ public class NoticeService {
         return noticeMapper.insertNoticeByStaff(req);
     }
 
-    public List<NoticeGetRes> selectNoticeByTitleORContent (NoticeGetReq req){
-        req.setType("all");
-        return noticeMapper.selectNoticeByTitleORContent(req);
+    public List<NoticeGetRes> selectNoticeByTitleORContent (String searchText){
+        return noticeMapper.selectNoticeByTitleORContent(searchText);
     }
 
-    public List<NoticeGetRes> selectNoticeByTitle(NoticeGetReq req){
-        req.setType("title");
-        return noticeMapper.selectNoticeByTitle(req);
+    public List<NoticeGetRes> selectNoticeByTitle(String searchText){
+        return noticeMapper.selectNoticeByTitle(searchText);
     }
 
-    public List<NoticeGetRes> selectNoticeByContent(NoticeGetReq req){
-        req.setType("content");
-        return noticeMapper.selectNoticeByContent(req);
+    public List<NoticeGetRes> selectNoticeByContent(String searchText){
+        return noticeMapper.selectNoticeByContent(searchText);
     }
 
     public NoticeGetRes selectNoticeById(int noticeId){

@@ -26,21 +26,23 @@ public class NoticeController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getNotice(@ModelAttribute NoticeGetReq req) {
-        List<NoticeGetRes> result = noticeService.selectNoticeByTitleORContent(req);
-        return ResponseEntity.ok().body(result);
+    public ResponseEntity<?> searchNotice(@RequestParam(value = "search_text", required = false) String searchText) {
+        List<NoticeGetRes> result = noticeService.selectNoticeByTitleORContent(searchText);
+        return ResponseEntity.ok(result);
     }
 
+    // 제목으로만 검색
     @GetMapping("/title")
-    public ResponseEntity<?> getNoticeByTitle(@RequestParam NoticeGetReq req){
-        List<NoticeGetRes> result = noticeService.selectNoticeByTitle(req);
-        return ResponseEntity.ok().body(result);
+    public ResponseEntity<?> searchNoticeByTitle(@RequestParam("search_text") String searchText) {
+        List<NoticeGetRes> result = noticeService.selectNoticeByTitle(searchText);
+        return ResponseEntity.ok(result);
     }
 
+    // 내용으로만 검색
     @GetMapping("/content")
-    public ResponseEntity<?> getNoticeByContent(@RequestParam NoticeGetReq req){
-        List<NoticeGetRes> result = noticeService.selectNoticeByContent(req);
-        return ResponseEntity.ok().body(result);
+    public ResponseEntity<?> searchNoticeByContent(@RequestParam("search_text") String searchText) {
+        List<NoticeGetRes> result = noticeService.selectNoticeByContent(searchText);
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/{notice_id}")
