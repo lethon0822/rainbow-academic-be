@@ -1,9 +1,8 @@
 package com.rainbowuniv.academicmenagmentbe.staff.approval;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetReq;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalAppGetRes;
-import com.rainbowuniv.academicmenagmentbe.staff.approval.model.ApprovalPatchReq;
+import com.rainbowuniv.academicmenagmentbe.staff.approval.model.*;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,21 @@ public class ApprovalController {
         return ResponseEntity.ok(result);
     }
 
-    // 강의 개설 승인여부 결정
 
+    // 강의 개설 신청 리스트
+    @GetMapping("/course")
+    public ResponseEntity<?> getUnapprovedCourse(@ModelAttribute ApprovalCourseGetReq req){
+        List<ApprovalCourseGetRes> result = approvalService.unapprovedCourse(req);
+        return ResponseEntity.ok(result);
+    }
+
+
+
+    // 강의 개설 승인여부 결정
+    @PatchMapping("/course")
+    public ResponseEntity<?> patchCourseStatus(@RequestBody ApprovalCoursePatchReq req){
+        String result = approvalService.changeCourseStatus(req);
+        return ResponseEntity.ok(result);
+    }
 
 }
