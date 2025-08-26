@@ -11,6 +11,19 @@ spring:
     password: figma502
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
+mail:
+  smtp:
+    host: "smtp.gmail.com"
+    username: "mujiuniv@gmail.com"
+    password: "dqknokdqkusfndls"
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
