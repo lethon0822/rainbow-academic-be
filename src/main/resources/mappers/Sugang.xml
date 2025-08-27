@@ -83,14 +83,15 @@
     <select id="findCurrentSemesterId">
         SELECT s.semester_id
         FROM semester s
-        JOIN academic_schedule a
-        ON s.semester_id = a.semester_id
-        WHERE #{currentDateTime} BETWEEN a.start_datetime AND a.end_datetime
+        JOIN schedule sc
+        ON s.semester_id = sc.semester_id
+        WHERE sc.schedule_type = '학기'
+        AND #{currentDateTime} BETWEEN sc.start_datetime AND sc.end_datetime
         LIMIT 1
     </select>
 
 
-    <!-- 이번 학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
+    <!-- 금학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
     <select id="findAppliedCoursesByUserId">
         SELECT
         c.course_id,
@@ -114,6 +115,7 @@
         JOIN enrollment e ON e.course_id = c.course_id
         JOIN semester s ON c.semester_id = s.semester_id
         WHERE e.user_id = #{userId}
+        AND s.semester_id = #{req.currentSemesterId}
     </select>
 
 
