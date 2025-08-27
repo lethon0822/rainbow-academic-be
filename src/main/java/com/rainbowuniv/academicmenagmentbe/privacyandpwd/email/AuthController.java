@@ -24,7 +24,7 @@ public class AuthController {
 
     @PostMapping("/auth")
     public String checkAuthNum(@RequestBody EmailCheckDto emailCheckDto){
-        Boolean checked = authService.checkAll(emailCheckDto.getEmail(),emailCheckDto.getAuthNum());
+        Boolean checked = authService.checkAll(emailCheckDto.getEmail(),emailCheckDto.getAuthCode());
         if(checked){
             log.info("으에에에에엑");
             return "인증이 완료되었습니다.";

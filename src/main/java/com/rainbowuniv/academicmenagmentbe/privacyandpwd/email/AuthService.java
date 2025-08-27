@@ -20,7 +20,7 @@ public class AuthService {
     private final RedisUtil redisUtil;
 
     private final JavaMailSender mailSender;
-    private int authNumber;
+    private int authCodeNumber;
 
     //임의의 6자리 양수를 반환합니다.
     public void makeRandomNumber() {
@@ -30,7 +30,7 @@ public class AuthService {
             randomNumber += Integer.toString(r.nextInt(10));
         }
 
-        this.authNumber = Integer.parseInt(randomNumber);
+        this.authCodeNumber = Integer.parseInt(randomNumber);
     }
 
 
@@ -44,11 +44,11 @@ public class AuthService {
         String content =
                 "무한한 지식을 향하여, 무지대학교" + 	//html 형식으로 작성 !
                         "<br><br>" +
-                        "인증 번호는 " + authNumber + "입니다." +
+                        "인증 번호는 " + authCodeNumber + "입니다." +
                         "<br>" +
                         "인증번호를 제대로 입력해주세요"; //이메일 내용 삽입
         sendMail(setFrom, toMail, title, content);
-        return Integer.toString(authNumber);
+        return Integer.toString(authCodeNumber);
     }
 
     //이메일을 전송합니다.
@@ -66,15 +66,15 @@ public class AuthService {
             // 이러한 경우 MessagingException이 발생
             e.printStackTrace();//e.printStackTrace()는 예외를 기본 오류 스트림에 출력하는 메서드
         }
-        redisUtil.setDataExpire(Integer.toString(authNumber),toMail,60*5000);
+        redisUtil.setDataExpire(Integer.toString(authCodeNumber),toMail,60*5000);
     }
-    public boolean checkAll(String email,String authNum){
-        System.out.println(authNum);
+    public boolean checkAll(String email,String authCode){
+        System.out.println(authCode);
         System.out.println(email);
-        if(redisUtil.getData(authNum)==null){
+        if(redisUtil.getData(authCode)==null){
             return false;
         }
-        else if(redisUtil.getData(email).equals(email) && redisUtil.getData(authNum).equals(authNum)){
+        else if(redisUtil.getData(email).equals(email) && redisUtil.getData(authCode).equals(authCode)){
             return true;
         }
         else{

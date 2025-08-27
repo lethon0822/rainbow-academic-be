@@ -26,8 +26,9 @@ public class PrivacyController {
     @PutMapping
     public ResponseEntity<?> update (HttpServletRequest httpReq, @RequestBody PrivacyPutReq req) {
         int result = (int) HttpUtils.getSessionValue(httpReq, "userId");
-        req.setUserId(result);
         log.info("으어어어억{}", result);
+        req.setUserId(result);
+        log.info("세션에 저장된 userId={}", result);
         int result2 = privacyService.updateMyPrivacy(req);
         return ResponseEntity.ok(result2);
     }

@@ -9,11 +9,12 @@
 
     <update id="updateMyPrivacy">
         UPDATE user
-        SET
-        <if test="address != null || address != undefined">address = #{address},</if>
-        <if test="addDetail != null || addDetail != undefined">add_detail = #{addDetail},</if>
-        <if test="phone != null || phone != undefined">phone = #{phone},</if>
-        <if test="email != null || email != undefined">email = #{email}</if>
+        <set>
+            <if test="address != null and address != ''" >address = #{address},</if>
+            <if test="addDetail != null and addDetail != ''">add_detail = #{addDetail},</if>
+            <if test="phone != null and phone != ''">phone = #{phone},</if>
+            <if test="email != null and email != ''"> email = #{email},</if>
+        </set>
         WHERE user_id = #{userId}
     </update>
 </mapper>
