@@ -24,6 +24,15 @@ repositories {
 }
 
 dependencies {
+    // google email certification
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.mindrot:jbcrypt:0.4'
+    
+    // redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
     // --- JDBC 로깅 (log4jdbc) ---
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
 
