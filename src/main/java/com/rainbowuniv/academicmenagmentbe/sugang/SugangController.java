@@ -47,7 +47,7 @@ public class SugangController {
     }
 
     // 수강 취소
-    @DeleteMapping("/{courseId}")
+    @DeleteMapping("/cancel/{courseId}")
     public ResponseEntity<?> deleteMySugangCourses(@PathVariable int courseId, HttpServletRequest httpReq) {
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
 
