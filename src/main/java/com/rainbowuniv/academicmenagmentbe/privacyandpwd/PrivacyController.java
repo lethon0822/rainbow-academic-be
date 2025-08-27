@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/account")
+@RequestMapping("/api/account/privacy")
 public class PrivacyController {
     private final PrivacyService privacyService;
 
-    @GetMapping("/privacy")
+    @GetMapping
     public ResponseEntity<?> select (HttpServletRequest req) {
         int userId = (int) HttpUtils.getSessionValue(req, "userId");
         PrivacyGetRes result = privacyService.selectMyPrivacy(userId);
         return ResponseEntity.ok(result);
     }
 
-    @PutMapping("/privacy")
+    @PutMapping
     public ResponseEntity<?> update (HttpServletRequest httpReq, @RequestBody PrivacyPutReq req) {
         int result = (int) HttpUtils.getSessionValue(httpReq, "userId");
         req.setUserId(result);
