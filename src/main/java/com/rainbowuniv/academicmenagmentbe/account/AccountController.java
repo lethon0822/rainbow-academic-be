@@ -26,6 +26,7 @@ public class AccountController {
         if(result == null) {
             return ResponseEntity.notFound().build();
         }
+
         //세션처리
         HttpUtils.setSession(httpReq, AccountConstants.USER_ID_NAME, result.getUserId());
         log.info("됐다");
