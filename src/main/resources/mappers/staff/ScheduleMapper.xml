@@ -35,7 +35,7 @@
         WHERE sch.schedule_id = #{id}
     </select>
 
-    <insert id="insert" useGeneratedKeys="true" keyProperty="scheduleId">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="scheduleId" keyColumn="schedule_id">
         INSERT INTO schedule (semester_id, schedule_type, start_datetime, end_datetime, description)
         VALUES (
                    #{semesterId},
