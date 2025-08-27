@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -27,9 +28,9 @@ public class AccountController {
         }
         //세션처리
         HttpUtils.setSession(httpReq, AccountConstants.USER_ID_NAME, result.getUserId());
+        log.info("됐다");
         return ResponseEntity.ok(result);
     }
-
 //    @GetMapping("/id")
 //    public ResponseEntity<?> findId (@RequestParam String email, @RequestParam String phone) {
 //        AccountFindIdReq req = new AccountFindIdReq(email, phone);

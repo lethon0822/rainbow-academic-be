@@ -6,6 +6,7 @@ import com.rainbowuniv.academicmenagmentbe.account.model.AccountLoginReq;
 import com.rainbowuniv.academicmenagmentbe.account.model.AccountLoginRes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -18,6 +19,7 @@ public class AccountService {
       AccountLoginRes res = accountMapper.findByLoginId(req);
       return res;
    }
+
    public AccountFindIdRes findIdByEmailAndPhone(AccountFindIdReq req) {
       AccountFindIdRes res = accountMapper.findIdByEmailAndPhone(req);
       return res;
