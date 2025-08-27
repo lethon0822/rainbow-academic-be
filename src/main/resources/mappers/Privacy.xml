@@ -17,4 +17,10 @@
         </set>
         WHERE user_id = #{userId}
     </update>
+
+    <update id="updateMyPwd">
+        UPDATE user
+        SET password = #{password}
+        WHERE user_id = #{userId}
+    </update>
 </mapper>

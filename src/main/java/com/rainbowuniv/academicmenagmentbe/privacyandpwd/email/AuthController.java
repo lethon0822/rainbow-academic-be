@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping ("/renewal")
+    @PostMapping ("/auth")
     public String sendMail(@RequestBody EmailRequestDto emailRequestDto){
         log.info("이메일 인증 이메일, {}", emailRequestDto.getEmail());
         return authService.authMail(emailRequestDto.getEmail());
     }
 
-    @PostMapping("/auth")
+    @PostMapping("/check")
     public String checkAuthNum(@RequestBody EmailCheckDto emailCheckDto){
         Boolean checked = authService.checkAll(emailCheckDto.getEmail(),emailCheckDto.getAuthCode());
         if(checked){
