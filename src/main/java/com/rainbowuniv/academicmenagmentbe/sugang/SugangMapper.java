@@ -3,6 +3,7 @@ package com.rainbowuniv.academicmenagmentbe.sugang;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.MySugangListRes;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangReq;
 import com.rainbowuniv.academicmenagmentbe.sugang.model.SugangRes;
+import com.rainbowuniv.academicmenagmentbe.sugang.model.currentMySugangListReq;
 import org.apache.ibatis.annotations.Mapper;
 
 
@@ -23,9 +24,6 @@ public interface SugangMapper {
     // 수강 신청 정보 뿌리기
     SugangRes sugangCourseInfo(SugangReq req);
 
-    // 이번 학기 수강 신청한 과목들 목록 전체 조회용
-    List<MySugangListRes> findAppliedCoursesByUserId(int userId);
-
     // 수강 신청 성공시 잔여 인원 -1
     int decreaseRemainingSeats(SugangReq sugangReq);
 
@@ -34,6 +32,13 @@ public interface SugangMapper {
 
     // 수강 취소 성공시 잔여 인원 +1
     int increaseRemainingSeats(int courseId);
+
+    // 금학기 아이디 찾기
+    int findCurrentSemesterId(int currentDateTime);
+    // 이번 학기 수강 신청한 과목들 목록 전체 조회용
+    List<MySugangListRes> findAppliedCoursesByUserId(int userId, currentMySugangListReq req);
+
+
 
 
 

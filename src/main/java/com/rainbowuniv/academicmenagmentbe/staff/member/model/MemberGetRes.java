@@ -10,5 +10,6 @@ public class MemberGetRes {
     private String email;
     private String phone;
     private String deptName;
+    private String status;
     private int grade;
 }
