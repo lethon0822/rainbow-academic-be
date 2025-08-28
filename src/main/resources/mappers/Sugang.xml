@@ -64,8 +64,34 @@
         WHERE course_id = #{courseId}</update>
 
 
+    <!-- 수강 취소를 할 수 있다. -->
+    <delete id="sugangCancel">
+        DELETE FROM enrollment
+        WHERE user_id = #{userId}
+        AND course_id = #{courseId}
+    </delete>
 
-    <!-- 이번 학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
+    <!-- 수강 취소시 rem_std를 1 늘려야 함 -->
+    <update id ="increaseRemainingSeats">
+        UPDATE course
+        SET rem_std = rem_std + 1
+        WHERE course_id = #{courseId}
+    </update>
+
+
+    <!-- 금학기 semester_id 조회 -->
+    <select id="findCurrentSemesterId">
+        SELECT s.semester_id
+        FROM semester s
+        JOIN schedule sc
+        ON s.semester_id = sc.semester_id
+        WHERE sc.schedule_type = '학기'
+        AND #{currentDateTime} BETWEEN sc.start_datetime AND sc.end_datetime
+        LIMIT 1
+    </select>
+
+
+    <!-- 금학기 내가 수강 신청한 모든 과목들을 조회할 수 있다.   -->
     <select id="findAppliedCoursesByUserId">
         SELECT
         c.course_id,
@@ -89,22 +115,8 @@
         JOIN enrollment e ON e.course_id = c.course_id
         JOIN semester s ON c.semester_id = s.semester_id
         WHERE e.user_id = #{userId}
+        AND s.semester_id = #{req.currentSemesterId}
     </select>
-
-    <!-- 수강 취소를 할 수 있다. -->
-    <delete id="sugangCancel">
-        DELETE FROM enrollment
-        WHERE user_id = #{userId}
-        AND course_id = #{courseId}
-    </delete>
-
-    <!-- 수강 취소시 rem_std를 1 늘려야 함 -->
-    <update id ="increaseRemainingSeats">
-        UPDATE course
-        SET rem_std = rem_std + 1
-        WHERE course_id = #{courseId}
-    </update>
-
 
 
 </mapper>

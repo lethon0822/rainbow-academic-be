@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.staff.member.MemberMapper">
+
+
+    <select id="findUser">
+        SELECT u.login_id, u.user_name, u.address, u.email, u.phone,
+        d.dept_name
+        <if test=" userRole == 'student'">
+            ,s.grade, s.status
+        </if>
+        <if test=" userRole == 'professor'">
+             ,p.status
+        </if>
+        FROM user u
+        left JOIN professor p
+          ON u.user_id = p.user_id
+        left JOIN student s
+          ON u.user_id = s.user_id
+        JOIN department d
+          ON d.dept_id = s.dept_id
+          OR d.dept_id = p.dept_id
+        WHERE u.user_id > 1
+        AND u.user_role = #{userRole}
+        <if test="deptId != null and deptId !='' ">
+            AND d.dept_id = #{deptId}
+        </if>
+
+
+
+
+    </select>
+</mapper>

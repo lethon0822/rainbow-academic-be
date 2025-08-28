@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AccountMapper {
     AccountLoginRes findByLoginId(AccountLoginReq req);
+
     AccountFindIdRes findIdByEmailAndPhone(AccountFindIdReq req);
 
     String findDeptCodeByUserId(int userId);

@@ -24,7 +24,7 @@
           JOIN semester sm
             ON sc.semester_id = sm.semester_id
          WHERE sm.year = #{year} AND sm.semester = #{semester}
-        <if test="scheduleType != null and acheduleType != ''">
+        <if test="scheduleType != null and scheduleType != ''">
             AND sc.schedule_type = #{scheduleType}
         </if>
     </select>
@@ -39,7 +39,7 @@
 
     <!--  추후 2차 진행시 user-student를 따로 만들어서 관리한다.  -->
 
-    <update id="changeStatus">
+    <update id="changeStudentStatus">
         UPDATE student
         SET status = "휴학"
         WHERE user_id = #{userId}
@@ -78,6 +78,14 @@
         AND s.semester = #{semester}
     </if>
     </select>
+
+    <!-- 추후 중복 쿼리를 어떻게 할지 생각 -->
+
+    <update id="changeCourseStatus">
+        UPDATE course
+        SET status = #{status}
+        WHERE course_id = #{courseId}
+    </update>
 
 
 
