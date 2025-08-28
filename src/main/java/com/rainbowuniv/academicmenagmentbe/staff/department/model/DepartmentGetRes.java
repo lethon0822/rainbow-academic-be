@@ -20,4 +20,5 @@ public class DepartmentGetRes {
     private String deptMaxStd;
     private String deptPeople;
     private String deptCode;
+    private String userName;
 }
