@@ -81,12 +81,10 @@
 
     <!-- 금학기 semester_id 조회 -->
     <select id="findCurrentSemesterId">
-        SELECT s.semester_id
-        FROM semester s
-        JOIN schedule sc
-        ON s.semester_id = sc.semester_id
-        WHERE sc.schedule_type = '학기'
-        AND #{currentDateTime} BETWEEN sc.start_datetime AND sc.end_datetime
+        SELECT semester_id
+        FROM schedule
+        WHERE schedule_type = '학기'
+        AND #{currentDateTime} BETWEEN start_datetime AND end_datetime
         LIMIT 1
     </select>
 
