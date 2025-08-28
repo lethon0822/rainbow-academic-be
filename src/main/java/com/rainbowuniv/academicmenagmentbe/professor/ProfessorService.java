@@ -4,6 +4,7 @@ package com.rainbowuniv.academicmenagmentbe.professor;
 import com.rainbowuniv.academicmenagmentbe.account.AccountMapper;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
+import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,12 @@ public class ProfessorService {
 
     //강의 평가 학생용
     public int studentSurvey(LecturesEvaluationDto dto) {
-        return professorMapper.updateReview(dto);
+        int result = professorMapper.updateReview(dto);
+        return result;
+    }
+
+    //수강 상태변경
+    public int studentStatus(EnrollStatusReq req){
+        return professorMapper.updateEnrollStatus(req);
     }
 }

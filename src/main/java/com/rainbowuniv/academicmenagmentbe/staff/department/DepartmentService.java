@@ -1,10 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.staff.department;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentGetRes;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPatchReq;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPostReq;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPutReq;
+import com.rainbowuniv.academicmenagmentbe.staff.department.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +22,8 @@ public class DepartmentService {
         departmentMapper.save(req);
     }
 
-    public List<DepartmentGetRes> findAllDepartment(){
-        return departmentMapper.findAll();
+    public List<DepartmentGetRes> findAllDepartment(DepartmentGetReq req){
+        return departmentMapper.findAll(req);
     }
 
     public void updateDept(DepartmentPutReq req){

@@ -7,6 +7,7 @@ import com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.ProfessorService;
+import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
 import com.rainbowuniv.academicmenagmentbe.profile.model.ProfileDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -69,7 +70,7 @@ public class ProfileController {
 
 
     // 강의 평가 학생용 등록
-    @PostMapping("/course/survey")
+    @PutMapping("/course/survey")
     public ResponseEntity<String> studentSurvey(HttpServletRequest httpReq,
                                                 @RequestBody LecturesEvaluationDto dto) {
         Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
@@ -78,6 +79,10 @@ public class ProfileController {
         log.info("dto", dto);
         int result = professorService.studentSurvey(dto);
         if (result == 1) {
+            String status = "수강완료";
+            EnrollStatusReq req = new EnrollStatusReq(status, dto.getEnrollmentId());
+            professorService.studentStatus(req);
+
             return ResponseEntity.ok("강의 평가 등록 성공");
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("강의 평가 등록 실패");

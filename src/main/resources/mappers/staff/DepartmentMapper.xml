@@ -14,11 +14,23 @@
 
 <!-- 학과 조회-->
     <select id="findAll">
-        SELECT d.* , count(user_id) AS deptPeople
+        SELECT d.*, s.deptPeople, u.user_name
         FROM department d
-        JOIN student s
-          ON d.dept_id = s.dept_id
-        GROUP BY d.dept_id
+        JOIN (
+        SELECT dept_id, COUNT(user_id) AS deptPeople
+        FROM student
+        WHERE status != '졸업'
+        GROUP BY dept_id
+        ) s ON d.dept_id = s.dept_id
+        JOIN professor p ON d.dept_id = p.dept_id
+        JOIN user u ON u.user_id = p.user_id
+        WHERE u.user_id = d.head_prof_id
+        <if test="status != null and status != ''">
+            AND d.`status` = #{status}
+        </if>
+        <if test="status != null and status != ''">
+            AND d.dept_code LIKE '%${text}%' OR d.dept_name LIKE '%${text}%'
+        </if>
     </select>
 
     <update id="modifyDepartment">
