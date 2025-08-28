@@ -1,10 +1,7 @@
 package com.rainbowuniv.academicmenagmentbe.staff.department;
 
 
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentGetRes;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPatchReq;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPostReq;
-import com.rainbowuniv.academicmenagmentbe.staff.department.model.DepartmentPutReq;
+import com.rainbowuniv.academicmenagmentbe.staff.department.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +27,8 @@ public class DepartmentController {
 
     // 학과 조회
     @GetMapping
-    public ResponseEntity<?> findDepartment(){
-        List<DepartmentGetRes> result = departmentService.findAllDepartment();
+    public ResponseEntity<?> findDepartment(@ModelAttribute DepartmentGetReq req){
+        List<DepartmentGetRes> result = departmentService.findAllDepartment(req);
         return ResponseEntity.ok(result);
     }
 
