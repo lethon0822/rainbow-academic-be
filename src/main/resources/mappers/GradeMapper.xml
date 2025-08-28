@@ -75,8 +75,8 @@
         ORDER BY s.grade, c.semester
     </select>
 
-    <!-- 영구 성적 조회 -->
-    <select id="getMyAllGrades">
+    <!-- 2차 프로젝트 영구 성적 조회 -->
+    <select id="getAllPermanentGrade" >
         SELECT
         se.year,
         se.semester,
@@ -99,27 +99,27 @@
         ON u.user_id = c.user_id
 
         WHERE e.user_id = #{userId}
-        <!-- 금학기 성적 조회 막는 부분. 프론트에서도 금학기는 필터에 안 뜨게 막아야 함. -->
-        AND NOT (se.year = #{currentYear} AND se.semester = #{currentSemester})
+        AND e.status = '수강완료'
+  <!-- 금학기 제외 성적 조회 웨어절 추가 구현해야함 -->
 
-        <if test="year != null">
-            AND se.year = #{year}
+        <if test="req.year != null">
+            AND se.year = #{req.year}
         </if>
 
-        <if test="semester != null">
-            AND se.semester = #{semester}
+        <if test="req.semester != null">
+            AND se.semester = #{req.semester}
         </if>
 
-        <if test="type != null">
-            AND c.type = #{type}
+        <if test="req.type != null">
+            AND c.type = #{req.type}
         </if>
 
-        <if test="grade != null">
-            AND c.grade = #{grade}
+        <if test="req.grade != null">
+            AND c.grade = #{req.grade}
         </if>
 
-        <if test="keyword != null and Keyword != ''">
-            AND c.title LIKE CONCAT('%', #{keyword}, '%')
+        <if test="req.keyword != null and req.keyword != ''">
+            AND c.title LIKE CONCAT('%', #{req.keyword}, '%')
         </if>
     </select>
 

@@ -1,6 +1,11 @@
 package com.rainbowuniv.academicmenagmentbe.grade.model;
 
-public class GetAllGradesReq {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class GetAllPermanentGradeReq {
     private int year;
     private int semester;
     private String type;

@@ -2,6 +2,7 @@ package com.rainbowuniv.academicmenagmentbe.grade;
 
 import com.rainbowuniv.academicmenagmentbe.grade.model.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,6 @@ public interface GradeMapper {
     List<SemesterGradeDTO> selectSemesterGradesByUser(Map<String, Object> params);
 
     // ------------------영구 성적 조회  --------------- //
-    List<GetAllGradesRes> getMyAllGrades(long userId, GetAllGradesReq getAllGradesReq);
+    List<GetAllPermanentGradeRes> getAllPermanentGrade(@Param("userId") long userId, @Param("req") GetAllPermanentGradeReq req);
 
 }

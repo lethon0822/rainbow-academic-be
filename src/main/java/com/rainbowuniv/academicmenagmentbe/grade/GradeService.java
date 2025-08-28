@@ -37,16 +37,15 @@ public class GradeService {
     // --------------------------------- 성적 조회 부분 아래 코드로 전면 수정-------------------------------------//
 
     // 영구 성적 조회
-    public List<GetAllGradesRes> getMyAllGrades(long userId, GetAllGradesReq getAllGradesReq) {
-
-        // 이번 학기 찾기 ( 영구 성적 조회에서는 이번 학기 성적을 제외하기 위함 )
+    public List<GetAllPermanentGradeRes> getAllPermanentGrade(long userId, GetAllPermanentGradeReq req) {
 
 
-        List<GetAllGradesRes> getAllGradesRes = gradeMapper.getMyAllGrades(userId, getAllGradesReq);
+
+        List<GetAllPermanentGradeRes> res = gradeMapper.getAllPermanentGrade(userId, req);
 
         // res의 등급으로부터 평점 set 하기 위함
-        for (GetAllGradesRes res : getAllGradesRes){
-            String rank = res.getRank();
+        for (GetAllPermanentGradeRes item : res){
+            String rank = item.getRank();
             double point;
             switch (rank){
                 case "A+" -> point = 4.5;
@@ -60,12 +59,12 @@ public class GradeService {
                 case "F"  -> point = 0.0;
                 default   -> point = 0.0;
             }
-            res.setPoint(point);
+            item.setPoint(point);
 
         }
 
 
-        return  getAllGradesRes;
+        return res;
     }
 
 
