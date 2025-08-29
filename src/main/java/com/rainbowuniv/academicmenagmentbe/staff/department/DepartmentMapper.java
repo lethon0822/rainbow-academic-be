@@ -8,8 +8,15 @@ import java.util.List;
 
 @Mapper
 public interface DepartmentMapper {
+
     void save(DepartmentPostReq req);
+
     List<DepartmentGetRes> findAll(DepartmentGetReq req);
+
+    List<DepartmentHeadName> findUserByDeptId(int deptId);
+
+
     int modifyDepartment(DepartmentPutReq req);
+
     void modifyStatus(DepartmentPatchReq req);
 }

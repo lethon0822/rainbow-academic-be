@@ -26,6 +26,10 @@ public class DepartmentService {
         return departmentMapper.findAll(req);
     }
 
+    public List<DepartmentHeadName> findDeptHead(int deptId){
+        return departmentMapper.findUserByDeptId(deptId);
+    }
+
     public void updateDept(DepartmentPutReq req){
         int result = departmentMapper.modifyDepartment(req);
     }
