@@ -113,7 +113,8 @@
         JOIN enrollment e ON e.course_id = c.course_id
         JOIN semester s ON c.semester_id = s.semester_id
         WHERE e.user_id = #{userId}
-        AND s.semester_id = #{req.currentSemesterId}
+        AND s.semester_id = #{req.semesterId}
+        AND e.status = '수강중'
     </select>
 
 
