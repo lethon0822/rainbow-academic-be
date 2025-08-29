@@ -5,4 +5,5 @@
         INSERT INTO application(user_id, schedule_id, reason)
         VALUE (#{userId}, #{scheduleId}, #{reason});
     </insert>
+
 </mapper>

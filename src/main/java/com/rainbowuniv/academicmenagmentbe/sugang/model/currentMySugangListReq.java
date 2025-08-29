@@ -4,5 +4,5 @@ import lombok.Setter;
 
 @Setter
 public class currentMySugangListReq {
-    private int currentSemesterId;
+    private int semesterId;
 }

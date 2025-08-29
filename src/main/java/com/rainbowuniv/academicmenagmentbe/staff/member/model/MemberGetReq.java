@@ -1,22 +1,24 @@
 package com.rainbowuniv.academicmenagmentbe.staff.member.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import java.beans.ConstructorProperties;
 
 @Getter
-
+@Setter
+@NoArgsConstructor
 public class MemberGetReq {
-    private String userRole;
+    private String userRole;        // student | professor
     private Integer deptId;
-
-
-    @ConstructorProperties({"user_role", "dept_id"})
-    public MemberGetReq(String userRole, Integer deptId) {
-        this.userRole = userRole;
-        this.deptId = deptId;
-    }
-
-
+    private Integer grade;          // 학생 전용
+    private String status;          // 공통
+    private String gender;          // 교수 전용 (user.gender 기준이면 학생도 사용 가능)
+    private String q;
+    private String searchBy;        // all | name | loginId | email
 }
+
+

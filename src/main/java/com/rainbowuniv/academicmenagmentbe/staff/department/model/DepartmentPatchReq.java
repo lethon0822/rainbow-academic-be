@@ -1,17 +1,19 @@
 package com.rainbowuniv.academicmenagmentbe.staff.department.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.beans.ConstructorProperties;
 
 @Getter
+
 public class DepartmentPatchReq {
-    private String status;
+    private String status = "0";
     private int deptId;
 
-    @ConstructorProperties({"id", "status"})
-    public DepartmentPatchReq(int deptId, String status){
+
+    public DepartmentPatchReq(int deptId){
         this.deptId = deptId;
-        this.status = status;
     }
 }

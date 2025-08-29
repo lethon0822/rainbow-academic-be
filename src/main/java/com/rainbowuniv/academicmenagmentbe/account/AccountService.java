@@ -20,6 +20,12 @@ public class AccountService {
       return res;
    }
 
+   // -------------------------------------------------------------
+
+   // 여기에 암호화된 비밀번호 대조하는 뭐시기 만들 예정
+
+   // -------------------------------------------------------------
+
    public AccountFindIdRes findIdByEmailAndPhone(AccountFindIdReq req) {
       AccountFindIdRes res = accountMapper.findIdByEmailAndPhone(req);
       return res;

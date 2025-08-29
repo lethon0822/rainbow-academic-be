@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GetAllGradesRes {
+public class GetAllPermanentGradeRes {
     private int year;
     private int semester;
     private String type;
