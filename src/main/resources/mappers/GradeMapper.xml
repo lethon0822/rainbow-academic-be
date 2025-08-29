@@ -109,12 +109,32 @@
         <if test="req.semester != null">
             AND se.semester = #{req.semester}
         </if>
+    </select>
 
+    <select id="getMyCurrentGrades">
+        SELECT
+        c.type,
+        u.user_name AS professorName,
+        c.course_code,
+        c.title,
+        c.credit,
+        s.rank,
+        s.mid_score,
+        s.fin_score,
+        s.attendance_score,
+        s.other_score,
+        e.ev_score
 
+        FROM enrollment e
+        JOIN course c
+        ON e.course_id = c.course_id
+        JOIN score s
+        ON e.enrollment_id = s.enrollment_id
+        JOIN user u
+        ON u.user_id = c.user_id
 
-
-
-
+        WHERE e.user_id = #{userId}
+        AND c.semester_id = #{semesterId}
 
     </select>
 
