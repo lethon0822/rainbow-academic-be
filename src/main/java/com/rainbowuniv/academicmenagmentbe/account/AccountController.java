@@ -28,7 +28,7 @@ public class AccountController {
         }
 
         //세션처리
-        HttpUtils.setSession(httpReq, AccountConstants.USER_ID_NAME, result.getUserId());
+        HttpUtils.setSession(httpReq,AccountConstants.USER_ID_NAME, result.getUserId());
         log.info("됐다");
         return ResponseEntity.ok(result);
     }

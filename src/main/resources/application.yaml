@@ -26,6 +26,7 @@ spring:
 
 mybatis:
   configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
     default-statement-timeout: 10
   # resources 폴더 기준 classpath 접두사로 명시하는 것이 안전

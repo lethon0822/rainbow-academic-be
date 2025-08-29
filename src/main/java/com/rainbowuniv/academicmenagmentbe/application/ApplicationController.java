@@ -1,6 +1,8 @@
 package com.rainbowuniv.academicmenagmentbe.application;
 
+import com.rainbowuniv.academicmenagmentbe.application.model.AppGetRes;
 import com.rainbowuniv.academicmenagmentbe.application.model.AppPostReq;
+import com.rainbowuniv.academicmenagmentbe.application.model.AppPutReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -16,8 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
+    // 학생, 교직원의 신청
     @PostMapping
     public ResponseEntity<?> insertAppForReason (@RequestBody AppPostReq req) {
         return ResponseEntity.ok(applicationService.insertAppForReason(req));
     }
+
 }

@@ -75,8 +75,8 @@
         ORDER BY s.grade, c.semester
     </select>
 
-    <!-- 영구 성적 조회 -->
-    <select id="getMyAllGrades">
+    <!-- 2차 프로젝트 영구 성적 조회 -->
+    <select id="getAllPermanentGrade" >
         SELECT
         se.year,
         se.semester,
@@ -99,28 +99,43 @@
         ON u.user_id = c.user_id
 
         WHERE e.user_id = #{userId}
-        <!-- 금학기 성적 조회 막는 부분. 프론트에서도 금학기는 필터에 안 뜨게 막아야 함. -->
-        AND NOT (se.year = #{currentYear} AND se.semester = #{currentSemester})
+        AND se.semester_id != #{req.semesterId}
+        AND e.status = '수강완료'
 
-        <if test="year != null">
-            AND se.year = #{year}
+        <!-- 이 부분은 연도, 학기 필터 부분. 단, 프론트 필터바에서 금학기는 제외해서 띄워야함.  -->
+        <if test="req.year != null">
+            AND se.year = #{req.year}
         </if>
+        <if test="req.semester != null">
+            AND se.semester = #{req.semester}
+        </if>
+    </select>
 
-        <if test="semester != null">
-            AND se.semester = #{semester}
-        </if>
+    <select id="getMyCurrentGrades">
+        SELECT
+        c.type,
+        u.user_name AS professorName,
+        c.course_code,
+        c.title,
+        c.credit,
+        s.rank,
+        s.mid_score,
+        s.fin_score,
+        s.attendance_score,
+        s.other_score,
+        e.ev_score
 
-        <if test="type != null">
-            AND c.type = #{type}
-        </if>
+        FROM enrollment e
+        JOIN course c
+        ON e.course_id = c.course_id
+        JOIN score s
+        ON e.enrollment_id = s.enrollment_id
+        JOIN user u
+        ON u.user_id = c.user_id
 
-        <if test="grade != null">
-            AND c.grade = #{grade}
-        </if>
+        WHERE e.user_id = #{userId}
+        AND c.semester_id = #{semesterId}
 
-        <if test="keyword != null and Keyword != ''">
-            AND c.title LIKE CONCAT('%', #{keyword}, '%')
-        </if>
     </select>
 
 
