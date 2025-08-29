@@ -28,7 +28,16 @@ public class DepartmentController {
     // 학과 조회
     @GetMapping
     public ResponseEntity<?> findDepartment(@ModelAttribute DepartmentGetReq req){
+        log.info("알이큐:{}",req);
         List<DepartmentGetRes> result = departmentService.findAllDepartment(req);
+        return ResponseEntity.ok(result);
+    }
+
+    // 학과 소속 교수진 조회
+    @GetMapping("/head")
+    public ResponseEntity<?> findDeptHead(@RequestParam("dept_id")int deptId){
+        log.info("아이디{}", deptId);
+        List<DepartmentHeadName> result = departmentService.findDeptHead(deptId);
         return ResponseEntity.ok(result);
     }
 
@@ -41,7 +50,8 @@ public class DepartmentController {
 
     // 학과 상태 수정
     @PatchMapping
-    public ResponseEntity<?> updateStatus(@ModelAttribute DepartmentPatchReq req){
+    public ResponseEntity<?> updateStatus(@RequestParam("id") int deptId){
+        DepartmentPatchReq req = new DepartmentPatchReq(deptId);
         departmentService.updateStatus(req);
         return ResponseEntity.ok("학과 상태 수정");
     }
