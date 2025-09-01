@@ -34,7 +34,12 @@
           c.credit,
           c.max_std,
           c.rem_std,
-          d.dept_name
+
+          CASE
+            WHEN c.type LIKE '교양%' THEN '교양학부'
+            ELSE d.dept_name
+          END AS dept_name
+
         FROM course c
         JOIN user u
         ON u.user_id = c.user_id
