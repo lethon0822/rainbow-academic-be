@@ -15,5 +15,7 @@ public class ApprovalAppGetRes {
     private String userName;
     private String deptName;
     private String scheduleType;
+    private String year;
+    private String semester;
 
 }
