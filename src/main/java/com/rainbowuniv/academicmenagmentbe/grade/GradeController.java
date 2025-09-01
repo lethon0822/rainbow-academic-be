@@ -27,6 +27,7 @@ public class GradeController {
 
         // 유저 아이디 세션 처리
         int userId = (int) HttpUtils.getSessionValue(httpReq, "userId");
+
         log.info("semester id {}", req.getSemesterId());
 
 
