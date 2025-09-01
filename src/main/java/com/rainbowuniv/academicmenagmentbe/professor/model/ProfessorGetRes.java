@@ -17,4 +17,5 @@ public class ProfessorGetRes {
     private int remStd;
     private String status;
     private int grade;
+    private int courseStudent;
 }

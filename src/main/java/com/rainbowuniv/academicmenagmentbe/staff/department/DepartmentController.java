@@ -29,6 +29,9 @@ public class DepartmentController {
     @GetMapping
     public ResponseEntity<?> findDepartment(@ModelAttribute DepartmentGetReq req){
         log.info("알이큐:{}",req);
+        if (req.getStatus() == "null") {
+            DepartmentGetReq req2 = new DepartmentGetReq(null, req.getKeyword());
+        }
         List<DepartmentGetRes> result = departmentService.findAllDepartment(req);
         return ResponseEntity.ok(result);
     }
