@@ -38,9 +38,9 @@
         FROM course c
         JOIN user u
         ON u.user_id = c.user_id
-        JOIN professor p
+        LEFT JOIN professor p
         ON p.user_id = c.user_id
-        JOIN department d
+        LEFT JOIN department d
         ON d.dept_id = p.dept_id
         JOIN semester s
         ON s.semester_id = c.semester_id
@@ -53,14 +53,14 @@
 
           <!-- 전공 ( 전공 선택, 전공 필수 ), 교양 ( 교양 선택, 교양 필수 )-->
              <if test="type != null and type != ''">
-                AND c.type LIKE CONCAT('%', #{type}, '%')
+                AND c.type LIKE CONCAT(#{type}, '%')
              </if>
 
             <if test="grade != null and grade != ''">
                 AND c.grade = #{grade}
             </if>
 
-            <if test="departmentName != null and departmentName != ''">
+            <if test="departmentName != null and departmentName != '' and departmentName != '교양학부'">
                 AND d.dept_name = #{departmentName}
             </if>
 
