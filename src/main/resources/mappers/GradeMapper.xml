@@ -102,10 +102,11 @@
         AND se.semester_id != #{req.semesterId}
         AND e.status = '수강완료'
 
-        <!-- 이 부분은 연도, 학기 필터 부분. 단, 프론트 필터바에서 금학기는 제외해서 띄워야함.  -->
-        <if test="req.year != null">
-            AND se.year = #{req.year}
+        <if test="req.grade != null">
+            AND c.grade = #{req.grade}
         </if>
+
+
         <if test="req.semester != null">
             AND se.semester = #{req.semester}
         </if>
