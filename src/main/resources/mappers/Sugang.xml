@@ -41,7 +41,12 @@
         c.credit,
         c.max_std,
         c.rem_std,
-        d.dept_name
+        CASE
+        WHEN c.type LIKE '교양%' THEN '교양학부'
+        ELSE d.dept_name
+        END AS dept_name
+
+
         FROM course c
         JOIN user u
         ON u.user_id = c.user_id
@@ -53,6 +58,7 @@
         ON e.course_id = c.course_id
         JOIN semester s
         ON s.semester_id = c.semester_id
+
         WHERE e.course_id = #{courseId}
         AND e.user_id = #{userId}
     </select>
@@ -105,7 +111,12 @@
         c.credit,
         c.max_std,
         c.rem_std,
-        d.dept_name
+
+        CASE
+        WHEN c.type LIKE '교양%' THEN '교양학부'
+        ELSE d.dept_name
+        END AS dept_name
+        
         FROM course c
         JOIN user u ON u.user_id = c.user_id
         JOIN professor p ON p.user_id = c.user_id
