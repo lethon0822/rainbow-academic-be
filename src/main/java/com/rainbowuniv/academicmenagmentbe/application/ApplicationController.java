@@ -1,15 +1,11 @@
 package com.rainbowuniv.academicmenagmentbe.application;
 
-import com.rainbowuniv.academicmenagmentbe.application.model.AppGetRes;
-import com.rainbowuniv.academicmenagmentbe.application.model.AppPostReq;
-import com.rainbowuniv.academicmenagmentbe.application.model.AppPutReq;
+import com.rainbowuniv.academicmenagmentbe.application.model.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.util.List;
 
@@ -25,5 +21,19 @@ public class ApplicationController {
     public ResponseEntity<?> insertAppForReason (@RequestBody AppPostReq req) {
         return ResponseEntity.ok(applicationService.insertAppForReason(req));
     }
+    // 다음 학기 휴/복학 신청
+    @PostMapping("/apply-next")
+    public void applyNext(@AuthenticationPrincipal(expression = "id") Long userId,
+                          @RequestBody ApplyNextReq req) {
+        applicationService.applyForNextSemester(userId, req, true); // 기간 강제하려면 true
+    }
 
+    // 내 신청 목록
+    @GetMapping("/me")
+    public List<ApplicationListRow> myList(@AuthenticationPrincipal Long userId,
+                                           @RequestParam(required = false) String status) {
+        return applicationService.myApplications(userId, status);
+    }
 }
+
+
