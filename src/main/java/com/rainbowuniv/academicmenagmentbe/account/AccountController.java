@@ -26,6 +26,8 @@ public class AccountController {
         if(result == null) {
             return ResponseEntity.notFound().build();
         }
+        String hashed = accountService.encodePassword(req.getPassword());
+//        Boolean result2 = accountService.matchesPassword();
 
         //세션처리
         HttpUtils.setSession(httpReq,AccountConstants.USER_ID_NAME, result.getUserId());
