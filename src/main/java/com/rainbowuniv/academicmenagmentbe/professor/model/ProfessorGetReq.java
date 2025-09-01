@@ -1,18 +1,18 @@
 package com.rainbowuniv.academicmenagmentbe.professor.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
+@AllArgsConstructor
 @ToString
 
 public class ProfessorGetReq {
     private int userId;
-    private Integer year;
-    private Integer semester;
+    private int semesterId;
 
 
 }
