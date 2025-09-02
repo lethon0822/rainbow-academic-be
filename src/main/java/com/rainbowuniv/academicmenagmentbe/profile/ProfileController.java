@@ -80,13 +80,14 @@ public class ProfileController {
         int result = professorService.studentSurvey(dto);
         if (result == 1) {
             String status = "수강완료";
-            EnrollStatusReq req = new EnrollStatusReq(status, dto.getCourseId());  // 변경된 부분
+            EnrollStatusReq req = new EnrollStatusReq(status, dto.getCourseId(), userId);
             professorService.studentStatus(req);
 
             return ResponseEntity.ok("강의 평가 등록 성공");
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("강의 평가 등록 실패");
     }
+
 
     // 학생 프로필
     @GetMapping("/profile")
@@ -104,5 +105,6 @@ public class ProfileController {
         }
         return ResponseEntity.ok(profile);
     }
+
 }
 

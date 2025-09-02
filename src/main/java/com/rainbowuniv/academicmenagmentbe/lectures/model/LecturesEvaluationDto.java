@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class LecturesEvaluationDto {
-    private int enrollmentId;
     private int courseId;
     private Integer userId;
     private String review;
