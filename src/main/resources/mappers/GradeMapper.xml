@@ -114,6 +114,7 @@
 
     <select id="getMyCurrentGrades">
         SELECT
+        c.course_id,
         c.type,
         u.user_name AS professorName,
         c.course_code,

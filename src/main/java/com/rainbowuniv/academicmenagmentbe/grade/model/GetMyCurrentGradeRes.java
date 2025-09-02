@@ -7,6 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GetMyCurrentGradeRes {
+    private Long courseId;
+
     private String type;
     private String professorName;
     private String courseCode;
