@@ -24,6 +24,10 @@ repositories {
 }
 
 dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test' // 선택
+
     // google email certification
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.mindrot:jbcrypt:0.4'
