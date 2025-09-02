@@ -103,7 +103,7 @@
         AND e.status = '수강완료'
 
         <if test="req.grade != null">
-            AND c.grade = #{req.grade}
+            AND s.grade = #{req.grade}
         </if>
 
 
