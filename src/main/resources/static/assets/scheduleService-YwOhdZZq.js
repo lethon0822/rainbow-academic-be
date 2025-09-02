@@ -1,0 +1,1 @@
+import{P as s}from"./index-BYEgPVgA.js";const d=(e,t)=>s.get("/schedule",{params:{year:e,month:t}}),l=e=>s.post("/schedule",e),u=e=>s.put("/schedule",e),h=e=>s.delete("/schedule",{params:{id:e}}),o=({semesterId:e,type:t})=>s.get("/schedules",{params:{semesterId:e,type:t}}).then(a=>a.data[0]||null);export{d as a,l as c,h as d,o as g,u};
