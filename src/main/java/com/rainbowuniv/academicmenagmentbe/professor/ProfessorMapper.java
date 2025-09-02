@@ -13,6 +13,7 @@ public interface ProfessorMapper {
 
     int saveCourse(ProfessorPostReq req);
 
+    // 이번 년도 내 강의 보기
     List<ProfessorGetRes> findByUserId(ProfessorGetReq req);
 
     int modify(ProfessorPutReq req);

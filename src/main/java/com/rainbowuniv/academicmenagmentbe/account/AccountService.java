@@ -22,7 +22,25 @@ public class AccountService {
 
    // -------------------------------------------------------------
 
-   // 여기에 암호화된 비밀번호 대조하는 뭐시기 만들 예정
+   public String encodePassword(String rawPassword) {
+      return BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+   }
+
+   // 비밀번호 일치 여부 검사
+   public boolean matchesPassword(String rawPassword, String storedPassword) {
+      // bcrypt로 암호화된 비밀번호는 항상 $2a$ / $2b$ / $2y$ 로 시작
+      boolean isBcrypt = storedPassword.startsWith("$2a$")
+              || storedPassword.startsWith("$2b$")
+              || storedPassword.startsWith("$2y$");
+
+      if (isBcrypt) {
+         // bcrypt 비교
+         return BCrypt.checkpw(rawPassword, storedPassword);
+      } else {
+         // 초기 비밀번호(평문) 비교
+         return storedPassword.equals(rawPassword);
+      }
+   }
 
    // -------------------------------------------------------------
 

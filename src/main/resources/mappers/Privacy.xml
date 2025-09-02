@@ -21,6 +21,8 @@
     <update id="updateMyPwd">
         UPDATE user
         SET password = #{password}
-        WHERE user_id = #{userId}
+        WHERE user_id = (SELECT user_id
+                        FROM user
+                        WHERE email = #{email})
     </update>
 </mapper>
