@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class EnrollStatusReq {
     private String status;
-    private int enrollmentId;
+    private int courseId;
 }

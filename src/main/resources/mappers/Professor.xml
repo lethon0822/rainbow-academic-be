@@ -93,9 +93,11 @@
     <!-- 강의설문지 -->
     <update id="updateReview">
         UPDATE enrollment
-        SET review = #{review}
-        ,ev_score = #{evScore}
-        WHERE enrollment_id = #{enrollmentId} and user_id = #{userId}
+        SET review = #{review},
+        ev_score = #{evScore},
+        course_id = #{courseId}
+        WHERE enrollment_id = #{enrollmentId}
+        AND user_id = #{userId}
     </update>
 
     <!--  학생 상태 업데이트   -->
