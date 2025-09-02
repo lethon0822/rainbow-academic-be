@@ -33,7 +33,6 @@ public class GradeController {
 
         List<GetAllPermanentGradeRes> res = gradeService.getAllPermanentGrade(userId, req);
         return ResponseEntity.ok().body(res);
-
     }
 
     // 금학기 성적 조회 ( 중간, 기말 점수 등 포함 )
