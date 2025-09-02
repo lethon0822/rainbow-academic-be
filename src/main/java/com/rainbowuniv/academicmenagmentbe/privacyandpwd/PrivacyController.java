@@ -34,12 +34,12 @@ public class PrivacyController {
         return ResponseEntity.ok(result2);
     }
 
-    @PutMapping("/renewal")
-    public ResponseEntity<?> updatePwd (HttpServletRequest httpReq, @RequestBody PwdPutReq req) {
-        int result = privacyService.updateMyPwd(req);
-        if (req.getEmail().equals(httpReq.getParameter("email"))) {
-
-        }
-        return ResponseEntity.ok(result);
-    }
+//    @PutMapping("/renewal")
+//    public ResponseEntity<?> updatePwd (HttpServletRequest httpReq, @RequestBody PwdPutReq req) {
+//        int result = privacyService.updateMyPwd(req);
+//        if (req.getEmail().equals(httpReq.getParameter("email"))) {
+//
+//        }
+//        return ResponseEntity.ok(result);
+//    }
 }
