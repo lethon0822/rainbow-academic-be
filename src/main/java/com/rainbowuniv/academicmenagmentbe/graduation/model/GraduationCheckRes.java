@@ -25,7 +25,7 @@ public class GraduationCheckRes {
     private int totalShortageCredits;
 
     // 졸업 가능 여부
-    private boolean graduationPossible;
+    private String graduationResult;
 
     // 안내 메세지
     private String details;
