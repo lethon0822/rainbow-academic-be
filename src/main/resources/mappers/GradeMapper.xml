@@ -81,7 +81,7 @@
         se.year,
         se.semester,
         c.type,
-        c.grade,
+        s.grade,
         u.user_name AS professorName,
         c.course_code,
         c.title,
