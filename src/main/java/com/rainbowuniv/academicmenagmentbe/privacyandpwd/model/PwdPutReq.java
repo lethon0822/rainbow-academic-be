@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PwdPutReq {
-    private int userId;
+    private int loginId;
     private String password;
+    private String email;
 }

@@ -34,9 +34,9 @@ public class PrivacyController {
         return ResponseEntity.ok(result2);
     }
 
-    @PutMapping("/renewal")
-    public ResponseEntity<?> updatePwd (HttpServletRequest httpReq, @RequestBody PwdPutReq req) {
-        int result = privacyService.updateMyPwd(req);
-        return ResponseEntity.ok(result);
-    }
+//    @PutMapping("/renewal")
+//    public ResponseEntity<?> updatePwd (HttpServletRequest httpReq, @RequestBody PwdPutReq req) {
+//        int result = privacyService.updateMyPwd(req);
+//        return ResponseEntity.ok(result);
+//    }
 }

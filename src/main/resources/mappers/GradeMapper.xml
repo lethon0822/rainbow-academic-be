@@ -81,7 +81,7 @@
         se.year,
         se.semester,
         c.type,
-        c.grade,
+        s.grade,
         u.user_name AS professorName,
         c.course_code,
         c.title,
@@ -103,7 +103,7 @@
         AND e.status = '수강완료'
 
         <if test="req.grade != null">
-            AND c.grade = #{req.grade}
+            AND s.grade = #{req.grade}
         </if>
 
 

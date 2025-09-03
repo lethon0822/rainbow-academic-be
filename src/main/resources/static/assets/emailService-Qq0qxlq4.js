@@ -1,0 +1,1 @@
+import{P as c}from"./index-BYEgPVgA.js";const a=t=>c.post("/account/auth",t).catch(s=>s.response),e=t=>c.post("/account/auth",t).catch(s=>s.response),n=t=>c.put("/account/renewal",t).catch(s=>s.response);export{e as c,n as r,a as s};

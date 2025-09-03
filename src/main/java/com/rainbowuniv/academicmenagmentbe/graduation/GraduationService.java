@@ -81,7 +81,8 @@ public class GraduationService {
                 && shortageGeneralElective == 0
                 && shortageTotal == 0;
 
-        res.setGraduationPossible(graduationPossible);
+        String graduationResult = graduationPossible ? "졸업 요건 달성" : "졸업 요건 미달";
+        res.setGraduationResult(graduationResult);
 
         // 상세 메세지
         List<String> messages = new ArrayList<>();
@@ -121,7 +122,7 @@ public class GraduationService {
 
         String details;
         if (messages.isEmpty()) {
-            details = "졸업 요건을 모두 충족했습니다.";
+            details = "축하합니다. 졸업 요건을 모두 충족하였습니다.";
         } else {
             details = String.join(", ", messages) + " 부족";
         }
