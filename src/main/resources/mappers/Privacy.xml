@@ -18,11 +18,9 @@
         WHERE user_id = #{userId}
     </update>
 
-<!--    <update id="updateMyPwd">-->
-<!--        UPDATE user-->
-<!--        SET password = #{password}-->
-<!--        WHERE login_id = (SELECT login_id-->
-<!--                        FROM user-->
-<!--                        WHERE email = #{email})-->
-<!--    </update>-->
+    <update id="updateMyPwd">
+        UPDATE user
+        SET password = #{password}
+        WHERE email = #{email}
+    </update>
 </mapper>
