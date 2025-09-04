@@ -50,6 +50,12 @@ mail:
 
 server:
   port: 8080
+  servlet:
+    session:
+      cookie:
+        same-site: lax   # Lax / Strict / None
+        path: /          # 기본은 /
+        # domain: localhost  # 특별히 필요 없으면 아예 빼두는 게 안전
 
 logging:
   level:
@@ -63,3 +69,4 @@ logging:
     jdbc.audit: OFF
     jdbc.resultset: OFF
     jdbc.connection: OFF
+

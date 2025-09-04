@@ -3,7 +3,7 @@ package com.rainbowuniv.academicmenagmentbe.professor;
 
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
-import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
+import com.rainbowuniv.academicmenagmentbe.lectures.model.EnrollStatusReq;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

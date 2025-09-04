@@ -2,15 +2,12 @@ package com.rainbowuniv.academicmenagmentbe.professor;
 
 
 import com.rainbowuniv.academicmenagmentbe.account.AccountMapper;
-import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.model.*;
-import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 @Slf4j

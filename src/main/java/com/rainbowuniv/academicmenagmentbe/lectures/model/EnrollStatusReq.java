@@ -1,10 +1,8 @@
-package com.rainbowuniv.academicmenagmentbe.profile.model;
+package com.rainbowuniv.academicmenagmentbe.lectures.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EnrollStatusReq {
     private String status;
-    private int courseId;
-    private int userId;
+    private int enrollmentId;
+
 }
