@@ -2,7 +2,7 @@ package com.rainbowuniv.academicmenagmentbe.lectures;
 
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.ProfessorMapper;
-import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
+import com.rainbowuniv.academicmenagmentbe.lectures.model.EnrollStatusReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

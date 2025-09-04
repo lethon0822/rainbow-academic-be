@@ -5,9 +5,7 @@ import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
 import com.rainbowuniv.academicmenagmentbe.grade.GradeService;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeDTO;
 import com.rainbowuniv.academicmenagmentbe.grade.model.GradeSearchReq;
-import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
 import com.rainbowuniv.academicmenagmentbe.professor.ProfessorService;
-import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
 import com.rainbowuniv.academicmenagmentbe.profile.model.ProfileDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
