@@ -34,8 +34,8 @@
         JOIN professor p ON c.user_id = p.user_id
         JOIN department d ON p.dept_id = d.dept_id
         JOIN semester s ON s.semester_id = c.semester_id
-        WHERE c.user_id = 2
-        AND s.semester_id = 10
+        WHERE c.user_id = #{userId}
+        AND s.semester_id = #{semesterId}
         ORDER BY c.course_id DESC;
     </select>
 
