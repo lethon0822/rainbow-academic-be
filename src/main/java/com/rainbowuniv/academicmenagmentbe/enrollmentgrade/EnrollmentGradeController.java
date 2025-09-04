@@ -33,6 +33,7 @@ public class EnrollmentGradeController {
     @GetMapping("/grade/students")
     public ResponseEntity<List<GradePutReq>> getStudents(@RequestParam Long courseId) {
         List<GradePutReq> students = enrollmentGradeService.getStudentsByCourseId(courseId);
+        log.info("학생 목록: {}", students);
         return ResponseEntity.ok(students);
     }
 }

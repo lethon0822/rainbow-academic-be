@@ -68,7 +68,6 @@ public class ProfileController {
     }
 
 
-
     // 학생 프로필
     @GetMapping("/profile")
     public ResponseEntity<ProfileDTO> getStudentProfile(HttpServletRequest httpReq) {
@@ -85,5 +84,6 @@ public class ProfileController {
         }
         return ResponseEntity.ok(profile);
     }
+
 }
 
