@@ -39,7 +39,7 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Map.of("message", "BAD_CREDENTIALS"));
         }
-        String hashed = accountService.encodePassword(req.getPassword());
+        String hashed = accountService.encodePassword(body.getPassword());
 //        Boolean result2 = accountService.matchesPassword();
 
         // 세션 강제 생성
