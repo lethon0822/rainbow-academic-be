@@ -4,7 +4,7 @@ package com.rainbowuniv.academicmenagmentbe.lectures;
 import com.rainbowuniv.academicmenagmentbe.account.etc.AccountConstants;
 import com.rainbowuniv.academicmenagmentbe.common.util.HttpUtils;
 import com.rainbowuniv.academicmenagmentbe.lectures.model.LecturesEvaluationDto;
-import com.rainbowuniv.academicmenagmentbe.profile.model.EnrollStatusReq;
+import com.rainbowuniv.academicmenagmentbe.lectures.model.EnrollStatusReq;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

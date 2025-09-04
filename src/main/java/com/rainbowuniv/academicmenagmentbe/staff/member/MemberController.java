@@ -19,7 +19,7 @@ public class MemberController {
 
     //  추후 User 폴더 생성시 이 파일의 내용은 user로 이동
     @GetMapping
-    public ResponseEntity<?> getMember(@ModelAttribute MemberGetReq req){
+    public ResponseEntity<?> getMember(@ModelAttribute MemberGetReq req) {
         return ResponseEntity.ok(memberService.findUser(req));
     }
 
