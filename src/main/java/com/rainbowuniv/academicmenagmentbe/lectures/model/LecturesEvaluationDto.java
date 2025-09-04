@@ -8,4 +8,5 @@ public class LecturesEvaluationDto {
     private Integer userId;
     private String review;
     private int evScore;
+    private int enrollmentId;
 }
