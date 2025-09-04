@@ -3,96 +3,81 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rainbowuniv.academicmenagmentbe.staff.member.MemberMapper">
 
-
+    <!-- MemberGetReq 의 필드명이 userRole, deptId, status, grade, gender, searchBy, q 라고 가정 -->
     <select id="findUser">
-        SELECT
-        u.login_id   AS loginId,
-        u.user_name  AS username,
-        u.address    AS address,
-        u.email      AS email,
-        u.phone      AS phone,
-        d.dept_name  AS deptName
-        <if test="userRole == 'student'">
-            , s.grade   AS grade
-            , s.status  AS status
-        </if>
-        <if test="userRole == 'professor'">
-            , p.status  AS status
-        </if>
-        FROM `user` u
 
-        <!-- 역할에 맞게만 살아있는 조인 (다른 쪽은 항상 거짓이므로 무력화) -->
-        LEFT JOIN professor p
-        ON p.user_id = u.user_id
-        AND #{userRole} = 'professor'
+        <choose>
 
-        LEFT JOIN student s
-        ON s.user_id = u.user_id
-        AND #{userRole} = 'student'
+            <!-- 학생 -->
+            <when test="userRole == 'student'">
+                SELECT
+                u.login_id   AS loginId,
+                u.user_name  AS username,
+                u.address    AS address,
+                u.email      AS email,
+                u.phone      AS phone,
+                d.dept_name  AS deptName,
+                s.grade      AS grade,
+                s.status     AS status
+                FROM `user` u
+                JOIN student s        ON s.user_id = u.user_id
+                LEFT JOIN department d ON d.dept_id = s.dept_id
+                <where>
+                    u.user_id &gt; 1
+                    <if test="deptId != null">AND s.dept_id = #{deptId}</if>
+                    <if test="grade != null"> AND s.grade  = #{grade}</if>
+                    <if test="status != null and status != ''">AND s.status = #{status}</if>
+                    <if test="gender != null and gender != ''">AND u.gender = #{gender}</if>
+                    <if test="q != null and q != ''">
+                        <choose>
+                            <when test="searchBy == 'name'">    AND u.user_name LIKE CONCAT('%', #{q}, '%')</when>
+                            <when test="searchBy == 'loginId'"> AND u.login_id  LIKE CONCAT('%', #{q}, '%')</when>
+                            <when test="searchBy == 'email'">   AND u.email     LIKE CONCAT('%', #{q}, '%')</when>
+                            <otherwise>
+                                AND ( u.user_name LIKE CONCAT('%', #{q}, '%')
+                                OR u.login_id  LIKE CONCAT('%', #{q}, '%')
+                                OR u.email     LIKE CONCAT('%', #{q}, '%') )
+                            </otherwise>
+                        </choose>
+                    </if>
+                </where>
+                ORDER BY u.user_id DESC
+            </when>
 
-        /* 부서는 역할별로 정확히 매칭 */
-        JOIN department d
-        ON (
-        (#{userRole} = 'student'   AND d.dept_id = s.dept_id)
-        OR (#{userRole} = 'professor' AND d.dept_id = p.dept_id)
-        )
+            <!-- 교수 (기본) -->
+            <otherwise>
+                SELECT
+                u.login_id   AS loginId,
+                u.user_name  AS username,
+                u.address    AS address,
+                u.email      AS email,
+                u.phone      AS phone,
+                d.dept_name  AS deptName,
+                p.status     AS status
+                FROM `user` u
+                JOIN professor p        ON p.user_id = u.user_id
+                LEFT JOIN department d  ON d.dept_id = p.dept_id
+                <where>
+                    u.user_id &gt; 1
+                    <if test="deptId != null">AND p.dept_id = #{deptId}</if>
+                    <if test="status != null and status != ''">AND p.status = #{status}</if>
+                    <if test="gender != null and gender != ''">AND u.gender = #{gender}</if>
+                    <if test="q != null and q != ''">
+                        <choose>
+                            <when test="searchBy == 'name'">    AND u.user_name LIKE CONCAT('%', #{q}, '%')</when>
+                            <when test="searchBy == 'loginId'"> AND u.login_id  LIKE CONCAT('%', #{q}, '%')</when>
+                            <when test="searchBy == 'email'">   AND u.email     LIKE CONCAT('%', #{q}, '%')</when>
+                            <otherwise>
+                                AND ( u.user_name LIKE CONCAT('%', #{q}, '%')
+                                OR u.login_id  LIKE CONCAT('%', #{q}, '%')
+                                OR u.email     LIKE CONCAT('%', #{q}, '%') )
+                            </otherwise>
+                        </choose>
+                    </if>
+                </where>
+                ORDER BY u.user_id DESC
+            </otherwise>
 
-        <where>
-            u.user_id > 1
-
-            <!-- user_role 문자열과 무관하게 "조인 존재"로 역할 확정 -->
-            AND (
-            (#{userRole} = 'student'   AND s.user_id IS NOT NULL)
-            OR (#{userRole} = 'professor' AND p.user_id IS NOT NULL)
-            )
-
-            <!-- 학과 -->
-            <if test="deptId != null">
-                AND (
-                (#{userRole} = 'student'   AND s.dept_id = #{deptId})
-                OR (#{userRole} = 'professor' AND p.dept_id = #{deptId})
-                )
-            </if>
-
-            <!-- 학생: 학년 -->
-            <if test="userRole == 'student' and grade != null">
-                AND s.grade = #{grade}
-            </if>
-
-            <!-- 상태 -->
-            <if test="status != null and status != ''">
-                AND (
-                (#{userRole} = 'student'   AND s.status = #{status})
-                OR (#{userRole} = 'professor' AND p.status = #{status})
-                )
-            </if>
-
-            <!-- 성별 (user.gender 컬럼이 있을 때) -->
-            <if test="gender != null and gender != ''">
-                AND u.gender = #{gender}
-            </if>
-
-            <!-- 검색 -->
-            <if test="q != null and q != ''">
-                <choose>
-                    <when test="searchBy == 'name'">
-                        AND u.user_name LIKE CONCAT('%', #{q}, '%')
-                    </when>
-                    <when test="searchBy == 'loginId'">
-                        AND u.login_id  LIKE CONCAT('%', #{q}, '%')
-                    </when>
-                    <when test="searchBy == 'email'">
-                        AND u.email     LIKE CONCAT('%', #{q}, '%')
-                    </when>
-                    <otherwise>
-                        AND ( u.user_name LIKE CONCAT('%', #{q}, '%')
-                        OR u.login_id  LIKE CONCAT('%', #{q}, '%')
-                        OR u.email     LIKE CONCAT('%', #{q}, '%') )
-                    </otherwise>
-                </choose>
-            </if>
-        </where>
-
-        ORDER BY u.user_id DESC
+        </choose>
     </select>
 </mapper>
