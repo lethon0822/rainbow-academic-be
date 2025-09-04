@@ -46,7 +46,7 @@ public class NoticeController {
     }
 
     @GetMapping("/{notice_id}")
-    public ResponseEntity<?> putNotice(@PathVariable (name = "notice_id") int noticeId) {
+    public ResponseEntity<?> getNotice(@PathVariable (name = "notice_id") int noticeId) {
         NoticeGetRes result = noticeService.selectNoticeById(noticeId);
         return ResponseEntity.ok().body(result);
     }
