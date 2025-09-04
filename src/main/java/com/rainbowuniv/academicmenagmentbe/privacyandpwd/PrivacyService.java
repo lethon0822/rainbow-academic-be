@@ -24,6 +24,7 @@ public class PrivacyService {
 
 //    public int updateMyPwd (PwdPutReq req) {
 //        String hashedPw = BCrypt.hashpw(req.getPassword(), BCrypt.gensalt());
-//        PwdPutReq result = new PwdPutReq(req.getUserId(), hashedPw);
+//        PwdPutReq result = new PwdPutReq(req.getLoginId(), req.getEmail(), hashedPw);
 //        return privacyMapper.updateMyPwd(result);
+//    }
 }
