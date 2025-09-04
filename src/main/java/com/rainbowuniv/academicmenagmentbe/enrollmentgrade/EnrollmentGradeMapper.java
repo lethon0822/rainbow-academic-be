@@ -16,4 +16,6 @@ public interface EnrollmentGradeMapper {
     void enrollmentGrade(GradePutReq req);
 
     List<GradePutReq> getStudentsByCourseId(Long courseId);
+
+
 }

@@ -93,15 +93,17 @@
     <!-- 강의설문지 -->
     <update id="updateReview">
         UPDATE enrollment
-        SET review = #{review}
-        ,ev_score = #{evScore}
-        WHERE enrollment_id = #{enrollmentId} and user_id = #{userId}
+        SET review = #{review},
+        ev_score = #{evScore},
+        status = '수강완료'
+        WHERE course_id = #{courseId}
+        AND user_id = #{userId}
     </update>
 
     <!--  학생 상태 업데이트   -->
-    <update id="updateEnrollStatus">
+    <update id="updateEnrollStatus" >
         UPDATE enrollment
         SET status = #{status}
-        WHERE enrollment_id = #{enrollmentId}
+        WHERE course_id = #{courseId} AND user_id = #{userId}
     </update>
 </mapper>

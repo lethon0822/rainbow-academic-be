@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class LecturesReq {
+    //설문지
     private int courseId;
     private String title;
     private int credit;

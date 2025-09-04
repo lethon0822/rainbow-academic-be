@@ -16,7 +16,7 @@ import java.util.List;
 public class ApplicationController {
     private final ApplicationService applicationService;
 
-    // 학생, 교직원의 신청
+    // 학생, 교수의 신청
     @PostMapping
     public ResponseEntity<?> insertAppForReason (@RequestBody AppPostReq req) {
         return ResponseEntity.ok(applicationService.insertAppForReason(req));
