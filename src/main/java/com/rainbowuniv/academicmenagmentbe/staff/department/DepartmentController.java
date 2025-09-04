@@ -53,7 +53,7 @@ public class DepartmentController {
 
     // 학과 상태 수정
     @PatchMapping
-    public ResponseEntity<?> updateStatus(@RequestParam("id") int deptId){
+    public ResponseEntity<?> updateDeptStatus(@RequestParam("id") int deptId){
         DepartmentPatchReq req = new DepartmentPatchReq(deptId);
         departmentService.updateStatus(req);
         return ResponseEntity.ok("학과 상태 수정");

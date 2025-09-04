@@ -37,6 +37,7 @@ public class ProfessorService {
         return professorMapper.findByUserId(req);
     }
 
+    // 강의 계획서 수정
     public int modify(ProfessorPutReq req) {
         return professorMapper.modify(req);
     }
