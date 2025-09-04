@@ -24,7 +24,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/student")
-@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 @Slf4j
 public class ProfileController {
@@ -69,24 +68,6 @@ public class ProfileController {
     }
 
 
-    // 강의 평가 학생용 등록
-    @PutMapping("/course/survey")
-    public ResponseEntity<String> studentSurvey(HttpServletRequest httpReq,
-                                                @RequestBody LecturesEvaluationDto dto) {
-        Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
-        dto.setUserId(userId);
-
-        log.info("dto", dto);
-        int result = professorService.studentSurvey(dto);
-        if (result == 1) {
-            String status = "수강완료";
-            EnrollStatusReq req = new EnrollStatusReq(status, dto.getEnrollmentId());
-            professorService.studentStatus(req);
-
-            return ResponseEntity.ok("강의 평가 등록 성공");
-        }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("강의 평가 등록 실패");
-    }
 
     // 학생 프로필
     @GetMapping("/profile")
