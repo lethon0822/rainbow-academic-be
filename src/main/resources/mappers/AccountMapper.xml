@@ -41,11 +41,17 @@
 
     <!-- 학과코드 가져오기 -->
     <select id="findDeptCodeByUserId">
-        SELECT dept_code
-        FROM department d
-        join professor p
-        ON d.dept_id = p.dept_id
-        WHERE p.user_id = #{userId}
+        SELECT d.dept_id, d.dept_code, d.dept_name
+        FROM student s
+        JOIN department d ON s.dept_id = d.dept_id
+        WHERE s.user_id = #{userId}
+
+        UNION
+
+        SELECT d.dept_id, d.dept_code, d.dept_name
+        FROM professor p
+        JOIN department d ON p.dept_id = d.dept_id
+        WHERE p.user_id = #{userId};
     </select>
 
 </mapper>
