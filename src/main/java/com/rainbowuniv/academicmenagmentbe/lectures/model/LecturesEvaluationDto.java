@@ -1,7 +1,9 @@
 package com.rainbowuniv.academicmenagmentbe.lectures.model;
 
 import lombok.Data;
+import lombok.Getter;
 
+@Getter
 @Data
 public class LecturesEvaluationDto {
     private int courseId;
