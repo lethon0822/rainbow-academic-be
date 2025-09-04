@@ -69,24 +69,25 @@ public class ProfileController {
     }
 
 
-    // 강의 평가 학생용 등록
+    // 설문지
     @PutMapping("/course/survey")
     public ResponseEntity<String> studentSurvey(HttpServletRequest httpReq,
                                                 @RequestBody LecturesEvaluationDto dto) {
         Integer userId = (Integer) HttpUtils.getSessionValue(httpReq, AccountConstants.USER_ID_NAME);
         dto.setUserId(userId);
 
-        log.info("dto", dto);
+        log.info("Received DTO: {}", dto);
         int result = professorService.studentSurvey(dto);
         if (result == 1) {
             String status = "수강완료";
-            EnrollStatusReq req = new EnrollStatusReq(status, dto.getEnrollmentId());
+            EnrollStatusReq req = new EnrollStatusReq(status, dto.getCourseId(), userId);
             professorService.studentStatus(req);
 
             return ResponseEntity.ok("강의 평가 등록 성공");
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("강의 평가 등록 실패");
     }
+
 
     // 학생 프로필
     @GetMapping("/profile")
@@ -104,5 +105,6 @@ public class ProfileController {
         }
         return ResponseEntity.ok(profile);
     }
+
 }
 
