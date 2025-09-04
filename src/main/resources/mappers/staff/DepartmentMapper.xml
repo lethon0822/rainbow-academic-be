@@ -15,19 +15,24 @@
 <!-- 학과 조회-->
     <select id="findAll">
         SELECT
-        d.dept_id, d.dept_name, d.dept_office, d.dept_tel,
-        d.head_prof_id, d.dept_max_std, d.status, d.dept_code,
+        d.dept_id,
+        d.dept_name,
+        d.dept_office,
+        d.dept_tel,
+        d.head_prof_id,
+        d.dept_max_std,
+        d.status,
+        d.dept_code,
         u.user_name,
         IFNULL(s.deptPeople, 0) AS deptPeople
         FROM department d
-        LEFT JOIN professor p ON d.dept_id = p.dept_id
-        LEFT JOIN user u ON p.user_id = u.user_id
+        LEFT JOIN user u ON d.head_prof_id = u.user_id
         LEFT JOIN (
         SELECT dept_id, COUNT(*) AS deptPeople
         FROM student
         WHERE status != '졸업'
         GROUP BY dept_id
-        ) s ON d.dept_id = s.dept_id
+        ) s ON d.dept_id = s.dept_id;
         <where>
             <if test="status != null and status != ''">
                 d.status = #{status}
@@ -36,7 +41,6 @@
                 AND (d.dept_code LIKE '%${keyword}%' OR d.dept_name LIKE '%${keyword}%')
             </if>
         </where>
-        GROUP BY d.dept_id;
     </select>
 
 

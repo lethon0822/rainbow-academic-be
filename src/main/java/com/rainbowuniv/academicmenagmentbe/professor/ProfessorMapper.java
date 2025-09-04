@@ -16,6 +16,7 @@ public interface ProfessorMapper {
     // 이번 년도 내 강의 보기
     List<ProfessorGetRes> findByUserId(ProfessorGetReq req);
 
+    // 강의 계획서 수정
     int modify(ProfessorPutReq req);
 
     List<CourseStudentGetReq> findStudentsByUserId(int courseId);

@@ -12,6 +12,7 @@ public class AccountLoginRes {
     private String userName;
     private int loginId;
     private int semesterId;
+    private String deptName;
 
     @JsonIgnore
     private String password;
