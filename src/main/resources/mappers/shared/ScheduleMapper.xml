@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainbowuniv.academicmenagmentbe.shared.schedule.ScheduleMapper">
+
+    <!-- 월별: 해당 월과 겹치는 모든 일정 -->
+
+    <select id="findByMonth">
+        <![CDATA[
+        SELECT
+        sch.schedule_id                                   AS id,
+        sch.semester_id                                   AS semesterId,
+        sch.schedule_type                                 AS scheduleType,
+        DATE_FORMAT(sch.start_datetime, '%Y-%m-%d')       AS startDate,
+        DATE_FORMAT(sch.end_datetime,   '%Y-%m-%d')       AS endDate,
+        sch.description                                   AS description,
+        DATE_FORMAT(sch.created_at, '%Y-%m-%d %H:%i:%s')  AS createdAt
+        FROM schedule sch
+        WHERE sch.start_datetime <= #{end}
+        AND sch.end_datetime   >= #{start}
+        ORDER BY sch.start_datetime ASC
+        ]]>
+    </select>
+
+    <select id="findById">
+        SELECT
+            sch.schedule_id                                   AS id,
+            sch.semester_id                                   AS semesterId,
+            sch.schedule_type                                 AS scheduleType,
+            DATE_FORMAT(sch.start_datetime, '%Y-%m-%d')       AS startDate,
+            DATE_FORMAT(sch.end_datetime,   '%Y-%m-%d')       AS endDate,
+            sch.description                                   AS description,
+            DATE_FORMAT(sch.created_at, '%Y-%m-%d %H:%i:%s')  AS createdAt
+        FROM schedule sch
+        WHERE sch.schedule_id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="scheduleId" keyColumn="schedule_id">
+        INSERT INTO schedule (semester_id, schedule_type, start_datetime, end_datetime, description)
+        VALUES (
+                   #{semesterId},
+                   #{scheduleType},
+                   CONCAT(#{startDate}, ' 00:00:00'),
+                   CONCAT(#{endDate},   ' 23:59:59'),
+                   #{description}
+               )
+    </insert>
+
+    <update id="update">
+        UPDATE schedule
+        SET semester_id   = #{semesterId},
+            schedule_type = #{scheduleType},
+            start_datetime= CONCAT(#{startDate}, ' 00:00:00'),
+            end_datetime  = CONCAT(#{endDate},   ' 23:59:59'),
+            description   = #{description}
+        WHERE schedule_id = #{scheduleId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM schedule WHERE schedule_id = #{id}
+    </delete>
+</mapper>
