@@ -5,11 +5,13 @@ import com.rainbowuniv.academicmenagmentbe.enrollmentgrade.model.GradePostReq;
 import com.rainbowuniv.academicmenagmentbe.enrollmentgrade.model.GradePutReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class EnrollmentGradeService {
     private final EnrollmentGradeMapper enrollmentGradeMapper;
 
