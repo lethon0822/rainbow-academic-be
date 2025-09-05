@@ -4,7 +4,6 @@ import com.rainbowuniv.academicmenagmentbe.shared.schedule.model.ScheduleCreateR
 import com.rainbowuniv.academicmenagmentbe.shared.schedule.model.ScheduleRes;
 import com.rainbowuniv.academicmenagmentbe.shared.schedule.model.ScheduleUpdateReq;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +17,10 @@ public class ScheduleController {
     private final ScheduleService service;
 
     // 월별 조회: /api/schedule?year=2025&month=8
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ScheduleRes>> getByMonth(@RequestParam int year, @RequestParam int month) {
-        List<ScheduleRes> list = service.findByMonth(year, month);
-        return ResponseEntity.ok(list == null ? List.of() : list);
+    @GetMapping
+    public ResponseEntity<List<ScheduleRes>> getByMonth(
+            @RequestParam int year, @RequestParam int month) {
+        return ResponseEntity.ok(service.findByMonth(year, month));
     }
 
     // 단건 조회 (선택)

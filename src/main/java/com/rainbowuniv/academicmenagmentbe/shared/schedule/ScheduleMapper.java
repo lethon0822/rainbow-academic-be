@@ -16,4 +16,5 @@ public interface ScheduleMapper {
     int insert(ScheduleCreateReq req);
     int update(ScheduleUpdateReq req);
     int delete(@Param("id") int id);
+    ScheduleRes findFor(@Param("semesterId") int semesterId, @Param("type") String type);
 }

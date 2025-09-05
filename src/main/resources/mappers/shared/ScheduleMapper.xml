@@ -35,6 +35,24 @@
         WHERE sch.schedule_id = #{id}
     </select>
 
+    <select id="findFor">
+<![CDATA[
+        SELECT
+            sch.schedule_id                                   AS id,
+            sch.semester_id                                   AS semesterId,
+            sch.schedule_type                                 AS scheduleType,
+            DATE_FORMAT(sch.start_datetime, '%Y-%m-%d')       AS startDate,
+            DATE_FORMAT(sch.end_datetime,   '%Y-%m-%d')       AS endDate,
+            sch.description                                   AS description,
+            DATE_FORMAT(sch.created_at, '%Y-%m-%d %H:%i:%s')  AS createdAt
+        FROM schedule sch
+        WHERE sch.semester_id = #{semesterId}
+          AND sch.schedule_type = #{type}
+        ORDER BY sch.start_datetime ASC
+            LIMIT 1
+        ]]>
+</select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="scheduleId" keyColumn="schedule_id">
         INSERT INTO schedule (semester_id, schedule_type, start_datetime, end_datetime, description)
         VALUES (
