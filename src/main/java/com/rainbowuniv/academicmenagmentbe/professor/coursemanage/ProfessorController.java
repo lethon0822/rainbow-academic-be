@@ -34,10 +34,9 @@ public class ProfessorController {
 
     //등록한 강의 보기
     @GetMapping("/course")
-    public ResponseEntity <?> findMyCourse(HttpServletRequest httpReq, @RequestParam("semester_id") int semesterId){
+    public ResponseEntity <?> findMyCourse(HttpServletRequest httpReq, @ModelAttribute ProfessorGetReq req){
         int userId = (int)HttpUtils.getSessionValue(httpReq, "userId");
-        ProfessorGetReq req = new ProfessorGetReq(userId, semesterId);
-        log.info("야아아악:{}",req);
+        req.setUserId(userId);
         List<ProfessorGetRes> result = professorService.findMyCourse(req);
         return ResponseEntity.ok(result);
     }

@@ -13,11 +13,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,8 +42,15 @@ public class AccountController {
         String hashed = accountService.encodePassword(body.getPassword());
 //        Boolean result2 = accountService.matchesPassword();
 
-        // 세션 강제 생성
+        //세션처리
+//        HttpUtils.setSession(req,AccountConstants.USER_ID_NAME, result.getUserId());
+//        return ResponseEntity.ok(result);
+
+
+// ----------------------------------------------------------------------------
+//        // 세션 강제 생성
         HttpSession session = req.getSession(true);
+        session.setAttribute("userId",result.getUserId());
 
         // 스프링 시큐리티 인증객체 생성
         var auth = new UsernamePasswordAuthenticationToken(
@@ -64,12 +71,6 @@ public class AccountController {
         return ResponseEntity.ok(result);
     }
 
-//    @GetMapping("/id")
-//    public ResponseEntity<?> findId (@RequestParam String email, @RequestParam String phone) {
-//        AccountFindIdReq req = new AccountFindIdReq(email, phone);
-//        AccountFindIdRes result = accountService.findIdByEmailAndPhone(req);
-//        return ResponseEntity.ok(result);
-//    }
 
     @GetMapping("/id")
     public ResponseEntity<?> findId (@ModelAttribute AccountFindIdReq req){
