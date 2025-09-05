@@ -38,7 +38,7 @@
         <if test="sid != null and sid != ''">
         AND s.semester_id = #{sid}
         </if>
-        <if test="sid == null or sid == ''">
+        <if test="(sid == null or sid == '')and (year != null and year !='')">
             AND s.year = #{year}
             And s.semester = #{semester}
         </if>
