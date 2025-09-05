@@ -9,6 +9,7 @@ import com.rainbowuniv.academicmenagmentbe.schedule.model.ScheduleUpdateReq;
 import java.util.List;
 
 public interface ScheduleService {
+    ScheduleRes findFor(int semesterId, String type);
     List<ScheduleRes> findByMonth(int year, int month);
     ScheduleRes findById(int id);
     void create(ScheduleCreateReq req);

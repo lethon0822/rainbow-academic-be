@@ -17,6 +17,11 @@ public class AccountService {
 
    public AccountLoginRes login(AccountLoginReq req) {
       AccountLoginRes res = accountMapper.findByLoginId(req);
+      if (res == null) return null;
+
+      // 보안상 노출 방지
+      res.setPassword(null);
+
       return res;
    }
 

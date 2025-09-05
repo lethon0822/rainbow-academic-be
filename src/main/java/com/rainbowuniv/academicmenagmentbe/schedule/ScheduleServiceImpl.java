@@ -16,6 +16,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     private final ScheduleMapper mapper;
 
+
     @Override
     public List<ScheduleRes> findByMonth(int year, int month) {
         LocalDate first = LocalDate.of(year, month, 1);
@@ -51,5 +52,8 @@ public class ScheduleServiceImpl implements ScheduleService {
         if (LocalDate.parse(start).isAfter(LocalDate.parse(end))) {
             throw new IllegalArgumentException("시작일이 종료일보다 늦습니다.");
         }
+    }
+    @Override public ScheduleRes findFor(int semesterId, String type) {
+        return mapper.findFor(semesterId, type);
     }
 }

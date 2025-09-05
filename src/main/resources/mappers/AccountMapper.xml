@@ -4,24 +4,32 @@
     <!--    로그인 하기     -->
 
     <select id="findByLoginId">
-    <![CDATA[
-        SELECT
-        u.user_id     AS userId,
-        u.user_role   AS userRole,
-        u.user_name   AS userName,
-        u.login_id    AS loginId,
-        /* 1~6월=1학기, 7~12월=2학기 */
-        (SELECT s.semester_id
-        FROM semester s
-        WHERE s.`year` = YEAR(NOW())
-        AND s.`semester` = CASE WHEN MONTH(NOW()) <= 6 THEN 1 ELSE 2 END
-        LIMIT 1) AS semesterId,
-        u.password    AS password
-        FROM `user` u
-        WHERE u.login_id = #{loginId}
-        AND u.password = #{password}
-        LIMIT 1
-    ]]>
+        <![CDATA[
+          SELECT
+              u.user_id     AS userId,
+              u.user_role   AS userRole,
+              u.user_name   AS userName,
+              u.login_id    AS loginId,
+              COALESCE(ds.dept_name, dp.dept_name) AS deptName,
+              COALESCE(ds.dept_id, dp.dept_id)     AS deptId,
+              COALESCE(ds.dept_code, dp.dept_code) AS deptCode,
+              (
+                SELECT s.semester_id
+                FROM semester s
+                WHERE s.`year` = YEAR(NOW())
+                  AND s.`semester` = CASE WHEN MONTH(NOW()) <= 6 THEN 1 ELSE 2 END
+                LIMIT 1
+              ) AS semesterId,
+              u.password AS password
+          FROM `user` u
+            LEFT JOIN student    st ON st.user_id = u.user_id
+            LEFT JOIN department ds ON ds.dept_id = st.dept_id
+            LEFT JOIN professor  pf ON pf.user_id = u.user_id
+            LEFT JOIN department dp ON dp.dept_id = pf.dept_id
+          WHERE u.login_id = #{loginId}
+            AND u.password = #{password}
+          LIMIT 1
+        ]]>
     </select>
 
 
